@@ -673,18 +673,113 @@
   /* DIVIDER */
   hr.section-divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
 
+  /* MOBILE TOPBAR */
+  .mobile-topbar {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    background: var(--sidebar-bg);
+    z-index: 200;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+  .mobile-logo {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #F8FAFC;
+    letter-spacing: -0.5px;
+  }
+  .mobile-logo span { color: #3B82F6; }
+  .burger-btn {
+    width: 40px; height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .burger-btn:active { background: rgba(255,255,255,0.08); }
+  .burger-line {
+    width: 22px; height: 2px;
+    background: #F8FAFC;
+    border-radius: 2px;
+    transition: all 0.25s ease;
+    transform-origin: center;
+  }
+  .burger-btn.open .burger-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger-btn.open .burger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .burger-btn.open .burger-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* OVERLAY */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 149;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .sidebar-overlay.visible {
+    display: block;
+    opacity: 1;
+  }
+
   @media(max-width: 900px) {
-    .sidebar { display: none; }
-    .main { margin-left: 0; padding: 20px; max-width: 100%; }
+    .mobile-topbar { display: flex; }
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
+      z-index: 150;
+      top: 0;
+      height: 100vh;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .main { margin-left: 0; padding: 72px 16px 24px; max-width: 100%; }
     .vision-grid { grid-template-columns: 1fr; }
     .two-col { grid-template-columns: 1fr; }
+    .three-col { grid-template-columns: 1fr; }
+    .cards { grid-template-columns: 1fr 1fr; }
+    .focus-cards { grid-template-columns: 1fr; }
+    .page-title { font-size: 20px; }
+    .block { padding: 16px; }
+    .highlight-box { padding: 20px; }
+    .tbl { font-size: 12px; }
+    .tbl th, .tbl td { padding: 8px 10px; }
+    .persona-header { flex-wrap: wrap; }
+  }
+  @media(max-width: 480px) {
+    .cards { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
+<!-- MOBILE TOPBAR -->
+<div class="mobile-topbar">
+  <div class="mobile-logo">2<span>DROIDA</span></div>
+  <button class="burger-btn" id="burgerBtn" onclick="toggleSidebar()" aria-label="Меню">
+    <span class="burger-line"></span>
+    <span class="burger-line"></span>
+    <span class="burger-line"></span>
+  </button>
+</div>
+
+<!-- OVERLAY -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
 <!-- SIDEBAR -->
-<nav class="sidebar">
+<nav class="sidebar" id="sidebar">
   <div class="sidebar-header">
     <div class="logo">2<span>DROIDA</span></div>
     <div class="sidebar-meta">СТРАТЕГИЯ · 2026–2027</div>
@@ -2178,6 +2273,8 @@ function show(id, el) {
   document.getElementById('section-' + id).classList.add('active');
   el.classList.add('active');
   window.scrollTo(0, 0);
+  // close sidebar on mobile after nav
+  if (window.innerWidth <= 900) closeSidebar();
 }
 function toggleQ(el) {
   const answer = el.nextElementSibling;
@@ -2185,6 +2282,41 @@ function toggleQ(el) {
   answer.classList.toggle('open');
   arrow.textContent = answer.classList.contains('open') ? '▲' : '▼';
 }
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const btn = document.getElementById('burgerBtn');
+  const isOpen = sidebar.classList.contains('open');
+  if (isOpen) {
+    closeSidebar();
+  } else {
+    sidebar.classList.add('open');
+    overlay.classList.add('visible');
+    btn.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const btn = document.getElementById('burgerBtn');
+  sidebar.classList.remove('open');
+  overlay.classList.remove('visible');
+  btn.classList.remove('open');
+  document.body.style.overflow = '';
+}
+// Close sidebar on Escape
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
+// Swipe-to-close: track touch on sidebar
+(function(){
+  let startX = 0;
+  const sidebar = document.getElementById('sidebar');
+  sidebar.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+  sidebar.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (dx < -60) closeSidebar();
+  }, {passive:true});
+})();
 </script>
 </body>
 </html>
