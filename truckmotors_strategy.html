@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TruckMotors | Продуктовая стратегия 2026–2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F1F5F9;color:#1E293B;font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.6}
+.layout{display:flex;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{background:#1E293B;color:#F1F5F9;width:260px;min-width:260px;position:fixed;top:0;left:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column;z-index:100}
+.sidebar-logo{padding:20px 20px 12px;border-bottom:1px solid #334155}
+.sidebar-logo-title{font-family:'Unbounded',sans-serif;font-size:15px;font-weight:700;color:#F8FAFC;letter-spacing:-0.5px}
+.sidebar-logo-title span{color:#3B82F6}
+.sidebar-logo-sub{font-size:10px;color:#64748B;margin-top:3px;letter-spacing:.5px;text-transform:uppercase}
+.nav-group{padding:12px 12px 4px}
+.nav-group-label{font-size:10px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:#475569;margin-bottom:6px;padding-left:4px}
+.nav-item{padding:7px 12px;cursor:pointer;border-radius:6px;color:#94A3B8;font-size:12.5px;transition:all .15s;margin-bottom:2px;display:flex;align-items:center;gap:7px}
+.nav-item:hover{background:#334155;color:#E2E8F0}
+.nav-item.active{background:#3B82F6;color:#fff}
+.nav-item .nav-icon{font-size:13px;flex-shrink:0}
+
+/* CONTACTS */
+.sidebar-contacts{margin-top:auto;padding:16px 20px;border-top:1px solid #334155}
+.sidebar-contacts-label{font-size:10px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:#475569;margin-bottom:10px}
+.sidebar-contacts-name{font-family:'Unbounded',sans-serif;font-size:11px;font-weight:600;color:#E2E8F0;margin-bottom:10px;line-height:1.4}
+.sidebar-contact-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px}
+.sidebar-contact-icon{font-size:13px;flex-shrink:0;margin-top:1px}
+.sidebar-contact-text{font-size:11px;color:#94A3B8;line-height:1.4}
+.sidebar-contact-text a{color:#94A3B8;text-decoration:none;transition:color .15s}
+.sidebar-contact-text a:hover{color:#3B82F6}
+
+/* MAIN */
+.main{margin-left:260px;padding:32px 40px;max-width:1200px;flex:1}
+.section{display:none}
+.section.active{display:block}
+.page-title{font-family:'Unbounded',sans-serif;font-size:22px;font-weight:700;color:#0F172A;margin-bottom:6px}
+.page-subtitle{color:#64748B;font-size:14px;margin-bottom:28px}
+
+/* BLOCKS */
+.block{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid #E2E8F0}
+.block-title{font-size:16px;font-weight:700;color:#0F172A;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+
+/* CARDS GRID */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+.cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+.cards-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.card{background:#fff;border-radius:10px;padding:18px;border:1px solid #E2E8F0;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.card-label{font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.card-value{font-size:22px;font-weight:700;color:#0F172A;margin-bottom:4px}
+.card-value.blue{color:#3B82F6}
+.card-value.green{color:#10B981}
+.card-value.orange{color:#F59E0B}
+.card-value.red{color:#EF4444}
+.card-sub{font-size:11px;color:#94A3B8}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{background:#1E293B;color:#fff;padding:10px 14px;text-align:left;font-weight:600;font-size:12px}
+.tbl th:first-child{border-radius:6px 0 0 0}
+.tbl th:last-child{border-radius:0 6px 0 0}
+.tbl td{padding:10px 14px;border-bottom:1px solid #F1F5F9;color:#1E293B;vertical-align:top}
+.tbl tr:hover td{background:#F8FAFC}
+.tbl tr:last-child td{border-bottom:none}
+
+/* BADGES */
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600}
+.badge-blue{background:#EFF6FF;color:#3B82F6}
+.badge-green{background:#ECFDF5;color:#10B981}
+.badge-orange{background:#FFFBEB;color:#F59E0B}
+.badge-red{background:#FEF2F2;color:#EF4444}
+.badge-purple{background:#F5F3FF;color:#8B5CF6}
+.badge-gray{background:#F1F5F9;color:#64748B}
+
+/* INSIGHT BOXES */
+.insight{padding:14px 16px;border-radius:8px;margin-bottom:12px;font-size:13px;line-height:1.6}
+.insight-blue{background:#EFF6FF;border-left:3px solid #3B82F6;color:#1E40AF}
+.insight-green{background:#ECFDF5;border-left:3px solid #10B981;color:#065F46}
+.insight-yellow{background:#FFFBEB;border-left:3px solid #F59E0B;color:#92400E}
+.insight-red{background:#FEF2F2;border-left:3px solid #EF4444;color:#991B1B}
+
+/* HIGHLIGHT BOX */
+.highlight-box{background:linear-gradient(135deg,#1E293B 0%,#0F172A 100%);border-radius:12px;padding:28px 32px;margin-bottom:20px;color:#F8FAFC}
+.highlight-box h2{font-family:'Unbounded',sans-serif;font-size:18px;color:#fff;margin-bottom:12px}
+.highlight-box p{color:#CBD5E1;line-height:1.8;font-size:14px}
+.highlight-box .hl-accent{color:#3B82F6;font-weight:700}
+
+/* ROADMAP */
+.roadmap{position:relative;padding-left:32px}
+.roadmap::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:#E2E8F0}
+.roadmap-item{position:relative;margin-bottom:20px}
+.roadmap-dot{position:absolute;left:-28px;top:4px;width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px currentColor}
+.roadmap-dot.red{color:#EF4444;background:#EF4444}
+.roadmap-dot.orange{color:#F59E0B;background:#F59E0B}
+.roadmap-dot.purple{color:#8B5CF6;background:#8B5CF6}
+.roadmap-period{font-size:11px;font-weight:600;color:#64748B;margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px}
+.roadmap-title{font-size:14px;font-weight:700;color:#0F172A;margin-bottom:4px}
+.roadmap-desc{font-size:13px;color:#64748B;line-height:1.5}
+.roadmap-kpi{margin-top:6px;display:flex;gap:6px;flex-wrap:wrap}
+
+/* FOCUS CARDS */
+.focus-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px}
+.focus-card{border-radius:10px;padding:18px;border:1px solid #E2E8F0}
+.focus-card.phase1{background:linear-gradient(135deg,#FEF2F2,#fff);border-color:#FECACA}
+.focus-card.phase2{background:linear-gradient(135deg,#FFFBEB,#fff);border-color:#FDE68A}
+.focus-card.phase3{background:linear-gradient(135deg,#F5F3FF,#fff);border-color:#DDD6FE}
+.focus-phase{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.phase1 .focus-phase{color:#EF4444}
+.phase2 .focus-phase{color:#F59E0B}
+.phase3 .focus-phase{color:#8B5CF6}
+.focus-title{font-size:14px;font-weight:700;color:#0F172A;margin-bottom:6px}
+.focus-desc{font-size:12px;color:#64748B;line-height:1.5;margin-bottom:10px}
+.focus-effect{font-size:12px;font-weight:600;color:#1E293B;background:#F1F5F9;padding:6px 10px;border-radius:6px}
+
+/* PERSONA */
+.persona-card{border-radius:12px;padding:20px;background:#F8FAFC;border:1px solid #E2E8F0;margin-bottom:16px}
+.persona-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.persona-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.persona-name{font-size:15px;font-weight:700;color:#0F172A}
+.persona-role{font-size:12px;color:#64748B}
+.persona-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.persona-section{background:#fff;border-radius:8px;padding:12px;border:1px solid #E2E8F0}
+.persona-section-title{font-size:11px;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.persona-pain{display:flex;align-items:flex-start;gap:6px;margin-bottom:5px;font-size:12px;color:#1E293B}
+.persona-pain::before{content:'⚡';flex-shrink:0}
+.persona-quote{font-style:italic;color:#3B82F6;font-size:12px;line-height:1.5;border-left:3px solid #3B82F6;padding-left:10px;margin-top:8px}
+.persona-jtbd{background:linear-gradient(135deg,#EFF6FF,#F0FDF4);border-radius:8px;padding:12px;margin-top:10px;font-size:12px;color:#1E293B;border:1px solid #BFDBFE;font-style:italic}
+
+/* INTERVIEW SIMULATOR */
+.sim-q{background:#F8FAFC;border-radius:8px;padding:14px;margin-bottom:10px;border:1px solid #E2E8F0}
+.sim-q-text{font-weight:600;font-size:13px;color:#0F172A;margin-bottom:8px}
+.sim-toggle{background:none;border:1px solid #3B82F6;color:#3B82F6;padding:4px 12px;border-radius:20px;cursor:pointer;font-size:12px;font-weight:600;transition:all .15s}
+.sim-toggle:hover{background:#3B82F6;color:#fff}
+.sim-answer{display:none;margin-top:10px;padding:12px;background:#fff;border-radius:8px;border:1px solid #E2E8F0}
+.sim-answer.open{display:block}
+.sim-answer-text{font-size:12px;color:#1E293B;line-height:1.6;font-style:italic;margin-bottom:8px}
+.sim-diagnosis{font-size:11px;font-weight:600;color:#7C3AED;background:#F5F3FF;padding:4px 8px;border-radius:4px;display:inline-block}
+
+/* VISION */
+.vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.vision-card{border-radius:12px;padding:22px;border:2px solid #E2E8F0}
+.vision-card.v1{border-color:#BFDBFE;background:linear-gradient(135deg,#EFF6FF 0%,#fff 100%)}
+.vision-card.v2{border-color:#A7F3D0;background:linear-gradient(135deg,#ECFDF5 0%,#fff 100%)}
+.vision-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.v1 .vision-tag{color:#3B82F6}
+.v2 .vision-tag{color:#10B981}
+.vision-title{font-size:16px;font-weight:700;color:#0F172A;margin-bottom:10px}
+.vision-item{font-size:12px;color:#1E293B;padding:5px 0;border-bottom:1px solid #F1F5F9;display:flex;gap:6px}
+.vision-item:last-child{border-bottom:none}
+.vision-item .vi-label{font-weight:600;min-width:80px;color:#64748B}
+.vision-item .vi-val{color:#1E293B}
+
+/* MOBILE */
+.mobile-topbar{display:none;position:fixed;top:0;left:0;right:0;height:56px;background:#0F172A;z-index:200;align-items:center;justify-content:space-between;padding:0 16px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.mobile-logo{font-family:'Unbounded',sans-serif;font-size:15px;font-weight:700;color:#F8FAFC}
+.mobile-logo span{color:#3B82F6}
+.burger-btn{width:40px;height:40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;border-radius:8px;border:none;background:transparent;padding:0;-webkit-tap-highlight-color:transparent}
+.burger-btn:active{background:rgba(255,255,255,.08)}
+.burger-line{width:22px;height:2px;background:#F8FAFC;border-radius:2px;transition:all .25s ease;transform-origin:center}
+.burger-btn.open .burger-line:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger-btn.open .burger-line:nth-child(2){opacity:0;transform:scaleX(0)}
+.burger-btn.open .burger-line:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:149;opacity:0;transition:opacity .25s ease}
+.sidebar-overlay.visible{display:block;opacity:1}
+
+@media(max-width:900px){
+  .mobile-topbar{display:flex}
+  .sidebar{transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);z-index:150;top:0;height:100vh}
+  .sidebar.open{transform:translateX(0)}
+  .main{margin-left:0;padding:72px 16px 24px;max-width:100%}
+  .cards{grid-template-columns:1fr 1fr}
+  .cards-3{grid-template-columns:1fr}
+  .cards-2{grid-template-columns:1fr}
+  .focus-cards{grid-template-columns:1fr}
+  .vision-grid{grid-template-columns:1fr}
+  .persona-grid{grid-template-columns:1fr}
+  .page-title{font-size:18px}
+  .block{padding:16px}
+  .tbl{font-size:11px}
+  .tbl th,.tbl td{padding:8px 10px}
+}
+@media(max-width:480px){
+  .cards{grid-template-columns:1fr}
+}
+
+/* METRIC TABLE */
+.metric-label{font-weight:700;color:#0F172A}
+.metric-asIs{color:#64748B}
+.metric-bench{color:#F59E0B;font-weight:600}
+.metric-target{color:#10B981;font-weight:700}
+
+/* RISK */
+.risk-high{color:#EF4444}
+.risk-med{color:#F59E0B}
+.risk-low{color:#10B981}
+
+/* TABS */
+.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.tab{padding:7px 16px;border-radius:20px;cursor:pointer;font-size:12px;font-weight:600;background:#F1F5F9;color:#64748B;border:none;transition:all .15s}
+.tab.active{background:#3B82F6;color:#fff}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+.section-divider{height:1px;background:#E2E8F0;margin:24px 0}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #F1F5F9}
+.stat-row:last-child{border-bottom:none}
+.stat-label{font-size:13px;color:#64748B}
+.stat-val{font-size:13px;font-weight:700;color:#0F172A}
+
+.competitor-card{border-radius:10px;padding:16px;background:#F8FAFC;border:1px solid #E2E8F0;margin-bottom:12px}
+.competitor-name{font-size:14px;font-weight:700;color:#0F172A;margin-bottom:4px}
+.competitor-desc{font-size:12px;color:#64748B;margin-bottom:10px}
+
+.matrix-tick{font-size:16px}
+</style>
+</head>
+<body>
+
+<!-- MOBILE TOPBAR -->
+<div class="mobile-topbar">
+  <div class="mobile-logo">Truck<span>Motors</span></div>
+  <button class="burger-btn" id="burgerBtn" onclick="toggleSidebar()" aria-label="Меню">
+    <span class="burger-line"></span>
+    <span class="burger-line"></span>
+    <span class="burger-line"></span>
+  </button>
+</div>
+
+<!-- OVERLAY -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<div class="layout">
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-title">Truck<span>Motors</span></div>
+    <div class="sidebar-logo-sub">Стратегия 2026–2027</div>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Контекст</div>
+    <div class="nav-item active" onclick="show('market',this)"><span class="nav-icon">📊</span> Рынок и тренды</div>
+    <div class="nav-item" onclick="show('jtbd',this)"><span class="nav-icon">👥</span> JTBD и пользователи</div>
+    <div class="nav-item" onclick="show('comp',this)"><span class="nav-icon">⚔️</span> Конкуренты</div>
+    <div class="nav-item" onclick="show('asIs',this)"><span class="nav-icon">🔍</span> Продукт сегодня</div>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Стратегия</div>
+    <div class="nav-item" onclick="show('vision',this)"><span class="nav-icon">🎯</span> Видение и ставка</div>
+    <div class="nav-item" onclick="show('focus',this)"><span class="nav-icon">🚀</span> Стратегические фокусы</div>
+    <div class="nav-item" onclick="show('roadmap',this)"><span class="nav-icon">🗺️</span> Дорожная карта 12 мес</div>
+    <div class="nav-item" onclick="show('metrics',this)"><span class="nav-icon">📈</span> Метрики и успех</div>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Первичные данные</div>
+    <div class="nav-item" onclick="show('casdev',this)"><span class="nav-icon">★</span> Касдев &amp; Наблюдения</div>
+    <div class="nav-item" onclick="show('aiCasdev',this)"><span class="nav-icon">★★</span> AI-Касдев</div>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Стратегический выбор</div>
+    <div class="nav-item" onclick="show('newPlayers',this)"><span class="nav-icon">A</span> Новые игроки</div>
+    <div class="nav-item" onclick="show('visions',this)"><span class="nav-icon">B</span> Два вижина</div>
+  </div>
+
+  <div class="sidebar-contacts">
+    <div class="sidebar-contacts-label">Автор стратегии</div>
+    <div class="sidebar-contacts-name">Васильев Станислав Дмитриевич</div>
+    <div class="sidebar-contact-row">
+      <div class="sidebar-contact-icon">📞</div>
+      <div class="sidebar-contact-text">
+        <a href="tel:+79933576961">+7 (993) 357-69-61</a><br>
+        <span style="font-size:10px;color:#475569">WhatsApp · Telegram</span>
+      </div>
+    </div>
+    <div class="sidebar-contact-row">
+      <div class="sidebar-contact-icon">✈️</div>
+      <div class="sidebar-contact-text"><a href="https://t.me/setupsite" target="_blank">t.me/setupsite</a></div>
+    </div>
+    <div class="sidebar-contact-row">
+      <div class="sidebar-contact-icon">✉️</div>
+      <div class="sidebar-contact-text"><a href="mailto:stanislav.vasiliev.job@gmail.com">stanislav.vasiliev.job@gmail.com</a></div>
+    </div>
+    <div class="sidebar-contact-row">
+      <div class="sidebar-contact-icon">📢</div>
+      <div class="sidebar-contact-text">
+        <a href="https://t.me/systemoverads" target="_blank">@systemoverads</a><br>
+        <span style="font-size:10px;color:#475569">Управляемый рост</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+<!-- ===== РАЗДЕЛ 1: РЫНОК ===== -->
+<div id="section-market" class="section active">
+  <div class="page-title">📊 Рынок и тренды</div>
+  <div class="page-subtitle">Рынок грузовых автозапчастей России · данные 2024–2026</div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-label">Рынок запчастей для грузовиков</div>
+      <div class="card-value blue">₽780 млрд</div>
+      <div class="card-sub">$8,4 млрд · данные за 2024 год (АВТОСТАТ, июль 2025)</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Весь рынок автозапчастей РФ</div>
+      <div class="card-value green">₽650 млрд</div>
+      <div class="card-sub">+15% к 2023 году (TAdviser, апрель 2026)</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Интернет-продажи запчастей</div>
+      <div class="card-value orange">₽276 млрд</div>
+      <div class="card-sub">+8% год к году · 2024 (TAdviser)</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Доля B2B онлайн от общего B2B</div>
+      <div class="card-value red">≈5%</div>
+      <div class="card-sub">Потенциал 10–15% к 2028 (GlobalCIO, 2025)</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🌏 Таблица целевых рынков и возможностей</div>
+    <table class="tbl">
+      <thead><tr><th>Рынок</th><th>Ключевые данные</th><th>Особенности</th><th>Возможность для TruckMotors</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Москва и МО</strong></td>
+          <td>12,8% всей ёмкости рынка грузовых запчастей (АВТОСТАТ, 2024)</td>
+          <td>Крупнейший хаб импорта; концентрация автопарков</td>
+          <td>Домашний рынок — укрепление позиции #1</td>
+        </tr>
+        <tr>
+          <td><strong>Подмосковье</strong></td>
+          <td>6% ёмкости рынка (АВТОСТАТ, 2024)</td>
+          <td>Логистические коридоры, склады</td>
+          <td>Экспресс-доставка ≤2 часа как USP</td>
+        </tr>
+        <tr>
+          <td><strong>Краснодарский край</strong></td>
+          <td>3,8% ёмкости рынка (АВТОСТАТ, 2024)</td>
+          <td>Аграрный регион, транзит Новороссийск–Россия</td>
+          <td>Специализированный ассортимент спецтехники</td>
+        </tr>
+        <tr>
+          <td><strong>Санкт-Петербург</strong></td>
+          <td>3,5% ёмкости рынка (АВТОСТАТ, 2024)</td>
+          <td>Морской порт, дистрибуция Северо-Запад</td>
+          <td>Развитие регионального склада</td>
+        </tr>
+        <tr>
+          <td><strong>Татарстан</strong></td>
+          <td>3,1% ёмкости рынка (АВТОСТАТ, 2024)</td>
+          <td>КамАЗ-кластер, промышленность</td>
+          <td>Партнёрство с автопарками КамАЗа</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🔑 Ключевые тренды рынка 2025–2026</div>
+
+    <div class="insight insight-blue">
+      <strong>🇨🇳 Китайский парк — новый рынок запчастей:</strong> С 2022 по апрель 2025 продано 186,6 тыс. тяжёлых грузовиков из Китая (60% рынка). Sitrak, Shacman, FAW, Howo — основные бренды. Вторичный рынок китайских HCV вырос на 63% в 2025 году. Запчасти для китайских брендов — критически незакрытая ниша с огромным потенциалом (АВТОСТАТ/Рейс.РФ, 2025–2026).
+    </div>
+    <div class="insight insight-green">
+      <strong>💻 Цифровизация B2B:</strong> Рынок B2B e-commerce в России вырос на 36% в 2025 году. Доля онлайн-продаж в B2B — только 5% при потенциале 10–15% к 2028. Клиенты ждут B2C-удобства: самообслуживание, личный кабинет, синхронизация с 1С. Более 70% корпоративных клиентов предпочитают самообслуживание (McKinsey / Data Insight, 2025).
+    </div>
+    <div class="insight insight-yellow">
+      <strong>📦 Маркетплейсы вытесняют дистрибуторов:</strong> Традиционные каналы продаж запчастей падают на 5–10%, маркетплейсы растут на 20–30%. Дистрибуторы активно выходят на Ozon/Wildberries, вытесняя малых игроков. TruckMotors должен перехватить маркетплейсовый трафик (Движок, февраль 2026).
+    </div>
+    <div class="insight insight-red">
+      <strong>⚠️ Сигнал-предупреждение — стагнация отрасли:</strong> Продажи новых грузовиков упали на 51% в 2024 году. Цены на запчасти снизились на 5–15% в 2025. Рынок переходит в фазу консолидации. Выживут платформы с широким ассортиментом и технологическим преимуществом.
+    </div>
+  </div>
+</div>
+
+<!-- ===== РАЗДЕЛ 2: JTBD ===== -->
+<div id="section-jtbd" class="section">
+  <div class="page-title">👥 JTBD и пользователи</div>
+  <div class="page-subtitle">Jobs-to-be-Done · Персоны · Симулятор интервью</div>
+
+  <div class="block">
+    <div class="block-title">📊 Эволюция главного JTBD пользователя</div>
+    <table class="tbl">
+      <thead><tr><th>Период</th><th>Главный запрос</th><th>Что изменилось</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-gray">До 2022</span></td>
+          <td>«Хочу найти оригинальную запчасть для европейского грузовика по разумной цене»</td>
+          <td>Стабильные бренды (Volvo, Scania, Mercedes), понятные каталоги, предсказуемые цены</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-orange">2022–2024</span></td>
+          <td>«Хочу срочно найти аналог, потому что оригинала больше нет и надо сегодня»</td>
+          <td>Санкции, параллельный импорт, логистический хаос, дефицит по 30% позиций</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-blue">2025–2026</span></td>
+          <td>«Хочу мгновенно подобрать запчасть для китайского грузовика без боли с каталогами»</td>
+          <td>Парк китайских HCV достиг 22% вторичного рынка; каталоги путаные, один артикул = 6 деталей</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🎯 5 ключевых JTBD</div>
+
+    <table class="tbl">
+      <thead><tr><th>JTBD</th><th>Формулировка</th><th>Персона</th><th>Закрыт конкурентами</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-red">JTBD 1 🔑</span></td>
+          <td><em>«Когда я ищу запчасть для китайского грузовика, я хочу найти правильную деталь без ошибки по артикулу, чтобы не вернуть брак и не потерять рейс»</em></td>
+          <td>Механик СТО, Снабженец автопарка</td>
+          <td><span class="badge badge-red">❌ 0/5 — не закрыт</span></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-orange">JTBD 2</span></td>
+          <td><em>«Когда у меня срочная поломка, я хочу получить запчасть в течение 2 часов, чтобы не простаивал грузовик и не горели штрафы за срыв рейса»</em></td>
+          <td>Механик, ИП-перевозчик</td>
+          <td><span class="badge badge-orange">⚠️ 2/5 — частично</span></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-orange">JTBD 3</span></td>
+          <td><em>«Когда я закупаю запчасти для автопарка, я хочу контролировать остатки и историю заказов в одном месте, чтобы не звонить менеджеру каждый раз»</em></td>
+          <td>Снабженец АТП, Fleet-менеджер</td>
+          <td><span class="badge badge-orange">⚠️ 1/5 — частично</span></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-blue">JTBD 4</span></td>
+          <td><em>«Когда мне нужна редкая деталь, я хочу найти её через один поиск у одного поставщика, чтобы не тратить день на обзвон 5 баз»</em></td>
+          <td>Механик СТО, ИП-перевозчик</td>
+          <td><span class="badge badge-green">✅ 3/5 — закрыт</span></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-blue">JTBD 5</span></td>
+          <td><em>«Когда я хочу сэкономить, я хочу понять — брать оригинал или аналог SONDER — и быть уверен в качестве, чтобы не пожалеть потом»</em></td>
+          <td>ИП-перевозчик, Снабженец</td>
+          <td><span class="badge badge-orange">⚠️ 2/5 — частично</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <div class="block-title">👤 Персона 1 — Виталий, механик СТО</div>
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-avatar" style="background:#DBEAFE">🔧</div>
+        <div>
+          <div class="persona-name">Виталий Косов, 34 года</div>
+          <div class="persona-role">Старший механик СТО · Ростов-на-Дону · 🇷🇺</div>
+        </div>
+      </div>
+      <div class="persona-grid">
+        <div class="persona-section">
+          <div class="persona-section-title">Контекст</div>
+          <div style="font-size:12px;color:#1E293B">Обслуживает 8–12 грузовиков в неделю, 60% — китайские (Shacman, Sitrak). Заказывает запчасти по 3–4 раза в день. Работает с телефоном и ноутбуком одновременно.</div>
+          <div class="persona-quote">«У Shacman один и тот же артикул может быть на шесть разных деталей — это кошмар, я раньше не знал»</div>
+        </div>
+        <div class="persona-section">
+          <div class="persona-section-title">Топ-3 боли</div>
+          <div class="persona-pain">Путаница в артикулах китайских грузовиков — берёт не ту деталь</div>
+          <div class="persona-pain">Долгое ожидание — клиент нервничает, ремонт стоит</div>
+          <div class="persona-pain">Нет подтверждения совместимости — риск брака и возврата</div>
+        </div>
+      </div>
+      <div class="persona-jtbd">«Когда я ищу деталь для китайского грузовика, я хочу сразу увидеть точный аналог с подтверждением совместимости по VIN или году выпуска, чтобы не останавливать ремонт и не терять репутацию»</div>
+    </div>
+
+    <div style="font-size:13px;font-weight:700;color:#0F172A;margin:16px 0 10px;">🎮 Симулятор интервью с Виталием</div>
+
+    <div class="sim-q">
+      <div class="sim-q-text">Блок 1: Расскажи, как обычно выглядит твой день при поиске запчасти для китайского грузовика?</div>
+      <button class="sim-toggle" onclick="toggleAnswer(this)">Показать ответ</button>
+      <div class="sim-answer">
+        <div class="sim-answer-text">«Захожу на сайт, ввожу артикул — иногда вылезает что-то похожее, иногда ничего. Тогда звоню менеджеру. Он говорит "посмотрю". Жду 10–20 минут. Потом пишет альтернативу. Я не знаю, правильная она или нет. Беру, потому что клиент ждёт. Иногда приходит не то»</div>
+        <div class="sim-diagnosis">🔍 Диагноз: Боль — ненадёжный подбор; Job — мгновенный точный подбор</div>
+      </div>
+    </div>
+    <div class="sim-q">
+      <div class="sim-q-text">Блок 2: Сколько времени теряешь на поиск одной позиции в среднем?</div>
+      <button class="sim-toggle" onclick="toggleAnswer(this)">Показать ответ</button>
+      <div class="sim-answer">
+        <div class="sim-answer-text">«На простые европейские — минут 5. На китайские — от 20 до часа. И это если находим вообще. Иногда заказываю у трёх разных поставщиков, жду чтобы сравнить»</div>
+        <div class="sim-diagnosis">🔍 Диагноз: Боль — критичная; 4× потеря времени на китайскую технику vs европейскую</div>
+      </div>
+    </div>
+    <div class="sim-q">
+      <div class="sim-q-text">Блок 3: Был ли случай когда неправильная запчасть стоила тебе деньги или нервы?</div>
+      <button class="sim-toggle" onclick="toggleAnswer(this)">Показать ответ</button>
+      <div class="sim-answer">
+        <div class="sim-answer-text">«Да, два месяца назад. Заказал сальник на Sitrak — пришёл не тот размер. Пришлось клиента отправить домой, перезаказывать. Он потерял рейс, я потерял клиента и ещё деньги за возврат»</div>
+        <div class="sim-diagnosis">🔍 Диагноз: Инсайт — ошибка подбора = прямые финансовые потери. Решение — гарантия совместимости по VIN</div>
+      </div>
+    </div>
+    <div class="sim-q">
+      <div class="sim-q-text">Блок 4: Если бы подбор работал идеально — как бы это выглядело?</div>
+      <button class="sim-toggle" onclick="toggleAnswer(this)">Показать ответ</button>
+      <div class="sim-answer">
+        <div class="sim-answer-text">«Ввожу VIN или название модели — получаю список деталей которые точно подойдут, с фото и размерами. Нажимаю заказать — через 2 часа привезли. Всё»</div>
+        <div class="sim-diagnosis">🔍 Job: VIN-подбор + экспресс-доставка 2 часа. Полный JTBD найден</div>
+      </div>
+    </div>
+    <div class="sim-q">
+      <div class="sim-q-text">Блок 5: Сколько готов платить за сервис который решает эту проблему?</div>
+      <button class="sim-toggle" onclick="toggleAnswer(this)">Показать ответ</button>
+      <div class="sim-answer">
+        <div class="sim-answer-text">«Я бы платил наценку 10–15% сверху если уверен что привезут правильную деталь. Экономия времени и нервов того стоит»</div>
+        <div class="sim-diagnosis">🔍 Инсайт: ценовая эластичность +10–15% за гарантию совместимости. Ключевой USP</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">👤 Персона 2 — Олег, снабженец автопарка</div>
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-avatar" style="background:#D1FAE5">📋</div>
+        <div>
+          <div class="persona-name">Олег Бережной, 42 года</div>
+          <div class="persona-role">Снабженец АТП · Екатеринбург · 🇷🇺</div>
+        </div>
+      </div>
+      <div class="persona-grid">
+        <div class="persona-section">
+          <div class="persona-section-title">Контекст</div>
+          <div style="font-size:12px;color:#1E293B">Управляет закупками для парка из 45 грузовиков (Volvo, КамАЗ, Sitrak). Обрабатывает 20–40 заявок от механиков в неделю. Ключевые KPI — простой ≤4 часов и экономия 12% от бюджета.</div>
+          <div class="persona-quote">«Я звоню менеджеру, он звонит на склад, потом перезванивает мне — 3 человека участвуют в одном заказе. Это дикость»</div>
+        </div>
+        <div class="persona-section">
+          <div class="persona-section-title">Топ-3 боли</div>
+          <div class="persona-pain">Нет единого кабинета с историей — каждый заказ нужно уточнять вручную</div>
+          <div class="persona-pain">Непредсказуемые сроки поставки — срывают план ТО</div>
+          <div class="persona-pain">Сложный согласовательный процесс — приходится объяснять директору каждую трату</div>
+        </div>
+      </div>
+      <div class="persona-jtbd">«Когда я планирую техобслуживание парка, я хочу видеть весь нужный список с ценами и сроками в одном окне, чтобы согласовать бюджет за 10 минут, а не за день»</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">👤 Персона 3 — Артём, ИП-перевозчик</div>
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-avatar" style="background:#FEF9C3">🚛</div>
+        <div>
+          <div class="persona-name">Артём Хмелёв, 38 лет</div>
+          <div class="persona-role">ИП-перевозчик, 3 грузовика · Новосибирск · 🇷🇺</div>
+        </div>
+      </div>
+      <div class="persona-grid">
+        <div class="persona-section">
+          <div class="persona-section-title">Контекст</div>
+          <div style="font-size:12px;color:#1E293B">Владелец 3 Shacman, работает на себя. Сам ищет запчасти с телефона прямо на маршруте или на стоянке. Каждый день простоя — прямой убыток ≈15–20 тыс. руб.</div>
+          <div class="persona-quote">«Нашёл деталь в интернете — а мне говорят "оформите юрлицо". У меня ИП! Три часа потерял»</div>
+        </div>
+        <div class="persona-section">
+          <div class="persona-section-title">Топ-3 боли</div>
+          <div class="persona-pain">Сложная регистрация и оформление — отпугивает с первого шага</div>
+          <div class="persona-pain">Нет уверенности что деталь подойдёт — боится купить не то</div>
+          <div class="persona-pain">Доставка не туда — не в город а на склад, надо ехать самому</div>
+        </div>
+      </div>
+      <div class="persona-jtbd">«Когда у меня сломался грузовик в рейсе, я хочу за 5 минут найти деталь с доставкой до стоянки сегодня, чтобы не терять рейс и деньги»</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">👤 Персоны 4 и 5 — расширенный охват</div>
+    <div class="cards-2">
+      <div class="persona-card">
+        <div class="persona-header">
+          <div class="persona-avatar" style="background:#F3E8FF">🏭</div>
+          <div>
+            <div class="persona-name">Дмитрий Лазарев, 45 лет</div>
+            <div class="persona-role">Директор транспортной компании · Казань</div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:#64748B;margin-bottom:8px">Управляет парком 120 грузовиков. Ищет стратегического партнёра, а не разового продавца. Хочет SLA, постоплату, аналитику по расходам на запчасти.</div>
+        <div class="persona-jtbd" style="font-size:11px">«Когда я планирую расходы на ТО на квартал, я хочу получить предсказуемое ценовое предложение под мой парк с отсрочкой платежа»</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-header">
+          <div class="persona-avatar" style="background:#FEE2E2">🛒</div>
+          <div>
+            <div class="persona-name">Сергей Ушаков, 29 лет</div>
+            <div class="persona-role">Владелец магазина автозапчастей · Краснодар</div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:#64748B;margin-bottom:8px">Реселлер — покупает у TruckMotors оптом, продаёт в розницу. Нужна быстрая ротация, наличие на складе, конкурентная цена, доп. маржа.</div>
+        <div class="persona-jtbd" style="font-size:11px">«Когда я заказываю товар под клиента, я хочу видеть реальные остатки на складе в реальном времени, чтобы не обещать то, чего нет»</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== РАЗДЕЛ 3: КОНКУРЕНТЫ ===== -->
+<div id="section-comp" class="section">
+  <div class="page-title">⚔️ Конкурентный анализ</div>
+  <div class="page-subtitle">Три эшелона · Финансовая карта · Матрица JTBD</div>
+
+  <div class="block">
+    <div class="block-title">💰 Финансовая карта рынка</div>
+    <table class="tbl">
+      <thead><tr><th>Игрок</th><th>Тип</th><th>Масштаб / ассортимент</th><th>Позиция</th><th>Динамика</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>TruckMotors (tmtr.ru)</strong></td>
+          <td><span class="badge badge-blue">B2B платформа</span></td>
+          <td>15 млн позиций, 850 брендов, 37 филиалов, 1000+ городов</td>
+          <td>Топ-3 поставщиков РФ</td>
+          <td><span class="badge badge-green">Устойчивый</span></td>
+        </tr>
+        <tr>
+          <td><strong>Armtek</strong></td>
+          <td><span class="badge badge-gray">Оптовик</span></td>
+          <td>С 1995 г., RU/KZ/BY, 350+ марок авто</td>
+          <td>Топ-5 по РФ</td>
+          <td><span class="badge badge-orange">Стабильный</span></td>
+        </tr>
+        <tr>
+          <td><strong>ГК Омега (etsp.ru)</strong></td>
+          <td><span class="badge badge-gray">Специалист</span></td>
+          <td>Прямые поставки EU-брендов, фокус Scania/Volvo/Mercedes</td>
+          <td>Нишевый лидер EU-грузовиков</td>
+          <td><span class="badge badge-orange">Давление санкций</span></td>
+        </tr>
+        <tr>
+          <td><strong>АвтоАльянс (autoopt.ru)</strong></td>
+          <td><span class="badge badge-gray">Оптовик</span></td>
+          <td>EU + КНР + КAMАЗ, 2 СТО КАМАЗ в МО</td>
+          <td>Региональный игрок</td>
+          <td><span class="badge badge-green">Растёт в CN-сегменте</span></td>
+        </tr>
+        <tr>
+          <td><strong>OptiPart (optipart.ru)</strong></td>
+          <td><span class="badge badge-gray">Оптовик</span></td>
+          <td>Грузовики + прицепы, отсрочка 90 дней</td>
+          <td>Нишевый</td>
+          <td><span class="badge badge-gray">Стабильный</span></td>
+        </tr>
+        <tr>
+          <td><strong>Wildberries / Ozon</strong></td>
+          <td><span class="badge badge-purple">Маркетплейс</span></td>
+          <td>Универсальные, рост +20–30% в авто (Движок, 2026)</td>
+          <td>Угроза снизу — мелкие заказы</td>
+          <td><span class="badge badge-red">Быстрый рост</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🗺️ Матрица JTBD × Конкурент</div>
+    <table class="tbl">
+      <thead><tr><th>Job-to-be-Done</th><th>TruckMotors</th><th>Armtek</th><th>ГК Омега</th><th>АвтоАльянс</th><th>Ozon/WB</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Подбор запчасти для CN-грузовика</strong> <span class="badge badge-red">🔥 Незакрыт</span></td>
+          <td class="matrix-tick">⚠️ Частично</td>
+          <td class="matrix-tick">❌ Нет</td>
+          <td class="matrix-tick">❌ Нет</td>
+          <td class="matrix-tick">⚠️ Частично</td>
+          <td class="matrix-tick">❌ Нет</td>
+        </tr>
+        <tr>
+          <td><strong>Экспресс-доставка ≤2 часов</strong></td>
+          <td class="matrix-tick">✅ Да (МСК)</td>
+          <td class="matrix-tick">⚠️ Частично</td>
+          <td class="matrix-tick">❌ Нет</td>
+          <td class="matrix-tick">❌ Нет</td>
+          <td class="matrix-tick">❌ Нет</td>
+        </tr>
+        <tr>
+          <td><strong>Личный кабинет / история заказов</strong></td>
+          <td class="matrix-tick">✅ Да</td>
+          <td class="matrix-tick">✅ Да</td>
+          <td class="matrix-tick">⚠️ Базовый</td>
+          <td class="matrix-tick">❌ Нет</td>
+          <td class="matrix-tick">✅ Да</td>
+        </tr>
+        <tr>
+          <td><strong>15 млн+ позиций в одном поиске</strong></td>
+          <td class="matrix-tick">✅ Да</td>
+          <td class="matrix-tick">⚠️ Частично</td>
+          <td class="matrix-tick">❌ Нет</td>
+          <td class="matrix-tick">❌ Нет</td>
+          <td class="matrix-tick">❌ Нет</td>
+        </tr>
+        <tr>
+          <td><strong>VIN-подбор по модели грузовика</strong> <span class="badge badge-red">🔥 Незакрыт</span></td>
+          <td class="matrix-tick">⚠️ Есть функция</td>
+          <td class="matrix-tick">⚠️ Частично</td>
+          <td class="matrix-tick">❌ Нет</td>
+          <td class="matrix-tick">❌ Нет</td>
+          <td class="matrix-tick">❌ Нет</td>
+        </tr>
+        <tr>
+          <td><strong>Отсрочка платежа / постоплата</strong></td>
+          <td class="matrix-tick">✅ Есть</td>
+          <td class="matrix-tick">✅ Есть</td>
+          <td class="matrix-tick">⚠️ Ограничено</td>
+          <td class="matrix-tick">✅ Есть</td>
+          <td class="matrix-tick">❌ Нет</td>
+        </tr>
+        <tr>
+          <td><strong>Собственный бренд (аналоги)</strong></td>
+          <td class="matrix-tick">✅ SONDER</td>
+          <td class="matrix-tick">❌ Нет</td>
+          <td class="matrix-tick">❌ Нет</td>
+          <td class="matrix-tick">❌ Нет</td>
+          <td class="matrix-tick">❌ Нет</td>
+        </tr>
+        <tr>
+          <td><strong>Бронирование без оплаты (до 14 дней)</strong></td>
+          <td class="matrix-tick">✅ Уникально</td>
+          <td class="matrix-tick">❌ Нет</td>
+          <td class="matrix-tick">❌ Нет</td>
+          <td class="matrix-tick">❌ Нет</td>
+          <td class="matrix-tick">❌ Нет</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="insight insight-blue" style="margin-top:16px"><strong>Главный вывод:</strong> Подбор CN-запчастей и VIN-подбор — <strong>незакрытые jobs</strong> на всём рынке. Это стратегическое окно для TruckMotors, которое нужно использовать в 2026 году.</div>
+  </div>
+</div>
+
+<!-- ===== РАЗДЕЛ 4: AS-IS ===== -->
+<div id="section-asIs" class="section">
+  <div class="page-title">🔍 Продукт сегодня (as-is)</div>
+  <div class="page-subtitle">Сильные стороны · Gaps · Paywall-аудит</div>
+
+  <div class="cards-2">
+    <div class="block">
+      <div class="block-title">✅ Сильные стороны</div>
+      <div class="stat-row"><span class="stat-label">Ассортимент</span><span class="stat-val">15 млн позиций</span></div>
+      <div class="stat-row"><span class="stat-label">Бренды поставщиков</span><span class="stat-val">850+</span></div>
+      <div class="stat-row"><span class="stat-label">Филиалы / склады</span><span class="stat-val">37</span></div>
+      <div class="stat-row"><span class="stat-label">Покрытие городов</span><span class="stat-val">1000+</span></div>
+      <div class="stat-row"><span class="stat-label">Зоны присутствия</span><span class="stat-val">60 регионов</span></div>
+      <div class="stat-row"><span class="stat-label">Уникально: бронь без оплаты</span><span class="stat-val">до 14 дней</span></div>
+      <div class="stat-row"><span class="stat-label">Собственный бренд</span><span class="stat-val">SONDER</span></div>
+      <div class="stat-row"><span class="stat-label">Экспресс-доставка МСК</span><span class="stat-val">от 2 часов</span></div>
+      <div class="stat-row"><span class="stat-label">Работа с 2001 года</span><span class="stat-val">25 лет на рынке</span></div>
+    </div>
+    <div class="block">
+      <div class="block-title">⚠️ Критические gaps</div>
+      <div class="insight insight-red">Подбор для китайских грузовиков — отсутствует специализированный раздел/фильтр для CN-парка, хотя это 60% новых грузовиков</div>
+      <div class="insight insight-yellow">Мобильная версия — сайт работает на WordPress; нет нативного мобильного приложения; B2B-клиенты работают с телефона</div>
+      <div class="insight insight-yellow">Онбординг — «5 минут для старта» — заявлено, но форма регистрации ведёт на отдельный домен market.tmtr.ru, разрывая UX</div>
+      <div class="insight insight-red">Контент-маркетинг — нет блога, нет технических статей, нет SEO-контента; трафик идёт только по прямым запросам</div>
+      <div class="insight insight-yellow">Программа лояльности — акции есть (Ozon-сертификаты), но нет систематической gamification и накопительных бонусов</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">💳 Аудит бизнес-модели и монетизации</div>
+    <table class="tbl">
+      <thead><tr><th>Механика</th><th>Бенчмарк (лучший B2B)</th><th>TruckMotors сейчас</th><th>Что сделать</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Регистрация и онбординг</strong></td>
+          <td>B2B SaaS: ≤3 мин до первого заказа, без звонка менеджера</td>
+          <td>Заявлено 5 мин, но форма уводит на другой домен</td>
+          <td>Единый домен, автоматическое одобрение по ИНН/ОГРН</td>
+        </tr>
+        <tr>
+          <td><strong>Программа лояльности</strong></td>
+          <td>Накопительные баллы, кешбэк 1–3%, VIP-статусы</td>
+          <td>Акции брендов (Ozon-сертификаты), нет постоянной программы</td>
+          <td>Запустить накопительную программу «Клубных километров»</td>
+        </tr>
+        <tr>
+          <td><strong>VIN-подбор</strong></td>
+          <td>Автоматический подбор по VIN ≤30 сек</td>
+          <td>Функция есть, но не промоутируется как USP</td>
+          <td>Вынести VIN-подбор на главный экран, добавить CN-марки</td>
+        </tr>
+        <tr>
+          <td><strong>Мобильный опыт</strong></td>
+          <td>Нативное приложение или прогрессивный PWA</td>
+          <td>Адаптивный сайт, нет приложения</td>
+          <td>PWA или мобильное приложение для механиков</td>
+        </tr>
+        <tr>
+          <td><strong>API-интеграция</strong></td>
+          <td>REST API для интеграции с 1С, ERP клиента</td>
+          <td>Не упоминается публично</td>
+          <td>Публичный API как аргумент для крупных клиентов</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <div class="block-title">★ Блок касдева — личные наблюдения <span class="badge badge-gray">[Заполняется позже]</span></div>
+    <div class="insight insight-blue">Этот раздел ожидает первичных данных от команды. Предлагаемые темы для заполнения:</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
+      <div style="background:#F8FAFC;border-radius:8px;padding:12px;border:1px dashed #CBD5E1;font-size:12px;color:#64748B">📱 <strong>Тест регистрации</strong>: пройти онбординг с нуля, замерить время, найти точки отвала</div>
+      <div style="background:#F8FAFC;border-radius:8px;padding:12px;border:1px dashed #CBD5E1;font-size:12px;color:#64748B">🔍 <strong>Тест поиска CN-запчасти</strong>: попробовать найти деталь для Shacman X3000 — что происходит?</div>
+      <div style="background:#F8FAFC;border-radius:8px;padding:12px;border:1px dashed #CBD5E1;font-size:12px;color:#64748B">📦 <strong>Тест VIN-подбора</strong>: внести реальный VIN — насколько релевантен результат?</div>
+      <div style="background:#F8FAFC;border-radius:8px;padding:12px;border:1px dashed #CBD5E1;font-size:12px;color:#64748B">💬 <strong>Анализ отзывов</strong>: собрать 20–50 отзывов с Яндекс/Google/2ГИС для анализа паттернов боли</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== РАЗДЕЛ 5: ВИДЕНИЕ ===== -->
+<div id="section-vision" class="section">
+  <div class="page-title">🎯 Видение и ставка</div>
+  <div class="page-subtitle">Стратегический тезис · Концепция · Доказательства рынка</div>
+
+  <div class="highlight-box">
+    <h2>TruckMotors становится #1 платформой для подбора запчастей на китайские грузовики в России</h2>
+    <p>Парк китайских тяжёлых грузовиков достиг <span class="hl-accent">186,6 тыс. единиц</span> за 3 года и занимает <span class="hl-accent">60% новых продаж</span>. Ни один крупный поставщик не решил проблему путаницы с артикулами и несовместимости деталей для CN-техники. TruckMotors — единственный игрок с масштабом 15 млн позиций и 60 регионами, способный закрыть этот джоб для всего рынка. <span class="hl-accent">Кто первый — тот и победил.</span></p>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🔗 Концепция продукта: путь клиента</div>
+    <div style="display:flex;align-items:center;gap:0;overflow-x:auto;padding-bottom:8px">
+      <div style="min-width:130px;text-align:center;padding:12px 8px;background:#EFF6FF;border-radius:8px;border:1px solid #BFDBFE">
+        <div style="font-size:20px;margin-bottom:4px">🚛</div>
+        <div style="font-size:11px;font-weight:700;color:#1E40AF">1. Поломка</div>
+        <div style="font-size:10px;color:#64748B">Механик замечает</div>
+      </div>
+      <div style="color:#CBD5E1;font-size:20px;margin:0 6px">→</div>
+      <div style="min-width:130px;text-align:center;padding:12px 8px;background:#ECFDF5;border-radius:8px;border:1px solid #A7F3D0">
+        <div style="font-size:20px;margin-bottom:4px">🔍</div>
+        <div style="font-size:11px;font-weight:700;color:#065F46">2. Подбор по VIN/CN</div>
+        <div style="font-size:10px;color:#64748B">market.tmtr.ru</div>
+      </div>
+      <div style="color:#CBD5E1;font-size:20px;margin:0 6px">→</div>
+      <div style="min-width:130px;text-align:center;padding:12px 8px;background:#FFFBEB;border-radius:8px;border:1px solid #FDE68A">
+        <div style="font-size:20px;margin-bottom:4px">📦</div>
+        <div style="font-size:11px;font-weight:700;color:#92400E">3. Бронь / заказ</div>
+        <div style="font-size:10px;color:#64748B">24/7, без звонка</div>
+      </div>
+      <div style="color:#CBD5E1;font-size:20px;margin:0 6px">→</div>
+      <div style="min-width:130px;text-align:center;padding:12px 8px;background:#F5F3FF;border-radius:8px;border:1px solid #DDD6FE">
+        <div style="font-size:20px;margin-bottom:4px">🚀</div>
+        <div style="font-size:11px;font-weight:700;color:#5B21B6">4. Доставка ≤2ч</div>
+        <div style="font-size:10px;color:#64748B">37 складов по РФ</div>
+      </div>
+      <div style="color:#CBD5E1;font-size:20px;margin:0 6px">→</div>
+      <div style="min-width:130px;text-align:center;padding:12px 8px;background:#FEF2F2;border-radius:8px;border:1px solid #FECACA">
+        <div style="font-size:20px;margin-bottom:4px">✅</div>
+        <div style="font-size:11px;font-weight:700;color:#991B1B">5. Грузовик работает</div>
+        <div style="font-size:10px;color:#64748B">Клиент возвращается</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">📊 Доказательства рынка — почему ставка верная</div>
+    <div class="cards-3">
+      <div class="card">
+        <div class="card-label">Китайский парк — новый рынок</div>
+        <div class="card-value blue">186,6 тыс.</div>
+        <div class="card-sub">тяжёлых CN-грузовиков продано в РФ за 2022–апрель 2025 (АВТОСТАТ, 2025)</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Вторичный рынок CN растёт</div>
+        <div class="card-value green">+63%</div>
+        <div class="card-sub">перерегистраций китайских HCV с пробегом в 2025 (Speedme/АВТОСТАТ)</div>
+      </div>
+      <div class="card">
+        <div class="card-label">B2B онлайн-торговля</div>
+        <div class="card-value orange">+36%</div>
+        <div class="card-sub">рост B2B e-commerce в 2025 году (Эксперт, 2026)</div>
+      </div>
+    </div>
+    <div class="insight insight-green"><strong>Дифференциатор #1 — CN-экспертиза:</strong> Ни один из топ-5 конкурентов не имеет специализированного каталога и умного подбора для китайских грузовиков. TruckMotors, имея 15 млн позиций и 850 брендов, может быть первым, кто структурирует этот хаос.</div>
+    <div class="insight insight-blue"><strong>Дифференциатор #2 — уникальная бронь до 14 дней:</strong> Ни один конкурент не предлагает резерв без оплаты. Это уже конкурентное преимущество, которое нужно агрессивнее продвигать.</div>
+    <div class="insight insight-yellow"><strong>Гейм-чейнджер фича — «CN Decoder»:</strong> Инструмент автоматической расшифровки артикулов китайских грузовиков по фото или VIN с проверкой совместимости. Ни у кого нет — первым займёт позицию.</div>
+  </div>
+</div>
+
+<!-- ===== РАЗДЕЛ 6: ФОКУСЫ ===== -->
+<div id="section-focus" class="section">
+  <div class="page-title">🚀 Стратегические фокусы</div>
+  <div class="page-subtitle">3 этапа · 12 приоритетов · Ожидаемые эффекты</div>
+
+  <div class="focus-cards">
+    <div class="focus-card phase1">
+      <div class="focus-phase">⚡ Этап 1 · 0–3 мес · Быстрые победы</div>
+      <div class="focus-title">1. CN-раздел и VIN-подбор</div>
+      <div class="focus-desc">Выделить отдельный раздел каталога для китайских грузовиков (Sitrak, Shacman, FAW, Howo, Dongfeng). Прокинуть VIN-поиск на главную страницу как первичный CTA.</div>
+      <div class="focus-effect">→ Захват незакрытого JTBD #1, рост конверсии новых клиентов</div>
+    </div>
+    <div class="focus-card phase1">
+      <div class="focus-phase">⚡ Этап 1 · 0–3 мес · Быстрые победы</div>
+      <div class="focus-title">2. Единый онбординг и домен</div>
+      <div class="focus-desc">Устранить разрыв между tmtr.ru и market.tmtr.ru. Регистрация по ИНН с автопроверкой — ≤5 минут от посадочной до первого заказа без звонка менеджеру.</div>
+      <div class="focus-effect">→ Снижение отвала при регистрации на 30–50%, рост новых клиентов</div>
+    </div>
+    <div class="focus-card phase1">
+      <div class="focus-phase">⚡ Этап 1 · 0–3 мес · Быстрые победы</div>
+      <div class="focus-title">3. SEO-контент и экспертный блог</div>
+      <div class="focus-desc">Запустить технический блог: «Как подобрать запчасть для Shacman X3000», «Отличие SONDER от оригинала» — SEO-трафик по нишевым запросам, которые никто не занял.</div>
+      <div class="focus-effect">→ Органический трафик +40% за 6 мес, снижение CAC</div>
+    </div>
+  </div>
+
+  <div class="focus-cards">
+    <div class="focus-card phase2">
+      <div class="focus-phase">🔥 Этап 2 · 3–9 мес · Retention и рост</div>
+      <div class="focus-title">4. Мобильное приложение / PWA</div>
+      <div class="focus-desc">Механик работает с телефона на объекте. Нативное приложение или PWA с быстрым поиском, push-уведомлениями о доставке, оффлайн-доступом к истории заказов.</div>
+      <div class="focus-effect">→ DAU рост, +25% повторных заказов с мобайла</div>
+    </div>
+    <div class="focus-card phase2">
+      <div class="focus-phase">🔥 Этап 2 · 3–9 мес · Retention и рост</div>
+      <div class="focus-title">5. Накопительная программа лояльности</div>
+      <div class="focus-desc">«Клубные километры» — баллы за каждый заказ, статусы (Новичок → Профи → Флагман), персональные скидки. Интегрировать в личный кабинет с калькулятором экономии.</div>
+      <div class="focus-effect">→ Churn rate –15%, LTV +20% (бенчмарк B2B лояльность)</div>
+    </div>
+    <div class="focus-card phase2">
+      <div class="focus-phase">🔥 Этап 2 · 3–9 мес · Retention и рост</div>
+      <div class="focus-title">6. «CN Decoder» — умный подбор</div>
+      <div class="focus-desc">AI-инструмент расшифровки артикулов китайских грузовиков: фото детали → предложение аналога + SONDER. Гарантия совместимости по году и модели. Первый на рынке.</div>
+      <div class="focus-effect">→ Монополия в CN-сегменте, виральность через механиков</div>
+    </div>
+  </div>
+
+  <div class="focus-cards">
+    <div class="focus-card phase3">
+      <div class="focus-phase">🌌 Этап 3 · 9–18 мес · Масштаб</div>
+      <div class="focus-title">7. Fleet Intelligence — аналитика для АТП</div>
+      <div class="focus-desc">Личный кабинет Fleet-менеджера: история всего парка, прогноз расходов на ТО, автозаказ расходников. Интеграция с 1С / SAP по API. Конкурировать с корпоративными ERP.</div>
+      <div class="focus-effect">→ Удержание крупных клиентов (ACV ×3), B2B SaaS-элемент</div>
+    </div>
+    <div class="focus-card phase3">
+      <div class="focus-phase">🌌 Этап 3 · 9–18 мес · Масштаб</div>
+      <div class="focus-title">8. SONDER как суббренд №1 для CN-техники</div>
+      <div class="focus-desc">Расширить ассортимент SONDER на детали для Sitrak, Shacman, Howo. Позиционировать как «аналог, который точно подходит» с расширенной гарантией 2 года.</div>
+      <div class="focus-effect">→ Маржинальность ×2 на SONDER vs стороннее, snobism-proof брендинг</div>
+    </div>
+    <div class="focus-card phase3">
+      <div class="focus-phase">🌌 Этап 3 · 9–18 мес · Масштаб</div>
+      <div class="focus-title">9. Маркетплейс поставщиков 3P</div>
+      <div class="focus-desc">Открыть платформу для сторонних поставщиков CN-запчастей — TruckMotors берёт комиссию, обеспечивает инфраструктуру и доверие. Модель Ozon для грузовых запчастей.</div>
+      <div class="focus-effect">→ Новая бизнес-модель, ассортимент ×5 без затрат на склад</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== РАЗДЕЛ 7: ДОРОЖНАЯ КАРТА ===== -->
+<div id="section-roadmap" class="section">
+  <div class="page-title">🗺️ Дорожная карта 12 месяцев</div>
+  <div class="page-subtitle">3 фазы · Конкретные действия · KPI по каждому шагу</div>
+
+  <div class="block" style="border-left:4px solid #EF4444">
+    <div class="block-title" style="color:#EF4444">🔴 Фаза 1: Основа (Мес 1–3)</div>
+    <div class="roadmap">
+      <div class="roadmap-item">
+        <div class="roadmap-dot red"></div>
+        <div class="roadmap-period">Мес 1</div>
+        <div class="roadmap-title">Запуск CN-раздела + VIN-поиск на главную</div>
+        <div class="roadmap-desc">Создать выделенный раздел «Запчасти для китайских грузовиков» с фильтрами по маркам (Sitrak, Shacman, FAW, Howo, Dongfeng). Вынести VIN-подбор как первичный CTA. Добавить страницы-хабы по каждому бренду.</div>
+        <div class="roadmap-kpi">
+          <span class="badge badge-blue">Target: +30% новых пользователей из CN-сегмента</span>
+          <span class="badge badge-gray">Источник: АВТОСТАТ данные по парку</span>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-dot red"></div>
+        <div class="roadmap-period">Мес 1–2</div>
+        <div class="roadmap-title">Единый домен онбординга</div>
+        <div class="roadmap-desc">Объединить tmtr.ru и market.tmtr.ru в единый UX-поток. Регистрация по ИНН с автопроверкой. Устранить редирект на другой домен. Добавить прогресс-бар онбординга.</div>
+        <div class="roadmap-kpi">
+          <span class="badge badge-green">Target: Время до первого заказа ≤5 мин</span>
+          <span class="badge badge-gray">Бенчмарк: McKinsey B2B self-service 70%+</span>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-dot red"></div>
+        <div class="roadmap-period">Мес 2–3</div>
+        <div class="roadmap-title">SEO-блог: первые 20 технических статей</div>
+        <div class="roadmap-desc">Статьи: «Запчасти Shacman X3000 — где купить», «Артикулы Sitrak C7H по узлам», «Сравнение SONDER с оригиналом для FAW J6». Закрыть 100+ ключевых запросов с нулевой конкуренцией.</div>
+        <div class="roadmap-kpi">
+          <span class="badge badge-orange">Target: Органика +40% за 6 мес</span>
+          <span class="badge badge-gray">Бенчмарк: SEO B2B окупается за 3–6 мес</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block" style="border-left:4px solid #F59E0B">
+    <div class="block-title" style="color:#F59E0B">🟡 Фаза 2: Рост (Мес 3–9)</div>
+    <div class="roadmap">
+      <div class="roadmap-item">
+        <div class="roadmap-dot orange"></div>
+        <div class="roadmap-period">Мес 3–5</div>
+        <div class="roadmap-title">Мобильное приложение (PWA) для механиков</div>
+        <div class="roadmap-desc">Прогрессивное веб-приложение: быстрый поиск по артикулу или фото, push об отгрузке, история заказов офлайн. Приоритет iOS + Android. UX — для работы в перчатках на объекте.</div>
+        <div class="roadmap-kpi">
+          <span class="badge badge-blue">Target: 40% заказов с мобайла через 6 мес</span>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-dot orange"></div>
+        <div class="roadmap-period">Мес 4–6</div>
+        <div class="roadmap-title">«Клубные километры» — программа лояльности</div>
+        <div class="roadmap-desc">Накопительные баллы за каждый заказ (1 евро = 1 км). Статусы: Дебютант → Профи → Флагман → Легенда. Персональный кешбэк 1–3%. Калькулятор экономии в личном кабинете.</div>
+        <div class="roadmap-kpi">
+          <span class="badge badge-green">Target: Monthly churn –15%</span>
+          <span class="badge badge-gray">Бенчмарк: B2B программы лояльности + 20% LTV</span>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-dot orange"></div>
+        <div class="roadmap-period">Мес 5–8</div>
+        <div class="roadmap-title">«CN Decoder» — умный подбор для китайских грузовиков</div>
+        <div class="roadmap-desc">Инструмент: фото артикула → OCR → поиск аналога в базе → предложение SONDER с гарантией совместимости. Альтернативный ввод: VIN + узел + год. Первый инструмент такого рода в РФ.</div>
+        <div class="roadmap-kpi">
+          <span class="badge badge-purple">Target: 10 000 использований/мес через 3 мес после запуска</span>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-dot orange"></div>
+        <div class="roadmap-period">Мес 6–9</div>
+        <div class="roadmap-title">SONDER for China — расширение ассортимента</div>
+        <div class="roadmap-desc">Разработка / закупка деталей SONDER для Sitrak, Shacman, FAW. Начать с топ-50 позиций по частоте заказов. Маркетинг: «Подходит точно — гарантия 2 года».</div>
+        <div class="roadmap-kpi">
+          <span class="badge badge-orange">Target: SONDER CN = 15% выручки через 12 мес</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block" style="border-left:4px solid #8B5CF6">
+    <div class="block-title" style="color:#8B5CF6">🟣 Фаза 3: Масштаб (Мес 9–12)</div>
+    <div class="roadmap">
+      <div class="roadmap-item">
+        <div class="roadmap-dot purple"></div>
+        <div class="roadmap-period">Мес 9–11</div>
+        <div class="roadmap-title">Fleet Intelligence — кабинет для АТП и Fleet-менеджеров</div>
+        <div class="roadmap-desc">Модуль управления парком: история техобслуживания по каждому грузовику, прогноз следующего ТО, бюджетирование по узлам. Интеграция через API с 1С. Цель: сделать TruckMotors «центром учёта запчастей» для парка.</div>
+        <div class="roadmap-kpi">
+          <span class="badge badge-blue">Target: 100 АТП-клиентов в новом модуле</span>
+          <span class="badge badge-gray">Эффект: ACV ×3 на крупном сегменте</span>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-dot purple"></div>
+        <div class="roadmap-period">Мес 10–12</div>
+        <div class="roadmap-title">3P-маркетплейс — открытие для внешних поставщиков CN-запчастей</div>
+        <div class="roadmap-desc">Дать возможность нишевым импортёрам CN-запчастей продавать через платформу TruckMotors. TruckMotors = доверие + инфраструктура + клиентская база. Комиссионная модель 3–5%.</div>
+        <div class="roadmap-kpi">
+          <span class="badge badge-purple">Target: 30 внешних поставщиков к концу года</span>
+          <span class="badge badge-gray">Модель: аналог Ozon для грузовых запчастей</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== РАЗДЕЛ 8: МЕТРИКИ ===== -->
+<div id="section-metrics" class="section">
+  <div class="page-title">📈 Метрики и успех</div>
+  <div class="page-subtitle">AS-IS → Target 12 мес · Риски · Источники</div>
+
+  <div class="block">
+    <div class="block-title">📊 Таблица ключевых метрик</div>
+    <table class="tbl">
+      <thead><tr><th>Метрика</th><th>AS-IS (оценка)</th><th>Бенчмарк аналогов</th><th>Target 12 мес</th><th>Источник</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="metric-label">Время регистрации до первого заказа</td>
+          <td class="metric-asIs">&gt;10 мин (разрыв доменов)</td>
+          <td class="metric-bench">≤5 мин (Maksmart, 2025)</td>
+          <td class="metric-target">≤5 мин</td>
+          <td>Замер UX-теста</td>
+        </tr>
+        <tr>
+          <td class="metric-label">Доля заказов с мобайла</td>
+          <td class="metric-asIs">~20% (оценка)</td>
+          <td class="metric-bench">40–60% B2B (McKinsey, 2024)</td>
+          <td class="metric-target">40%</td>
+          <td>Яндекс.Метрика</td>
+        </tr>
+        <tr>
+          <td class="metric-label">Повторные заказы (D30 retention)</td>
+          <td class="metric-asIs">~35% (оценка)</td>
+          <td class="metric-bench">50–60% B2B платформы</td>
+          <td class="metric-target">50%</td>
+          <td>Внутренняя аналитика</td>
+        </tr>
+        <tr>
+          <td class="metric-label">Доля CN-сегмента в заказах</td>
+          <td class="metric-asIs">&lt;5% (оценка)</td>
+          <td class="metric-bench">60% новых грузовиков (АВТОСТАТ, 2025)</td>
+          <td class="metric-target">20%</td>
+          <td>Аналитика по категориям</td>
+        </tr>
+        <tr>
+          <td class="metric-label">NPS / Рейтинг</td>
+          <td class="metric-asIs">Нет данных публично</td>
+          <td class="metric-bench">Topwork B2B платформы: NPS 40+</td>
+          <td class="metric-target">NPS 45+</td>
+          <td>Опрос клиентов</td>
+        </tr>
+        <tr>
+          <td class="metric-label">Количество новых клиентов/мес</td>
+          <td class="metric-asIs">Базовый уровень</td>
+          <td class="metric-bench">SEO-контент даёт +40% органики</td>
+          <td class="metric-target">+40% к текущему</td>
+          <td>Яндекс.Метрика + CRM</td>
+        </tr>
+        <tr>
+          <td class="metric-label">Использований CN Decoder/мес</td>
+          <td class="metric-asIs">0 (не запущен)</td>
+          <td class="metric-bench">Новый инструмент — первый на рынке</td>
+          <td class="metric-target">10 000/мес через 3 мес после запуска</td>
+          <td>Event-аналитика</td>
+        </tr>
+        <tr>
+          <td class="metric-label">Доля SONDER в выручке</td>
+          <td class="metric-asIs">Есть, % неизвестен</td>
+          <td class="metric-bench">СТМ b2b: 20–30% при правильном push</td>
+          <td class="metric-target">25% от выручки</td>
+          <td>ERP / 1С</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <div class="block-title">⚠️ Риски и контрмеры</div>
+    <table class="tbl">
+      <thead><tr><th>Риск</th><th>Вероятность</th><th>Влияние</th><th>Контрмера</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Маркетплейсы (Ozon/WB) захватят сегмент запчастей для CN-грузовиков</strong></td>
+          <td><span class="risk-med">Средняя</span></td>
+          <td><span class="risk-high">Высокое</span></td>
+          <td>Первым запустить CN Decoder и занять экспертную нишу до прихода маркетплейсов</td>
+        </tr>
+        <tr>
+          <td><strong>Снижение продаж грузовиков (-51% в 2024) снизит спрос на запчасти</strong></td>
+          <td><span class="risk-high">Высокая</span></td>
+          <td><span class="risk-med">Среднее</span></td>
+          <td>Парк растёт даже при падении продаж новых; вторичный рынок +1,3%. Фокус на обслуживание существующего парка</td>
+        </tr>
+        <tr>
+          <td><strong>Санкционное давление на логистику EU-запчастей</strong></td>
+          <td><span class="risk-high">Высокая</span></td>
+          <td><span class="risk-med">Среднее</span></td>
+          <td>Параллельный импорт разрешён; диверсифицировать маршруты, расширять SONDER-аналоги</td>
+        </tr>
+        <tr>
+          <td><strong>Технологическое отставание (нет мобайла, старый WordPress)</strong></td>
+          <td><span class="risk-med">Средняя</span></td>
+          <td><span class="risk-high">Высокое</span></td>
+          <td>Приоритет PWA в Фазе 2 (мес 3–5); API-первый подход для интеграций</td>
+        </tr>
+        <tr>
+          <td><strong>Конкурент запускает аналог CN-сервиса</strong></td>
+          <td><span class="risk-low">Низкая</span></td>
+          <td><span class="risk-high">Высокое</span></td>
+          <td>Скорость запуска Фазы 1 критична; занять позицию до конца Q3 2026</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <div class="block-title">📚 Источники документа</div>
+    <div class="cards-2">
+      <div>
+        <div style="font-size:12px;font-weight:700;color:#0F172A;margin-bottom:8px">Рыночные данные</div>
+        <div style="font-size:11px;color:#64748B;line-height:1.8">
+          • АВТОСТАТ — ёмкость рынка грузовых запчастей ₽780 млрд, июль 2025<br>
+          • TAdviser — рынок автозапчастей РФ ₽650 млрд +15%, апрель 2026<br>
+          • АВТОСТАТ — продажи китайских HCV 186,6 тыс., май 2025<br>
+          • Рейс.РФ — вторичный рынок CN +63%, февраль 2026<br>
+          • Движок — прогноз рынка 2026, февраль 2026<br>
+          • AKconf.2025 — тренды рынка запчастей, Движок апрель 2025
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:#0F172A;margin-bottom:8px">B2B и стратегические данные</div>
+        <div style="font-size:11px;color:#64748B;line-height:1.8">
+          • Data Insight — B2B e-commerce тренды 2025, май 2025<br>
+          • GlobalCIO — B2B маркетплейсы, доля онлайн 5%, 2025<br>
+          • Эксперт — B2B e-commerce рост 36% в 2025 году<br>
+          • 42Clouds — B2B тренды маркетплейсов, март 2026<br>
+          • McKinsey — 70%+ B2B клиентов предпочитают самообслуживание<br>
+          • НАПИ / АВТОСТАТ — продажи грузовиков -51% 2024, январь 2026
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== РАЗДЕЛ КАСДЕВ ===== -->
+<div id="section-casdev" class="section">
+  <div class="page-title">★ Касдев &amp; Наблюдения</div>
+  <div class="page-subtitle">Первичные данные · [Заполняется по мере получения данных]</div>
+
+  <div class="highlight-box">
+    <h2>Этот раздел ожидает первичных данных</h2>
+    <p>Добавьте отзывы клиентов, результаты тестирования продукта или интервью — и этот раздел будет заполнен анализом паттернов боли, диагнозами и рекомендациями по приоритетам.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🔭 Воронка доверия — as-is оценка</div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:14px;padding:14px;background:#ECFDF5;border-radius:10px;border:1px solid #A7F3D0">
+        <div style="font-size:24px">🌐</div>
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:13px">Шаг 1: Посадочная страница tmtr.ru</div>
+          <div style="font-size:12px;color:#065F46">Чёткое позиционирование, понятный CTA «Начать», цифры доверия (15 млн позиций, 37 складов)</div>
+        </div>
+        <div style="text-align:center"><div style="font-size:11px;color:#10B981;font-weight:700">Доверие</div><div style="font-size:18px">✅</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:14px;background:#FFFBEB;border-radius:10px;border:1px solid #FDE68A">
+        <div style="font-size:24px">📝</div>
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:13px">Шаг 2: Регистрация</div>
+          <div style="font-size:12px;color:#92400E">Переход на market.tmtr.ru — разрыв UX. Новый пользователь теряет контекст, нет прогресс-бара</div>
+        </div>
+        <div style="text-align:center"><div style="font-size:11px;color:#F59E0B;font-weight:700">Критично</div><div style="font-size:18px">⚠️</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:14px;background:#FFFBEB;border-radius:10px;border:1px solid #FDE68A">
+        <div style="font-size:24px">🔍</div>
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:13px">Шаг 3: Поиск запчасти</div>
+          <div style="font-size:12px;color:#92400E">VIN-поиск есть, но не продвигается. Нет раздела для CN-грузовиков. Поиск по артикулу для китайской техники ненадёжен</div>
+        </div>
+        <div style="text-align:center"><div style="font-size:11px;color:#F59E0B;font-weight:700">Проблема</div><div style="font-size:18px">⚠️</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:14px;background:#ECFDF5;border-radius:10px;border:1px solid #A7F3D0">
+        <div style="font-size:24px">🛒</div>
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:13px">Шаг 4: Оформление заказа</div>
+          <div style="font-size:12px;color:#065F46">Бронь до 14 дней — уникально. Доставка от 2 часов — конкурентно. Акции брендов — привлекательны</div>
+        </div>
+        <div style="text-align:center"><div style="font-size:11px;color:#10B981;font-weight:700">Хорошо</div><div style="font-size:18px">✅</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;padding:14px;background:#FEF2F2;border-radius:10px;border:1px solid #FECACA">
+        <div style="font-size:24px">📲</div>
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:13px">Шаг 5: Мобильный опыт</div>
+          <div style="font-size:12px;color:#991B1B">Нет приложения. Адаптивный сайт — базовый. Механики работают с телефона — критичный gap</div>
+        </div>
+        <div style="text-align:center"><div style="font-size:11px;color:#EF4444;font-weight:700">Критично</div><div style="font-size:18px">❌</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== AI-КАСДЕВ ===== -->
+<div id="section-aiCasdev" class="section">
+  <div class="page-title">★★ AI-Касдев</div>
+  <div class="page-subtitle">4 режима генерации первичных данных</div>
+
+  <div class="block">
+    <div class="block-title">🎭 Режим 1: Синтетическое интервью с персоной</div>
+    <div class="insight insight-blue"><strong>Как запустить:</strong> Напишите «Проведи интервью с Виталием (механик СТО)» — и я войду в роль персоны и отвечу от первого лица. Доступны все 5 персон из Раздела 2.</div>
+    <div style="font-size:13px;color:#64748B;margin-top:8px">Вопросы-шаблоны для интервью:</div>
+    <div style="background:#F8FAFC;border-radius:8px;padding:12px;margin-top:8px;font-size:12px;color:#1E293B;line-height:1.8">
+      <strong>Блок 1 — Контекст:</strong> «Как обычно выглядит твой день когда ищешь запчасти?»<br>
+      <strong>Блок 2 — Боль:</strong> «Что бесит сильнее всего? Был ли случай когда это вышло из-под контроля?»<br>
+      <strong>Блок 3 — Решения:</strong> «Что сейчас используешь? Почему именно это?»<br>
+      <strong>Блок 4 — Идеальный мир:</strong> «Если бы работало идеально — как выглядело бы?»<br>
+      <strong>Блок 5 — Цена:</strong> «Сколько готов платить за сервис который решает эту проблему?»
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">📊 Режим 2: Анализ отзывов</div>
+    <div class="insight insight-green"><strong>Как запустить:</strong> Вставьте 10–100 отзывов (Яндекс, 2ГИС, ВКонтакте, Telegram) и напишите «Проанализируй отзывы и найди паттерны боли».</div>
+    <table class="tbl" style="margin-top:12px">
+      <thead><tr><th>Кластер боли</th><th>Частота</th><th>Пример цитаты</th><th>JTBD за болью</th></tr></thead>
+      <tbody>
+        <tr><td colspan="4" style="text-align:center;color:#94A3B8;font-style:italic;padding:20px">Ожидает отзывов от команды [AI-симуляция]</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🔬 Режим 3: Проверка гипотез на персонах</div>
+    <div class="insight insight-yellow"><strong>Как запустить:</strong> «Проверь гипотезу: если мы добавим VIN-подбор для CN-грузовиков на главную — механики будут регистрироваться в 2 раза чаще».</div>
+    <div style="font-size:12px;color:#64748B;margin-top:8px">Шаблон гипотезы: «Мы считаем что [персона] испытывает [проблему]. Если мы сделаем [решение] — они [желаемое поведение]. Мы поймём что правы если [метрика]»</div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🧩 Режим 4: Синтез JTBD из сырых данных</div>
+    <div class="insight insight-blue"><strong>Как запустить:</strong> Вставьте транскрипты, заметки с переговоров, записи звонков — напишите «Сформулируй JTBD из этих данных».</div>
+    <div style="font-size:12px;color:#1E293B;margin-top:8px"><strong>Формат вывода:</strong> Каждый JTBD будет сформулирован как: «Когда я [ситуация], я хочу [мотивация], чтобы [ожидаемый результат]» — с оценкой силы боли и источника.</div>
+  </div>
+</div>
+
+<!-- ===== РАЗДЕЛ A: НОВЫЕ ИГРОКИ ===== -->
+<div id="section-newPlayers" class="section">
+  <div class="page-title">A. Новые игроки и быстро растущие</div>
+  <div class="page-subtitle">Стартапы · Дистрапторы · Формулы роста</div>
+
+  <div class="block">
+    <div class="block-title">🚀 Игроки, которые меняют рынок</div>
+    <div class="competitor-card">
+      <div class="competitor-name">Maksmart.ru — B2B промышленный маркетплейс</div>
+      <div class="competitor-desc">Победитель «Платформа года 2025». Промышленные товары оптом, интеграция с ERP, факторинг. Доказательство: B2B маркетплейс работает при правильной вертикализации.</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span class="badge badge-green">Лауреат «Платформа года 2025»</span>
+        <span class="badge badge-blue">Факторинг + API-интеграция</span>
+        <span class="badge badge-purple">Gap: нет фокуса на грузовые запчасти</span>
+      </div>
+    </div>
+    <div class="competitor-card">
+      <div class="competitor-name">ABCP.ru — агрегатор поставщиков запчастей</div>
+      <div class="competitor-desc">1000+ поставщиков, единая платформа, автоматизация работы магазинов. Реселлеры автозапчастей используют как инструмент агрегации. Угроза для нишевых B2B-платформ.</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span class="badge badge-orange">Широкий охват поставщиков</span>
+        <span class="badge badge-purple">Gap: нет специализации на грузовиках</span>
+      </div>
+    </div>
+    <div class="competitor-card">
+      <div class="competitor-name">Ozon / Wildberries — угроза снизу</div>
+      <div class="competitor-desc">Растут на +20–30% в категории автозапчастей (Движок, 2026). Дистрибуторы выходят туда как селлеры. Отбирают розничный и мелкооптовый трафик у нишевых игроков.</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span class="badge badge-red">Рост +20–30% в авто (Движок, 2026)</span>
+        <span class="badge badge-purple">Gap: не умеют работать с B2B-клиентами (постоплата, флит)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🧬 Формула роста — 6 паттернов победителей</div>
+    <div class="cards-3">
+      <div class="card">
+        <div class="card-label">Паттерн 1</div>
+        <div style="font-size:13px;font-weight:700;color:#0F172A;margin-bottom:4px">Один суперсильный job</div>
+        <div style="font-size:12px;color:#64748B">Закрыть один незакрытый job лучше всех — и масштабировать. TruckMotors: CN-подбор</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Паттерн 2</div>
+        <div style="font-size:13px;font-weight:700;color:#0F172A;margin-bottom:4px">Убрать менеджера из сделки</div>
+        <div style="font-size:12px;color:#64748B">70%+ B2B клиентов хотят самообслуживание. Автоматизация = рост объёма без роста штата</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Паттерн 3</div>
+        <div style="font-size:13px;font-weight:700;color:#0F172A;margin-bottom:4px">Экспертный контент как канал</div>
+        <div style="font-size:12px;color:#64748B">SEO-статьи по нишевым запросам = бесплатный трафик на годы вперёд. Никто из конкурентов не делает</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Паттерн 4</div>
+        <div style="font-size:13px;font-weight:700;color:#0F172A;margin-bottom:4px">Мобайл — первый экран</div>
+        <div style="font-size:12px;color:#64748B">Механики ищут запчасти с телефона. Кто первый сделает нативный мобайл — захватит лояльность</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Паттерн 5</div>
+        <div style="font-size:13px;font-weight:700;color:#0F172A;margin-bottom:4px">Собственный бренд как маржа</div>
+        <div style="font-size:12px;color:#64748B">SONDER — уже есть. Расширение в CN-сегмент удвоит маржинальность на этих позициях</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Паттерн 6</div>
+        <div style="font-size:13px;font-weight:700;color:#0F172A;margin-bottom:4px">Платформа &gt; дистрибутор</div>
+        <div style="font-size:12px;color:#64748B">Открытие 3P-маркетплейса: больше ассортимента без склада. Переход от дистрибутора к платформе</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== РАЗДЕЛ B: ДВА ВИЖИНА ===== -->
+<div id="section-visions" class="section">
+  <div class="page-title">B. Два вижина: какими быть</div>
+  <div class="page-subtitle">Нишевый лидер vs Платформа-экосистема</div>
+
+  <div class="vision-grid">
+    <div class="vision-card v1">
+      <div class="vision-tag">Вижин 1 · Нишевый Premium</div>
+      <div class="vision-title">«Лучший поставщик запчастей для грузовиков в России»</div>
+      <div class="vision-item"><span class="vi-label">Позиция</span><span class="vi-val">Специалист #1 по EU + CN грузовикам; SONDER как флагман качества</span></div>
+      <div class="vision-item"><span class="vi-label">Аналогия</span><span class="vi-val">Unfold для дизайна — нишевый инструмент с фанатской лояльностью</span></div>
+      <div class="vision-item"><span class="vi-label">Для кого</span><span class="vi-val">Механики СТО и ИП-перевозчики, ценящие точность и скорость</span></div>
+      <div class="vision-item"><span class="vi-label">ARPU потолок</span><span class="vi-val">~€5–15K/год на клиента из среднего сегмента</span></div>
+      <div class="vision-item"><span class="vi-label">Плюс</span><span class="vi-val">Быстрее, дешевле, проще реализовать. Низкий операционный риск</span></div>
+      <div class="vision-item"><span class="vi-label">Риск</span><span class="vi-val">Уязвим перед маркетплейсами снизу и крупными B2B-агрегаторами</span></div>
+      <div class="vision-item"><span class="vi-label">Exit</span><span class="vi-val">M&A — поглощение крупным дистрибутором или логистом</span></div>
+    </div>
+    <div class="vision-card v2">
+      <div class="vision-tag">Вижин 2 · Платформа-экосистема ⭐ Рекомендуется</div>
+      <div class="vision-title">«Инфраструктура грузового транспорта России»</div>
+      <div class="vision-item"><span class="vi-label">Концепция</span><span class="vi-val">5 приложений в 1: запчасти + подбор CN + Fleet CRM + поставщики 3P + аналитика парка</span></div>
+      <div class="vision-item"><span class="vi-label">Аналогия</span><span class="vi-val">WeChat-модель для транспортной отрасли России</span></div>
+      <div class="vision-item"><span class="vi-label">Для кого</span><span class="vi-val">Все сегменты: механики, снабженцы, ИП, АТП, реселлеры, поставщики</span></div>
+      <div class="vision-item"><span class="vi-label">ARPU потолок</span><span class="vi-val">€50–200K+/год на корпоративного клиента; SaaS-надстройка</span></div>
+      <div class="vision-item"><span class="vi-label">Голубой океан</span><span class="vi-val">CN Decoder + Fleet Intelligence — незакрытые на всём рынке</span></div>
+      <div class="vision-item"><span class="vi-label">Defensible moat</span><span class="vi-val">Данные о парках клиентов — конкурент не скопирует за год</span></div>
+      <div class="vision-item"><span class="vi-label">Exit / IPO</span><span class="vi-val">Самостоятельный публичный выход или стратегическое партнёрство с экосистемой</span></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">📊 Сравнительная таблица вижинов</div>
+    <table class="tbl">
+      <thead><tr><th>Параметр</th><th>Вижин 1 · Нишевый</th><th>Вижин 2 · Платформа ⭐</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Время до результата</strong></td><td>6–9 месяцев</td><td>12–18 месяцев</td></tr>
+        <tr><td><strong>ARPU потолок</strong></td><td>€5–15K/год</td><td>€50–200K+/год</td></tr>
+        <tr><td><strong>Retention-механизм</strong></td><td>Скидки и акции</td><td>Данные парка = lock-in</td></tr>
+        <tr><td><strong>Виральность</strong></td><td>Рекомендации</td><td>Механики приводят АТП</td></tr>
+        <tr><td><strong>Moat от конкурентов</strong></td><td>Низкий</td><td>Высокий (данные + экосистема)</td></tr>
+        <tr><td><strong>Риск от маркетплейсов</strong></td><td>Высокий</td><td>Низкий (B2B-слой непробиваем для WB)</td></tr>
+        <tr><td><strong>TAM</strong></td><td>₽780 млрд (рынок запчастей)</td><td>₽780 млрд + B2B SaaS + 3P</td></tr>
+        <tr><td><strong>Инвестиции в 12 мес</strong></td><td>Умеренные</td><td>Выше (разработка Fleet + API)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight-box" style="border:2px solid #10B981">
+    <h2 style="color:#10B981">⭐ Рекомендация: Вижин 2 — правильная ставка</h2>
+    <p>Этап 1 одинаков для обоих вижинов: CN-раздел, онбординг, SEO-контент — это быстрые победы без зависимости от выбора стратегии. Но уже с Этапа 2 нужно строить Fleet Intelligence и 3P-маркетплейс — потому что именно <span class="hl-accent">данные о парке клиента</span> создают непробиваемый ров. Маркетплейсы не смогут скопировать историю 45 грузовиков конкретного АТП. TruckMotors может — и должен — стать инфраструктурой, а не просто каталогом.</p>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<script>
+function show(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('section-' + id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo(0, 0);
+  if (window.innerWidth <= 900) closeSidebar();
+}
+
+function toggleAnswer(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = answer.classList.contains('open');
+  answer.classList.toggle('open');
+  btn.textContent = isOpen ? 'Показать ответ' : 'Скрыть ответ';
+}
+
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const btn = document.getElementById('burgerBtn');
+  const isOpen = sidebar.classList.contains('open');
+  if (isOpen) {
+    closeSidebar();
+  } else {
+    sidebar.classList.add('open');
+    overlay.classList.add('visible');
+    btn.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const btn = document.getElementById('burgerBtn');
+  sidebar.classList.remove('open');
+  overlay.classList.remove('visible');
+  btn.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
+
+(function(){
+  let startX = 0;
+  const sidebar = document.getElementById('sidebar');
+  sidebar.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive: true});
+  sidebar.addEventListener('touchend', e => {
+    if (e.changedTouches[0].clientX - startX < -60) closeSidebar();
+  }, {passive: true});
+})();
+</script>
+</body>
+</html>
