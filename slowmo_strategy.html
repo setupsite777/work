@@ -1,0 +1,2353 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SlowMo — Продуктовая стратегия 2026–2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Unbounded:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: #F1F5F9;
+  color: #1E293B;
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  background: #0F172A;
+  color: #F1F5F9;
+  width: 270px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 150;
+  border-right: 1px solid #1E293B;
+}
+.sidebar-logo {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #F8FAFC;
+  padding: 0 24px 4px;
+}
+.sidebar-logo span { color: #3B82F6; }
+.sidebar-subtitle {
+  font-size: 11px;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 0 24px 22px;
+}
+.nav-group { padding: 0 12px 14px; }
+.nav-group-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #475569;
+  padding: 10px 12px 8px;
+}
+.nav-item {
+  padding: 9px 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #CBD5E1;
+  font-size: 13.5px;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.15s;
+}
+.nav-item:hover { background: #1E293B; color: #FFFFFF; }
+.nav-item.active { background: #3B82F6; color: #FFFFFF; font-weight: 500; }
+.nav-num {
+  font-size: 11px;
+  color: #64748B;
+  width: 18px;
+  flex-shrink: 0;
+}
+.nav-item.active .nav-num { color: #DBEAFE; }
+.star { color: #FBBF24; }
+
+/* SIDEBAR CONTACTS */
+.sidebar-contacts {
+  margin: auto 0 0 0;
+  padding: 16px 20px 20px;
+  border-top: 1px solid #1E293B;
+}
+.sidebar-contacts-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #475569;
+  margin-bottom: 10px;
+}
+.sidebar-contacts-name {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #E2E8F0;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.sidebar-contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+.sidebar-contact-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+.sidebar-contact-text {
+  font-size: 11.5px;
+  color: #94A3B8;
+  line-height: 1.4;
+}
+.sidebar-contact-text a {
+  color: #94A3B8;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.sidebar-contact-text a:hover { color: #3B82F6; }
+
+/* MAIN */
+.main {
+  margin-left: 270px;
+  padding: 36px 44px 60px;
+  max-width: 1180px;
+}
+.section { display: none; }
+.section.active { display: block; animation: fade 0.25s ease-out; }
+@keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+.section-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #3B82F6;
+  margin-bottom: 8px;
+}
+.page-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+.page-subtitle {
+  font-size: 15px;
+  color: #64748B;
+  margin-bottom: 28px;
+  max-width: 760px;
+}
+
+h2 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #0F172A;
+  margin: 32px 0 14px;
+  letter-spacing: -0.3px;
+}
+h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 18px 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+p { color: #334155; margin-bottom: 12px; font-size: 14.5px; }
+strong { color: #0F172A; font-weight: 600; }
+
+.block {
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 24px 26px;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 3px rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.04);
+  border: 1px solid #E2E8F0;
+}
+.block-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #0F172A;
+  margin-bottom: 12px;
+}
+
+/* CARDS GRID */
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 22px; }
+.card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 18px 18px 16px;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+  border-left: 3px solid #3B82F6;
+}
+.card.green { border-left-color: #10B981; }
+.card.orange { border-left-color: #F59E0B; }
+.card.red { border-left-color: #EF4444; }
+.card.purple { border-left-color: #8B5CF6; }
+.card-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  color: #64748B;
+  margin-bottom: 8px;
+}
+.card-value {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 6px;
+  line-height: 1.1;
+}
+.card-desc { font-size: 12.5px; color: #475569; line-height: 1.45; }
+.card-src { font-size: 10.5px; color: #94A3B8; margin-top: 8px; font-style: italic; }
+
+/* TABLE */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  background: #FFFFFF;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(15,23,42,0.06);
+  font-size: 13.5px;
+  margin-bottom: 18px;
+}
+.tbl th {
+  background: #0F172A;
+  color: #F8FAFC;
+  padding: 11px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.tbl td {
+  padding: 11px 14px;
+  border-bottom: 1px solid #E2E8F0;
+  color: #1E293B;
+  vertical-align: top;
+}
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:hover td { background: #F8FAFC; }
+.tbl td b { color: #0F172A; }
+
+/* BADGES */
+.badge {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 12px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+.badge.green { background: #D1FAE5; color: #065F46; }
+.badge.red { background: #FEE2E2; color: #991B1B; }
+.badge.orange { background: #FED7AA; color: #9A3412; }
+.badge.blue { background: #DBEAFE; color: #1E40AF; }
+.badge.purple { background: #EDE9FE; color: #5B21B6; }
+.badge.gray { background: #E2E8F0; color: #334155; }
+.badge.yellow { background: #FEF3C7; color: #92400E; }
+
+/* INSIGHT BLOCKS */
+.insight {
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 14px 0;
+  border-left: 4px solid;
+  background: #F8FAFC;
+}
+.insight.blue { border-color: #3B82F6; background: #EFF6FF; }
+.insight.green { border-color: #10B981; background: #ECFDF5; }
+.insight.orange { border-color: #F59E0B; background: #FFFBEB; }
+.insight.red { border-color: #EF4444; background: #FEF2F2; }
+.insight.purple { border-color: #8B5CF6; background: #F5F3FF; }
+.insight-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #0F172A;
+  margin-bottom: 6px;
+}
+.insight p { margin-bottom: 6px; font-size: 14px; }
+.insight p:last-child { margin-bottom: 0; }
+
+/* HIGHLIGHT BOX */
+.highlight-box {
+  background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 50%, #8B5CF6 100%);
+  color: #FFFFFF;
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin: 18px 0 24px;
+  box-shadow: 0 8px 24px rgba(59,130,246,0.25);
+}
+.highlight-box h3 {
+  color: #FFFFFF;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.highlight-box p { color: #F1F5F9; font-size: 15px; margin-bottom: 8px; }
+.highlight-box strong { color: #FFFFFF; }
+
+/* QUOTE */
+.quote {
+  background: #F8FAFC;
+  border-left: 3px solid #3B82F6;
+  padding: 14px 18px;
+  margin: 12px 0;
+  font-style: italic;
+  color: #334155;
+  border-radius: 0 8px 8px 0;
+  font-size: 14px;
+}
+.quote-author {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #64748B;
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* ROADMAP */
+.roadmap {
+  position: relative;
+  padding: 14px 0;
+}
+.roadmap-phase {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+.roadmap-marker {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-top: 8px;
+  box-shadow: 0 0 0 4px rgba(59,130,246,0.15);
+}
+.roadmap-marker.red { background: #EF4444; box-shadow: 0 0 0 4px rgba(239,68,68,0.15); }
+.roadmap-marker.orange { background: #F59E0B; box-shadow: 0 0 0 4px rgba(245,158,11,0.15); }
+.roadmap-marker.purple { background: #8B5CF6; box-shadow: 0 0 0 4px rgba(139,92,246,0.15); }
+.roadmap-content {
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 16px 20px;
+  border: 1px solid #E2E8F0;
+  flex: 1;
+  box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+}
+.roadmap-period {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #64748B;
+  margin-bottom: 4px;
+}
+.roadmap-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0F172A;
+  margin-bottom: 6px;
+}
+.roadmap-desc { font-size: 13.5px; color: #475569; margin-bottom: 8px; }
+.roadmap-kpi {
+  background: #F1F5F9;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 12px;
+  color: #334155;
+}
+.roadmap-kpi b { color: #0F172A; }
+
+/* FOCUS CARDS */
+.focus-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 14px 0 20px; }
+.focus-card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding: 18px 20px;
+  border: 1px solid #E2E8F0;
+  border-top: 4px solid #3B82F6;
+  box-shadow: 0 1px 3px rgba(15,23,42,0.05);
+}
+.focus-card.red { border-top-color: #EF4444; }
+.focus-card.orange { border-top-color: #F59E0B; }
+.focus-card.purple { border-top-color: #8B5CF6; }
+.focus-card.green { border-top-color: #10B981; }
+.focus-phase {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  color: #64748B;
+  margin-bottom: 4px;
+}
+.focus-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0F172A;
+  margin-bottom: 8px;
+}
+.focus-desc { font-size: 13px; color: #475569; margin-bottom: 8px; }
+.focus-effect {
+  font-size: 12px;
+  color: #1E40AF;
+  background: #EFF6FF;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-weight: 500;
+}
+
+/* TWO COLUMNS */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+
+/* PERSONA CARD */
+.persona {
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 22px 24px;
+  border: 1px solid #E2E8F0;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(15,23,42,0.06);
+}
+.persona-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #E2E8F0;
+}
+.persona-avatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+  color: #FFFFFF;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.persona-name {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #0F172A;
+}
+.persona-role { font-size: 13px; color: #64748B; }
+.persona-section { margin-bottom: 12px; }
+.persona-section-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #3B82F6;
+  margin-bottom: 4px;
+}
+.persona-section p { font-size: 13.5px; color: #334155; margin-bottom: 4px; }
+.persona-pains {
+  background: #FEF2F2;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 10px 0;
+}
+.persona-pains p { color: #7F1D1D; font-size: 13px; margin-bottom: 5px; }
+.persona-pains p:last-child { margin-bottom: 0; }
+.persona-jtbd {
+  background: #EFF6FF;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 13.5px;
+  color: #1E3A8A;
+  font-weight: 500;
+  margin: 10px 0;
+}
+
+/* INTERVIEW SIMULATOR */
+.interview {
+  background: #F8FAFC;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 12px;
+  border: 1px solid #E2E8F0;
+}
+.interview-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #3B82F6;
+  margin-bottom: 8px;
+}
+.qa-item { margin-bottom: 8px; border-bottom: 1px dashed #E2E8F0; padding-bottom: 8px; }
+.qa-item:last-child { border-bottom: none; }
+.qa-q {
+  font-size: 13px;
+  color: #0F172A;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 6px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.qa-q:hover { color: #3B82F6; }
+.qa-q-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748B;
+  flex-shrink: 0;
+}
+.qa-toggle {
+  font-size: 10px;
+  font-weight: 700;
+  color: #3B82F6;
+  background: #DBEAFE;
+  padding: 3px 8px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.qa-a {
+  display: none;
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border-left: 3px solid #3B82F6;
+  font-size: 13px;
+  color: #334155;
+  font-style: italic;
+}
+.qa-a.open { display: block; }
+.qa-diag {
+  display: block;
+  margin-top: 8px;
+  font-size: 11px;
+  color: #64748B;
+  font-style: normal;
+  padding-top: 6px;
+  border-top: 1px dashed #E2E8F0;
+}
+
+/* MATRIX TABLE */
+.matrix td:not(:first-child) { text-align: center; }
+.matrix td:first-child { font-weight: 500; }
+.cell-yes { color: #065F46; font-weight: 700; }
+.cell-partial { color: #9A3412; font-weight: 700; }
+.cell-no { color: #991B1B; font-weight: 700; font-size: 16px; }
+
+/* VISION COMPARE */
+.vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 14px 0; }
+.vision-card {
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 22px 24px;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 1px 3px rgba(15,23,42,0.06);
+}
+.vision-card.v1 { border-top: 4px solid #F59E0B; }
+.vision-card.v2 { border-top: 4px solid #8B5CF6; }
+.vision-num {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #64748B;
+  margin-bottom: 4px;
+}
+.vision-name {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+/* SOURCES */
+.sources-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.sources-col h4 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #3B82F6;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #E2E8F0;
+}
+.sources-col p {
+  font-size: 12.5px;
+  color: #475569;
+  margin-bottom: 4px;
+  line-height: 1.5;
+}
+
+/* FUNNEL */
+.funnel-step {
+  background: #FFFFFF;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid #E2E8F0;
+  position: relative;
+}
+.funnel-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F1F5F9;
+  border-radius: 10px;
+}
+.funnel-body { flex: 1; }
+.funnel-title { font-weight: 600; color: #0F172A; font-size: 14px; margin-bottom: 2px; }
+.funnel-desc { font-size: 12.5px; color: #64748B; }
+.funnel-trust {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.funnel-trust.high { background: #D1FAE5; color: #065F46; }
+.funnel-trust.med { background: #FEF3C7; color: #92400E; }
+.funnel-trust.low { background: #FEE2E2; color: #991B1B; }
+
+/* MOBILE TOPBAR */
+.mobile-topbar {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 56px;
+  background: #0F172A;
+  z-index: 200;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+.mobile-logo {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #F8FAFC;
+  letter-spacing: -0.5px;
+}
+.mobile-logo span { color: #3B82F6; }
+.burger-btn {
+  width: 40px; height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.burger-btn:active { background: rgba(255,255,255,0.08); }
+.burger-line {
+  width: 22px; height: 2px;
+  background: #F8FAFC;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+  transform-origin: center;
+}
+.burger-btn.open .burger-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger-btn.open .burger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.burger-btn.open .burger-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 149;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.sidebar-overlay.visible { display: block; opacity: 1; }
+
+@media(max-width: 900px) {
+  .mobile-topbar { display: flex; }
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
+  }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; padding: 72px 16px 32px; max-width: 100%; }
+  .cards { grid-template-columns: 1fr 1fr; }
+  .vision-grid { grid-template-columns: 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .three-col { grid-template-columns: 1fr; }
+  .focus-cards { grid-template-columns: 1fr; }
+  .sources-grid { grid-template-columns: 1fr; }
+  .page-title { font-size: 22px; }
+  .block { padding: 18px 16px; }
+  .highlight-box { padding: 20px; }
+  .tbl { font-size: 12px; }
+  .tbl th, .tbl td { padding: 8px 10px; }
+  h2 { font-size: 18px; }
+}
+@media(max-width: 480px) {
+  .cards { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE TOPBAR -->
+<div class="mobile-topbar">
+  <div class="mobile-logo">SLOW<span>MO</span></div>
+  <button class="burger-btn" id="burgerBtn" onclick="toggleSidebar()" aria-label="Меню">
+    <span class="burger-line"></span>
+    <span class="burger-line"></span>
+    <span class="burger-line"></span>
+  </button>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo">SLOW<span>MO</span></div>
+  <div class="sidebar-subtitle">Стратегия · 12 мес</div>
+
+  <div class="nav-group">
+    <div class="nav-group-title">Контекст</div>
+    <div class="nav-item active" onclick="show('market', this)"><span class="nav-num">1</span> Рынок и тренды</div>
+    <div class="nav-item" onclick="show('jtbd', this)"><span class="nav-num">2</span> JTBD и пользователи</div>
+    <div class="nav-item" onclick="show('competitors', this)"><span class="nav-num">3</span> Конкуренты</div>
+    <div class="nav-item" onclick="show('asis', this)"><span class="nav-num">4</span> Продукт сегодня</div>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-title">Стратегия</div>
+    <div class="nav-item" onclick="show('vision', this)"><span class="nav-num">5</span> Видение и ставка</div>
+    <div class="nav-item" onclick="show('focuses', this)"><span class="nav-num">6</span> Стратегические фокусы</div>
+    <div class="nav-item" onclick="show('roadmap', this)"><span class="nav-num">7</span> Дорожная карта</div>
+    <div class="nav-item" onclick="show('metrics', this)"><span class="nav-num">8</span> Метрики и успех</div>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-title">Первичные данные</div>
+    <div class="nav-item" onclick="show('custdev', this)"><span class="nav-num star">★</span> Касдев & Наблюдения</div>
+    <div class="nav-item" onclick="show('aicustdev', this)"><span class="nav-num star">★★</span> AI-Касдев</div>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-title">Стратегический выбор</div>
+    <div class="nav-item" onclick="show('newcomers', this)"><span class="nav-num">A</span> Новички и быстро растущие</div>
+    <div class="nav-item" onclick="show('twovisions', this)"><span class="nav-num">B</span> Два вижина</div>
+  </div>
+
+  <div class="sidebar-contacts">
+    <div class="sidebar-contacts-label">Автор стратегии</div>
+    <div class="sidebar-contacts-name">Васильев Станислав Дмитриевич</div>
+    <div class="sidebar-contact-row">
+      <div class="sidebar-contact-icon">📞</div>
+      <div class="sidebar-contact-text">
+        <a href="tel:+79933576961">+7 (993) 357-69-61</a><br>
+        <span style="font-size:10px; color:#475569">WhatsApp · Telegram</span>
+      </div>
+    </div>
+    <div class="sidebar-contact-row">
+      <div class="sidebar-contact-icon">✈️</div>
+      <div class="sidebar-contact-text">
+        <a href="https://t.me/setupsite" target="_blank">t.me/setupsite</a>
+      </div>
+    </div>
+    <div class="sidebar-contact-row">
+      <div class="sidebar-contact-icon">✉️</div>
+      <div class="sidebar-contact-text">
+        <a href="mailto:stanislav.vasiliev.job@gmail.com">stanislav.vasiliev.job@gmail.com</a>
+      </div>
+    </div>
+    <div class="sidebar-contact-row">
+      <div class="sidebar-contact-icon">📢</div>
+      <div class="sidebar-contact-text">
+        <a href="https://t.me/systemoverads" target="_blank">@systemoverads</a><br>
+        <span style="font-size:10px; color:#475569">Управляемый рост</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="main">
+
+<!-- ============== РАЗДЕЛ 1: РЫНОК И ТРЕНДЫ ============== -->
+<section id="section-market" class="section active">
+  <span class="section-tag">01 · Контекст</span>
+  <h1 class="page-title">Рынок и тренды: куда движется барная индустрия</h1>
+  <p class="page-subtitle">Российский HoReCa растёт, потребитель переходит на коктейли и моктейли, локальные ингредиенты замещают импорт. У SlowMo есть окно возможностей — но не вечное.</p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-label">Оборот HoReCa РФ</div>
+      <div class="card-value">3,44 трлн ₽</div>
+      <div class="card-desc">Общепит в 2024 году, +9% к 2023. Рынок кафе и ресторанов вырос в 2,5× за 2020–2024.</div>
+      <div class="card-src">РБК Исследования, март 2025</div>
+    </div>
+    <div class="card green">
+      <div class="card-label">Тренд: коктейли</div>
+      <div class="card-value">+11%</div>
+      <div class="card-desc">Производство алкогольных коктейлей в РФ за 2025 — 2,56 млн декалитров. Один из самых заметных трендов рынка по «Нильсен».</div>
+      <div class="card-src">МК / Нильсен, февраль 2026</div>
+    </div>
+    <div class="card purple">
+      <div class="card-label">Моктейли и безалк.</div>
+      <div class="card-value">+53,5%</div>
+      <div class="card-desc">Безалкогольное вино — самая быстрорастущая категория 2025. Безалк. пиво +21,1%. Гости просят сложные моктейли в меню.</div>
+      <div class="card-src">«О'Кей» / World-Food, февраль 2026</div>
+    </div>
+    <div class="card red">
+      <div class="card-label">Сигнал тревоги</div>
+      <div class="card-value">−3,1%</div>
+      <div class="card-desc">Сокращение числа заведений общепита в РФ к ноябрю 2025 (до 115 тыс. точек). Себестоимость и кадры давят на маржу.</div>
+      <div class="card-src">Яндекс.Карты / TAdviser, ноябрь 2025</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">Ключевые тренды миксологии 2025–2026</div>
+    <div class="two-col">
+      <div>
+        <h3>Локальность и идентичность</h3>
+        <p>Шеф-бартендеры ищут «русский стиль»: иван-чай, можжевельник, облепиха, ферментированные ягоды, дальневосточные специи. После ухода европейских поставщиков индустрия учится делать своё. <strong>Это базовая ставка SlowMo.</strong></p>
+        <h3>Моктейли как полноценная категория</h3>
+        <p>«Уже долго слышали о тренде из мировых изданий, в нашем баре спрос на сложные безалк. появился только в прошлом году» — нижегородский «Медные трубы». Гости из поколения Z готовы платить премию за сложный безалкогольный напиток.</p>
+      </div>
+      <div>
+        <h3>Свинг и swicy-вкусы</h3>
+        <p>60%+ новинок безалкогольных напитков в 2025 имеют сложносочинённый вкус. Сильное азиатское влияние (соджу, юдзу, шисо).</p>
+        <h3>Премиализация и собственные рецептуры</h3>
+        <p>Бары уходят от «коктейль-карты Monin» в сторону авторских меню. Шеф-бартендеры White Rabbit Family, Omela Bar, «Компромисс» открыто говорят про потребность в качественных нишевых ингредиентах.</p>
+        <h3>Замещение импорта</h3>
+        <p>«Барное сообщество стало нуждаться в качественном и доступном продукте — и взяло дело в свои руки» (Руслан Мингазов, Omela Bar). Окно для российских производителей открыто прямо сейчас.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Целевые рынки SlowMo</h2>
+  <table class="tbl">
+    <thead><tr><th>Рынок</th><th>Ключевые данные</th><th>Канал</th><th>Возможность для SlowMo</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>Москва и СПб</b><br><span class="badge blue">Ядро</span></td>
+        <td>Свыше 9 200 баров/пабов в РФ (2023). Концентрация премиум-баров и шеф-бартендеров. Топ-50 миксологии страны здесь.</td>
+        <td>Прямой B2B, амбассадоры, фестивали</td>
+        <td>Зайти в топ-30 заведений за 12 мес — становится «маркером качества»</td>
+      </tr>
+      <tr>
+        <td><b>ЦФО регионы</b><br><span class="badge green">Растёт</span></td>
+        <td>Сетевые заведения общепита +4,9% за 2024 (РБК). Открытие премиум-баров в Воронеже, Туле, Ярославле.</td>
+        <td>Дистрибуторы, амбассадоры в регионах</td>
+        <td>Закрепиться как «де-факто стандарт» до прихода крупных импортёров</td>
+      </tr>
+      <tr>
+        <td><b>ЮФО (Сочи, Краснодар, Ростов)</b><br><span class="badge orange">Туризм</span></td>
+        <td>Курорты — высокий чек, развитая барная культура. Внутренний туризм перетягивает потоки из-за рубежа.</td>
+        <td>Контракты с отельными группами</td>
+        <td>Локальные парфюмы под кубанскую/крымскую ягоду = маркетинг</td>
+      </tr>
+      <tr>
+        <td><b>СФО (Новосибирск, Красноярск)</b><br><span class="badge purple">Премиум</span></td>
+        <td>Авторские бары в Новосибирске и Иркутске входят в топ-100 мировых барных рейтингов второй год подряд.</td>
+        <td>Дистрибуторы + амбассадорские туры</td>
+        <td>Уникальные сибирские вкусы (кедр, облепиха) как экспортный SKU</td>
+      </tr>
+      <tr>
+        <td><b>СНГ (Казахстан, Армения, Беларусь, Узбекистан)</b><br><span class="badge gray">Экспорт</span></td>
+        <td>Российский экспорт десертных сиропов в 2025: 5,8 тыс. тонн / $12,5 млн (+22% натур, +34% денеж). CLAVIS уже там.</td>
+        <td>Дистрибуторы, экспорт</td>
+        <td>Низкий порог входа, общий язык/культура потребления</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight green">
+    <div class="insight-title">Главный вывод по рынку</div>
+    <p>Окно открыто. После ухода европейских брендов и при росте требований к качеству напитка российский бартендер ищет «свой» нишевый продукт — и SlowMo претендует на эту роль. Главный риск — окно закроется через 18–24 месяца, когда CLAVIS дойдёт до своего «потолка» и крупные пищевики (Barline, Pollux) выпустят собственные премиальные линейки.</p>
+  </div>
+</section>
+
+<!-- ============== РАЗДЕЛ 2: JTBD И ПОЛЬЗОВАТЕЛИ ============== -->
+<section id="section-jtbd" class="section">
+  <span class="section-tag">02 · Контекст</span>
+  <h1 class="page-title">JTBD и пользователи: что на самом деле «нанимают» SlowMo делать</h1>
+  <p class="page-subtitle">Бармен покупает не кордиал — он покупает скорость, гарантию вкуса и истории, которые сможет рассказать гостю. Шеф-бартендер покупает дифференциацию своего бара.</p>
+
+  <h2>Эволюция запроса бармена за 3 года</h2>
+  <table class="tbl">
+    <thead><tr><th>Год</th><th>Главный JTBD</th><th>Чем закрывался</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>2022</b></td>
+        <td>«Хочу сделать качественный коктейль как до санкций»</td>
+        <td>Импортные Monin, Giffard, Routin (доступ урезался)</td>
+      </tr>
+      <tr>
+        <td><b>2024</b></td>
+        <td>«Хочу свою рецептуру, но без возни на кухне»</td>
+        <td>Самодельные кордиалы + российские сиропы Barline/Miller&amp;Miller</td>
+      </tr>
+      <tr>
+        <td><b>2026</b></td>
+        <td>«Хочу российский премиум-продукт, который не выдаёт того, что я пользуюсь готовым»</td>
+        <td>SlowMo, CLAVIS, штучные локальные мастерские</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>5 ключевых JTBD</h2>
+
+  <div class="block">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+      <span class="badge red">JTBD 1 · Незакрытый</span>
+      <span class="badge gray">Закрыт: 1/5 конкурентов</span>
+    </div>
+    <div class="block-title">«Когда я разрабатываю авторскую коктейль-карту под бар-партнёра, я хочу быстро получать готовые сбалансированные основы с предсказуемым вкусом, чтобы не тратить 2 недели на ферментации и тесты у себя дома»</div>
+    <p><strong>Кто:</strong> шеф-бартендеры, барменеджеры сетей, консультанты по открытию баров.</p>
+    <div class="quote">«Я делаю карту для нового места — на разработку 1 коктейля уходит 3–5 дней с моими собственными настойками. У меня нет столько времени, и бар не может ждать.»
+      <span class="quote-author">Шеф-бартендер московского ресторана, 32 года [AI-симуляция на основе типичных интервью]</span>
+    </div>
+    <p><strong>Почему незакрытый:</strong> CLAVIS работает, но шеф-бары хотят больше эксклюзивных, неповторяющихся вкусов и со-разработки. Monin/Pollux дают массовый продукт.</p>
+  </div>
+
+  <div class="block">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+      <span class="badge orange">JTBD 2 · Частично</span>
+      <span class="badge gray">Закрыт: 3/5 конкурентов</span>
+    </div>
+    <div class="block-title">«Когда я ставлю в меню коктейль за 800 ₽, я хочу чтобы гость почувствовал что это премиум, а не лимонад с сиропом — и я мог объяснить ингредиенты»</div>
+    <p><strong>Кто:</strong> бартендеры в премиум-сегменте, sommelier-style миксологи.</p>
+    <div class="quote">«Гость сейчас стал внимательный — спрашивает что в коктейле. Когда я говорю "Monin со льдом" — это убивает магию. Когда говорю "пищевой парфюм ревеня от российской лаборатории" — глаз загорается.»
+      <span class="quote-author">Bartender, бар в Сочи, 27 лет [AI-симуляция]</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+      <span class="badge orange">JTBD 3 · Частично</span>
+      <span class="badge gray">Закрыт: 2/5 конкурентов</span>
+    </div>
+    <div class="block-title">«Когда я открываю свой бар или ресторан с барной программой, я хочу заказать у одного поставщика весь "верхний слой" вкусов — и иметь уверенность что мои бармены не запутаются»</div>
+    <p><strong>Кто:</strong> рестораторы, операционные директора холдингов, владельцы первых заведений.</p>
+    <div class="quote">«У меня 12 коктейлей в карте, и для каждого нужны свои штуки. Я не могу гонять барменов по 5 поставщикам — мне нужен один партнёр с предсказуемой логистикой.»
+      <span class="quote-author">Ресторатор, владелец 3 заведений в ЦФО [AI-симуляция]</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+      <span class="badge green">JTBD 4 · Закрыт</span>
+      <span class="badge gray">Закрыт: 4/5 конкурентов</span>
+    </div>
+    <div class="block-title">«Когда я делаю коктейли дома или для частного мероприятия, я хочу простой способ повторить качество хорошего бара, не покупая 30 ингредиентов»</div>
+    <p><strong>Кто:</strong> увлечённые любители, домашние миксологи, организаторы кейтеринга.</p>
+    <p><strong>Замечание:</strong> Закрывается ВСЕМИ конкурентами в той или иной форме. Это <strong>не дифференциатор</strong> — но и нельзя терять как канал прибыли.</p>
+  </div>
+
+  <div class="block">
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+      <span class="badge red">JTBD 5 · Незакрытый</span>
+      <span class="badge gray">Закрыт: 0/5 конкурентов</span>
+    </div>
+    <div class="block-title">«Когда я выбираю поставщика "верхнего слоя" для своего бренда (бар-холдинг, отельная сеть), я хочу сделать собственный продукт под нашу концепцию — без выхода в B2C и без открытия лаборатории»</div>
+    <p><strong>Кто:</strong> владельцы барных холдингов (Lucky Group, White Rabbit Family, El Copitas), сети отелей, крупные ритейлеры.</p>
+    <div class="quote">«Мне нужна СТМ-линейка с моим лицом, но я не пищевик. Я бариста и ресторатор. SlowMo Custom — то что было нужно — но я не знал что это есть.»
+      <span class="quote-author">Бренд-менеджер сети отелей, 35 лет [AI-симуляция]</span>
+    </div>
+    <p><strong>Почему критично:</strong> у SlowMo уже есть продукт SlowMo Custom (СТМ), но он плохо коммуницирован — это и есть «голубой океан».</p>
+  </div>
+
+  <h2>5 ключевых персон</h2>
+
+  <!-- ПЕРСОНА 1 -->
+  <div class="persona">
+    <div class="persona-header">
+      <div class="persona-avatar">МК</div>
+      <div>
+        <div class="persona-name">Марк, 31 — шеф-бартендер</div>
+        <div class="persona-role">Москва · ресторанный холдинг 4 заведения · 8 лет в индустрии</div>
+      </div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Контекст</div>
+      <p>Открывает и переоткрывает бары холдинга. Аудитирует чужие коктейль-карты. Раз в полгода делает гастроли в регионы. Активен в Telegram-чатах барменов России.</p>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Ключевые данные</div>
+      <p>Тратит на ингредиенты ≈80–120 тыс ₽/мес на 1 бар. Делает 3–5 новых коктейлей в месяц. Подписан на 12 каналов о миксологии. Доход ≈220 тыс ₽/мес.</p>
+    </div>
+    <div class="persona-pains">
+      <p><strong>1.</strong> «Не успеваю варить кордиалы дома — обязательно к 20 марта нужно отдать новую карту»</p>
+      <p><strong>2.</strong> «У импортных Monin/Giffard вкус "детский" — гости-знатоки сразу узнают»</p>
+      <p><strong>3.</strong> «Партии не всегда совпадают по вкусу — один раз кордиал был кислее, второй слаще, бар бесится»</p>
+    </div>
+    <div class="persona-jtbd">
+      <strong>JTBD:</strong> «Когда я разрабатываю карту, я хочу взять готовую основу и доработать её на 20%, чтобы выпустить коктейль за 2 дня вместо двух недель»
+    </div>
+    <div class="interview">
+      <div class="interview-title">★ AI-симулятор интервью с Марком</div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q1.</span> Расскажи как обычно выглядит твой день когда ты разрабатываешь новую коктейль-карту?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Утро — кофе и презентация концепции от ресторатора, "хочу что-то про русскую зиму и хвою". Я записываю 5 идей. Потом — поездка на рынок или к травнику, набираю база-ингредиентов. Дома вечером начинаю варить настойки и кордиалы, пишу в ноуте баланс. На следующий день — тесты с водкой/джином, фотофиксация. Так 3–5 дней на один коктейль.»
+          <span class="qa-diag">Диагноз: основная боль = время. JTBD = ускорить итерации. Возможность: готовые «полуфабрикаты вкусов» под концепции.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q2.</span> Что в этом процессе бесит сильнее всего?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Бесит, когда ресторатор хочет "поскорее", а ингредиент не повторяется из партии в партию. Я три раза разрабатывал Yuzu Spritz, и три раза получался разный — потому что цитрус разный. Это убивает.»
+          <span class="qa-diag">Диагноз: боль = стабильность партий. SlowMo может выиграть на «гарантия Brix/pH в каждой бутылке».</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q3.</span> Что ты сейчас используешь чтобы это решить?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«CLAVIS — основной кордиал-партнёр, у них точные SKU, но мало эксклюзивов. Monin беру для базовых вещей типа гренадина. Собственные настойки — на 30% карты. SlowMo пробовал, понравился ревень и абрикос, но не успел вписать в постоянку.»
+          <span class="qa-diag">Диагноз: SlowMo уже на радаре, но не закрепился в постоянной ротации. Нужен прямой выход на шеф-бартендеров с обучением и сэмплингом.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q4.</span> Если бы это работало идеально — как бы это выглядело?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Я бы зашёл на сайт поставщика, увидел "сейчас в сезоне: облепиха-можжевельник, ревень-фиалка, груша-тимьян", получил бы под каждую основу 3 готовых рецепта от их шеф-миксолога, заказал бы за 1 клик с доставкой к утру — и в тот же день поставил в карту.»
+          <span class="qa-diag">Диагноз: запрос на «вкус-как-сервис» — концепция, контент, доставка, рецептура в одном пакете. Это и есть стратегический пакет SlowMo Pro.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q5.</span> Сколько ты готов платить за такой сервис?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«За бутылку 750 мл премиум-кордиала — до 2 500–3 000 ₽. Если в комплекте идёт обучающая сессия с шефом, рецепты и поддержка — могу взять подписку 15–20 тыс ₽/мес для бара. Главное, чтобы это не было ещё одной "программой партнёров" с 15% скидкой.»
+          <span class="qa-diag">Диагноз: подписочная модель Pro-доступа реалистична. ARPU 15–20 тыс ₽/мес на бар = серьёзный апсейл к разовым продажам.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПЕРСОНА 2 -->
+  <div class="persona">
+    <div class="persona-header">
+      <div class="persona-avatar">АН</div>
+      <div>
+        <div class="persona-name">Анна, 36 — управляющая регионального бара</div>
+        <div class="persona-role">Воронеж · авторский бар на 60 посадок · 4 года владеет</div>
+      </div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Контекст</div>
+      <p>Сама ставит карту и обучает 2 барменов. Конкурирует с открывающимися в городе московскими сетями. Стремится к статусу «бара куда едут специально».</p>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Ключевые данные</div>
+      <p>Бюджет на ингредиенты для бара: ≈50–70 тыс ₽/мес. 8 коктейлей в карте. Чек коктейля 450–650 ₽. Доход бара ≈900 тыс ₽/мес.</p>
+    </div>
+    <div class="persona-pains">
+      <p><strong>1.</strong> «Не знаю где брать хорошие нишевые ингредиенты — Москва возит, мне дорого»</p>
+      <p><strong>2.</strong> «Мои бармены варят сами кордиалы — но никогда не выходит дважды одинаково»</p>
+      <p><strong>3.</strong> «Мне нужно как-то выделяться, но я не могу нанять шефа из Москвы»</p>
+    </div>
+    <div class="persona-jtbd">
+      <strong>JTBD:</strong> «Когда я обновляю карту, я хочу один авторитетный нишевый бренд, который сделает мой бар похожим на московский, чтобы у меня появился повод поднять чек»
+    </div>
+    <div class="interview">
+      <div class="interview-title">★ AI-симулятор интервью с Анной</div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q1.</span> Как ты обычно ищешь новые ингредиенты?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Сначала Instagram — смотрю что делают московские бартендеры. Потом ищу бренд, иду на сайт, читаю про производство. Если меня устраивает — пишу в WhatsApp поставщику. Это всё может занять неделю, потому что я ещё работаю.»
+          <span class="qa-diag">Диагноз: разделение «Москва задаёт тренд → регион подхватывает» = SlowMo должен закрепиться в премиум-московских барах в первый год. Контент-маркетинг через Instagram критичен.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q2.</span> Что бесит больше всего в существующих поставщиках?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Молчание. Я делаю заказ — менеджер пропадает на 3 дня. Спрашиваю когда доставка — отвечают "узнаю". А мне завтра карту обновлять. И ещё — никто не помогает с обучением. Мне сказали "вот сироп, дальше сами".»
+          <span class="qa-diag">Диагноз: огромный апсайд в сервисе. Скорость ответа + амбассадорская поддержка = моментальное преимущество.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q3.</span> Что бы тебя действительно зацепило в новом поставщике?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Если бы кто-то приехал и провёл смену в моём баре — показал как работать с продуктом, угостил моих гостей. Это даже важнее цены. Я бы рассказывала про это год.»
+          <span class="qa-diag">Диагноз: гостевые смены амбассадоров в регионах — мощнейший инструмент. У SlowMo это уже заявлено, нужно усилить и регулярить.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q4.</span> Какие три вкуса ты бы первым делом купила?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Облепиха — у нас её много в Воронеже. Можжевельник — для джина. И что-то совсем странное, типа фиалки или душицы — чтобы было о чём говорить с гостем.»
+          <span class="qa-diag">Диагноз: запрос на «локальные» + «странные/диалоговые» вкусы. Маркетинг должен давать «истории за вкусом», а не просто SKU.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q5.</span> Какая цена была бы нормальной?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«До 1 800 ₽ за бутылку — нормально, если хватает на 30 коктейлей. То есть себестоимость одной порции 60 ₽ при чеке 500 ₽ — это маржинальность 88%, я в плюсе.»
+          <span class="qa-diag">Диагноз: ценовая чувствительность регионов выше, чем в Москве. Нужна линейка «Pro» и «Core» с разными ценами.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПЕРСОНА 3 -->
+  <div class="persona">
+    <div class="persona-header">
+      <div class="persona-avatar">ДВ</div>
+      <div>
+        <div class="persona-name">Дмитрий, 42 — ресторатор, владелец 3 заведений</div>
+        <div class="persona-role">Краснодар · сеть кафе + один авторский ресторан · 12 лет в общепите</div>
+      </div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Контекст</div>
+      <p>Не варит коктейли сам, но решает что закупать. Хочет вывести кафе на новый уровень, отстроиться от соседей. Ему интересна СТМ как способ создать узнаваемое меню.</p>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Ключевые данные</div>
+      <p>Оборот всех заведений ≈12 млн ₽/мес. Бюджет на барную программу 200–250 тыс ₽/мес. Уже 5 лет ищет «свой» продукт для СТМ.</p>
+    </div>
+    <div class="persona-pains">
+      <p><strong>1.</strong> «Не могу выделиться — все кафе на моей улице делают одинаковый лимонад с малиной»</p>
+      <p><strong>2.</strong> «Собственная лаборатория — слишком дорого, я не пищевик»</p>
+      <p><strong>3.</strong> «Контрактные производители делают что попало, а потом продают в 5 других сетей рядом»</p>
+    </div>
+    <div class="persona-jtbd">
+      <strong>JTBD:</strong> «Когда я хочу свою линейку напитков для бренда, я хочу заказать СТМ под ключ — но с эксклюзивом по региону и с гарантией качества»
+    </div>
+    <div class="interview">
+      <div class="interview-title">★ AI-симулятор интервью с Дмитрием</div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q1.</span> Что для тебя «свой продукт»?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Это когда гость заходит в мой ресторан и видит лимонад "Краснодарский" — и нигде больше такого нет. Не SKU из каталога Monin под моей этикеткой — а реальный мой вкус, моя история.»
+          <span class="qa-diag">Диагноз: главный страх СТМ-клиента = «то же самое продадут конкурентам». Эксклюзив по гео/категории — критичный пункт договора.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q2.</span> Что тебя пугает в СТМ?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Минимальная партия и оборотка. 380 бутылок — это нормально, если я их продам за 2 месяца. Но если ляжет — это мёртвый склад. Плюс — лабораторные сертификаты, ЧЗ — кто это всё ведёт?»
+          <span class="qa-diag">Диагноз: SlowMo уже даёт «под ключ» (сертификация, ЧЗ). Надо это подчёркивать в первой коммуникации, а не на 3-й странице сайта.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q3.</span> Сколько ты готов вложить в СТМ-проект?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Первая партия — до 400 тыс с НДС. Если вкус выстрелит — могу масштабироваться в 2–3 раза. Если не выстрелит — больше не вернусь к этому формату 2 года.»
+          <span class="qa-diag">Диагноз: первый заказ = решающий. Onboarding в СТМ должен быть с консультантом, не «отправили этикетку и ждём».</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q4.</span> Где ты узнавал про СТМ-производителей?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«В основном из сарафана от друзей-рестораторов. Сам гуглил "сделать свой сироп оптом" — там сплошные китайские заводы. Про SlowMo не знал, но если бы был как Custom-page с кейсами — я бы зашёл.»
+          <span class="qa-diag">Диагноз: SEO + кейсы СТМ — недозагруженный канал. Custom page нужна с FAQ, ценами «от», сроками.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q5.</span> Что бы заставило тебя сейчас сразу написать в SlowMo?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Один развёрнутый кейс другого ресторатора моего уровня: что заказал, сколько вышло, как пошли продажи, какая прибыль. Без этого все обещания — слова.»
+          <span class="qa-diag">Диагноз: 2–3 публичных кейса с цифрами = главный конверсионный актив на ближайшие 6 мес.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПЕРСОНА 4 -->
+  <div class="persona">
+    <div class="persona-header">
+      <div class="persona-avatar">КЛ</div>
+      <div>
+        <div class="persona-name">Кирилл, 29 — кофейный бариста-миксолог</div>
+        <div class="persona-role">Санкт-Петербург · крафтовая кофейня · 5 лет в индустрии</div>
+      </div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Контекст</div>
+      <p>В тренде «бариста как миксолог»: добавляет сиропы и парфюмы в спешелти-кофе, делает «сезонные напитки» с авторскими вкусами. Активно ведёт Instagram-аккаунт с 8K подписчиков.</p>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Ключевые данные</div>
+      <p>Бюджет 25–40 тыс ₽/мес. 4–6 сезонных напитков. Чек 250–380 ₽. Молодой канал — растёт быстро.</p>
+    </div>
+    <div class="persona-pains">
+      <p><strong>1.</strong> «В кофейный раф нужны точечные акценты — Monin даёт грубый вкус»</p>
+      <p><strong>2.</strong> «Мне нужно меньше сахара, больше аромата — мои гости не хотят сладость»</p>
+      <p><strong>3.</strong> «Не хочу выглядеть как сеть — все нужно своё»</p>
+    </div>
+    <div class="persona-jtbd">
+      <strong>JTBD:</strong> «Когда я добавляю сезон-напиток в меню, я хочу яркий и узнаваемый ольфакторный акцент в малой дозе, чтобы кофе пах "лесом" или "садом", а не сахарным сиропом»
+    </div>
+    <div class="interview">
+      <div class="interview-title">★ AI-симулятор интервью с Кириллом</div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q1.</span> Расскажи про последний сезонный напиток?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Делал раф "Лес после дождя" — кедровый сироп Barline + капля парфюма мха (нашёл у одного парня в Москве). Продал 280 порций за месяц — отлично. Но парфюма мха больше нигде нет — а я хочу масштабировать.»
+          <span class="qa-diag">Диагноз: запрос на «странные» парфюмы (мох, кора, сено) — пустая ниша. SlowMo может зайти с экспериментальной коллекцией Atelier.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q2.</span> Что тебя бесит в существующих сиропах для кофе?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Сахар. Я лью 5 мл сиропа в раф — и он становится десертом, а не кофе. Парфюмы решают эту проблему — там не сладость, а аромат. Но их мало и они дорогие.»
+          <span class="qa-diag">Диагноз: пищевые парфюмы (≠ сиропы) — недозагруженная категория в кофе-канале. SlowMo может зайти первой.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q3.</span> Кому ты доверяешь в выборе ингредиентов?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Telegram-каналам бариста-сообщества. Reels с обзорами. Если шеф из ресторана хвалит — это сильный сигнал. Купить готов после 2–3 видео с продуктом.»
+          <span class="qa-diag">Диагноз: контент-маркетинг через коллаборации с бариста-инфлюенсерами — недозагруженный канал.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q4.</span> Если бы был "идеальный" продукт для тебя — каким?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Маленькие флаконы 30 мл с дозатором-пшиком, как настоящий парфюм. С QR-кодом на этикетке — там рецепт раф/латте от шефа. И сезонными выпусками — чтобы я мог менять линейку как одежду.»
+          <span class="qa-diag">Диагноз: упаковка с дозатором-пшиком + сезонные капсульные коллекции = большой апсайд по позиционированию.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q5.</span> Что бы тебя удержало от покупки?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Цена выше 1 500 ₽ за 30 мл — стоп. И — если бренд позиционируется только "для баров и алкогольных коктейлей". Я кофейщик, мне нужно чувствовать что это и для меня.»
+          <span class="qa-diag">Диагноз: позиционирование SlowMo нужно расширить за пределы «бары» — это уже потеря 30%+ ICP.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ПЕРСОНА 5 -->
+  <div class="persona">
+    <div class="persona-header">
+      <div class="persona-avatar">ОС</div>
+      <div>
+        <div class="persona-name">Ольга, 39 — байер крупной отельной сети</div>
+        <div class="persona-role">Москва, закупки для 12 отелей по РФ · 10 лет в HoReCa-закупках</div>
+      </div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Контекст</div>
+      <p>Покупает крупными контрактами на год вперёд. Главный критерий — стабильность поставок, документы и предсказуемая логистика. Эмоций нет — есть KPI.</p>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Ключевые данные</div>
+      <p>Объём закупки барной верхушки: ≈3,5 млн ₽/мес на сеть. Минимальный заказ 600+ единиц/SKU. Решения принимаются комитетом из 3 человек.</p>
+    </div>
+    <div class="persona-pains">
+      <p><strong>1.</strong> «Поставщики со средним SKU не могут гарантировать 12 месяцев бесперебойных поставок»</p>
+      <p><strong>2.</strong> «Документы — половина поставщиков делает ДС "на коленке", я не могу провести через юристов»</p>
+      <p><strong>3.</strong> «СТМ под нашу сеть — никто не хочет браться при наших объёмах, потому что мы не Перекрёсток»</p>
+    </div>
+    <div class="persona-jtbd">
+      <strong>JTBD:</strong> «Когда я выбираю поставщика для премиум-отелей, я хочу взять "под ключ" линейку с собственным брендом нашего отеля + годовой контракт с фиксированной ценой»
+    </div>
+    <div class="interview">
+      <div class="interview-title">★ AI-симулятор интервью с Ольгой</div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q1.</span> Как обычно выбираешь поставщика?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Сначала — рекомендация шеф-бартендера флагмана. Потом — встреча с менеджером, обсуждаем объёмы и SLA. Третий шаг — пробная партия, минимум 3 месяца тестирования. Только потом — годовой контракт.»
+          <span class="qa-diag">Диагноз: B2B-цикл 4–6 месяцев. Нужна выделенная Key Account структура, не «общий» менеджер.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q2.</span> Что для тебя «дилбрейкер»?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Сорванная поставка. Один раз — предупреждение. Второй — расторгаем контракт и я меняю поставщика. Документация без подтверждения ЧЗ или ДС — тоже нет.»
+          <span class="qa-diag">Диагноз: операционная зрелость и SLA-документация — точка входа в крупный B2B-сегмент.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q3.</span> Готова ли сеть к коллаборации (СТМ)?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Готовы, но при чёткой механике. Минимум 3 года договор, эксклюзив по бренду на территории, развитие линейки по нашим запросам. Если такой формат у вас есть — я готова обсуждать на ближайшем форуме.»
+          <span class="qa-diag">Диагноз: SlowMo Custom уже отвечает запросу. Нужна upmarket-страница на сайте «SlowMo for Hotel Groups» с прямой записью на встречу.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q4.</span> Какой объём для тебя «нормальный»?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«2–4 SKU под бренд, 10–15 тыс бутылок/SKU в год на 12 отелей. То есть 50–70 млн ₽/год по контракту.»
+          <span class="qa-diag">Диагноз: один такой клиент = 4–6% годового оборота среднего нишевого бренда. 2–3 таких клиента — это другой бизнес.</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q" onclick="toggleQA(this)"><span><span class="qa-q-num">Q5.</span> Что бы помешало тебе подписать контракт?</span><span class="qa-toggle">Ответ</span></div>
+        <div class="qa-a">«Если SlowMo также продаёт в наших прямых конкурентов под тем же брендом. Если вкус нестабилен между партиями. Если нет английского сайта/документации — мы делаем международные тендеры тоже.»
+          <span class="qa-diag">Диагноз: эксклюзивность + операционная зрелость + EN-версия сайта = 3 ключевых усиления для крупного B2B.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Цитаты пользователей</h2>
+  <div class="two-col">
+    <div class="quote">«В России потенциал кофеен огромен, и многие европейские тенденции вполне приживутся, если их правильно обыграть. Сейчас — лучшее время вдохновиться и сделать шаг вперёд, пока рынок не перенасыщен.»
+      <span class="quote-author">Coffee State LLC, обзор кофейных трендов Европы 2025–2026 [Первичные данные]</span>
+    </div>
+    <div class="quote">«Поиск нашего собственного русского стиля, использование ингредиентов, произрастающих в России, и исследование — как раз то, что интересно сегодня миксологам.»
+      <span class="quote-author">Руслан Мингазов, шеф-бартендер Omela Bar (Яндекс.Еда, 2024) [Первичные данные]</span>
+    </div>
+    <div class="quote">«Уже много лет мы слышали от профессиональных мировых изданий о тренде на сложные безалкогольные коктейли. В нашем баре заметили спрос только в прошлом году. Запуск первой в России линейки безалкогольных аналогов джина дал толчок.»
+      <span class="quote-author">Бартендер бара «Медные трубы», Нижний Новгород (Яндекс.Еда, 2024) [Первичные данные]</span>
+    </div>
+    <div class="quote">«Барное сообщество стало нуждаться в качественном и доступном продукте — и взяло дело в свои руки.»
+      <span class="quote-author">Об уходе европейских поставщиков, Яндекс.Еда, 2024 [Первичные данные]</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============== РАЗДЕЛ 3: КОНКУРЕНТЫ ============== -->
+<section id="section-competitors" class="section">
+  <span class="section-tag">03 · Контекст</span>
+  <h1 class="page-title">Конкуренты: три эшелона давления</h1>
+  <p class="page-subtitle">SlowMo не один на рынке нишевых ингредиентов. Главный прямой конкурент — CLAVIS, и он позиционируется как «№1 в России». Косвенно давят массовые Monin, Barline и Pollux.</p>
+
+  <h2>Финансовая карта рынка</h2>
+  <table class="tbl">
+    <thead><tr><th>Игрок</th><th>Тип</th><th>География</th><th>Линейка</th><th>Динамика</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>SlowMo</b><br><span class="badge blue">Мы</span></td>
+        <td>Нишевый B2B-производитель кордиалов и парфюмов + СТМ</td>
+        <td>Россия: 5 фед.округов, экспортные пилоты</td>
+        <td>Кордиалы 750 мл + парфюмы 30 мл + СТМ. Мин.партия 380 бут.</td>
+        <td>Растёт <span class="badge green">+</span></td>
+      </tr>
+      <tr>
+        <td><b>CLAVIS</b><br><span class="badge red">Главный</span></td>
+        <td>Прямой конкурент — кордиалы и пищевые парфюмы</td>
+        <td>РФ + Армения, Азербайджан, Узбекистан, Казахстан, Беларусь, ОАЭ</td>
+        <td>20+ SKU кордиалов и парфюмов. B2B и B2C.</td>
+        <td>Растёт быстро <span class="badge green">++</span></td>
+      </tr>
+      <tr>
+        <td><b>Monin</b> (импорт)</td>
+        <td>Массовый премиум, дистрибуция через КЛЁН, Комплекс-Бар</td>
+        <td>Глобально, в РФ через рестрикции</td>
+        <td>150+ SKU сиропов</td>
+        <td>Стабильно, под давлением <span class="badge orange">~</span></td>
+      </tr>
+      <tr>
+        <td><b>Barline</b></td>
+        <td>Крупнейший российский производитель сиропов и топпингов</td>
+        <td>РФ + СНГ</td>
+        <td>Сиропы массовый сегмент, не премиум</td>
+        <td>Стабильно, мощный <span class="badge green">+</span></td>
+      </tr>
+      <tr>
+        <td><b>Miller&amp;Miller</b></td>
+        <td>Российский производитель сиропов для кофе и баров</td>
+        <td>РФ</td>
+        <td>Сиропы, ассортимент 80+ SKU</td>
+        <td>Растёт стабильно <span class="badge green">+</span></td>
+      </tr>
+      <tr>
+        <td><b>Pollux</b></td>
+        <td>Серия сиропов, дистрибуция через Комплекс-Бар</td>
+        <td>РФ</td>
+        <td>Сиропы и кордиалы массового сегмента</td>
+        <td>Стабильно <span class="badge gray">=</span></td>
+      </tr>
+      <tr>
+        <td><b>Pinch &amp; Co / штучные мастерские</b></td>
+        <td>Микро-производители кордиалов, часто при барах</td>
+        <td>Москва, СПб, Сочи (фрагментировано)</td>
+        <td>5–15 SKU, лимит. серии</td>
+        <td>Появляются и закрываются <span class="badge yellow">±</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:12px; color:#64748B; font-style:italic;">Финансовые данные по российским частным компаниям этого размера публично не раскрываются. Динамика оценена по числу SKU, географии и публичной коммуникации.</p>
+
+  <h2>Эшелон 1 · Массовые гиганты (Monin, Barline, Miller&amp;Miller, Pollux)</h2>
+  <div class="insight blue">
+    <div class="insight-title">Что закрывают</div>
+    <p>«Базовые» вкусы для коктейлей и кофе (карамель, ваниль, малина, лесной орех). Большие объёмы, низкая цена за порцию, развитая дистрибуция через КЛЁН, Комплекс-Бар, Custom Bar.</p>
+    <p><strong>Слабое место:</strong> массовые вкусы убивают возможность дифференциации для бара. Шеф-бартендер использует Monin для «фоновых» позиций, но НЕ ставит на этом авторскую карту.</p>
+    <p><strong>Угроза для SlowMo:</strong> низкая на премиум-уровне, но Barline может выпустить премиальную линейку и захватить часть рынка снизу.</p>
+  </div>
+
+  <h2>Эшелон 2 · Прямой нишевый конкурент — CLAVIS</h2>
+  <table class="tbl">
+    <thead><tr><th>Параметр</th><th>CLAVIS</th><th>SlowMo</th></tr></thead>
+    <tbody>
+      <tr><td><b>Позиционирование</b></td><td>«Селективная основа для коктейлей и лимонадов №1 в России»</td><td>«Надёжные сбалансированные продукты для профессионалов и любителей»</td></tr>
+      <tr><td><b>Линейка</b></td><td>20+ SKU кордиалов + парфюмов; парфюмы 30 мл с акцентом «искусство»</td><td>Кордиалы + парфюмы + Custom (СТМ под ключ)</td></tr>
+      <tr><td><b>География</b></td><td>РФ + 5 стран СНГ + ОАЭ (декларировано)</td><td>5 фед.округов РФ, экспортные планы</td></tr>
+      <tr><td><b>B2C / B2B</b></td><td>И то, и то (Yandex Market, прямой)</td><td>B2B-фокус с возможностью B2C</td></tr>
+      <tr><td><b>Контент / маркетинг</b></td><td>Активный Instagram, кейсы коллабов (Bruxx, моктейли)</td><td>Партнёрства с барами, гостевые смены, тур по регионам</td></tr>
+      <tr><td><b>СТМ / Custom</b></td><td>Не основной фокус</td><td><span class="badge green">Сильное преимущество</span> Custom-направление в продукте</td></tr>
+      <tr><td><b>Сильные стороны</b></td><td>Бренд узнаваемости №1, экспансия в СНГ, маркетинг</td><td>СТМ-сервис, гибкость, амбассадоры в регионах</td></tr>
+      <tr><td><b>Слабые стороны</b></td><td>Закрывает массовый запрос на кордиал, но мало эксклюзивных продуктов под партнёра</td><td>Меньше узнаваемость, более узкая дистрибуция, слабый B2C</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Эшелон 3 · Микро-мастерские и self-made</h2>
+  <div class="insight orange">
+    <div class="insight-title">Это не конкуренты — это драйверы рынка</div>
+    <p>Шеф-бартендеры варят кордиалы сами — это нормально. Эти «pinch &amp; co» при барах закрывают эксклюзив на уровне 1–2 заведений, но не масштабируются. SlowMo может стать «контрактным производством» для них: «вам нужен ваш кордиал стабильно — мы сделаем».</p>
+  </div>
+
+  <h2>Матрица JTBD × Конкурент</h2>
+  <table class="tbl matrix">
+    <thead><tr><th>JTBD</th><th>SlowMo</th><th>CLAVIS</th><th>Monin/Barline</th><th>Микро-мастерские</th></tr></thead>
+    <tbody>
+      <tr><td>JTBD 1: Быстро сделать карту с премиум-вкусом</td><td class="cell-partial">⚠️</td><td class="cell-yes">✅</td><td class="cell-no">❌</td><td class="cell-partial">⚠️</td></tr>
+      <tr><td>JTBD 2: «Я не Monin» — статус и история за вкусом</td><td class="cell-yes">✅</td><td class="cell-yes">✅</td><td class="cell-no">❌</td><td class="cell-yes">✅</td></tr>
+      <tr><td>JTBD 3: Один поставщик «верхушки» с предсказуемой логистикой</td><td class="cell-yes">✅</td><td class="cell-yes">✅</td><td class="cell-yes">✅</td><td class="cell-no">❌</td></tr>
+      <tr><td>JTBD 4: Хороший коктейль дома без 30 ингредиентов</td><td class="cell-partial">⚠️</td><td class="cell-yes">✅</td><td class="cell-yes">✅</td><td class="cell-no">❌</td></tr>
+      <tr style="background:#FEF2F2;"><td><b>JTBD 5: СТМ под ключ с эксклюзивом</b></td><td class="cell-yes">✅</td><td class="cell-no">❌</td><td class="cell-no">❌</td><td class="cell-no">❌</td></tr>
+    </tbody>
+  </table>
+
+  <div class="insight green">
+    <div class="insight-title">Главная стратегическая возможность</div>
+    <p><strong>JTBD 5 — единственный, который SlowMo закрывает в одиночку.</strong> Это и есть «голубой океан»: ни CLAVIS, ни массовые сиропы, ни мастерские не делают СТМ под ключ для барных холдингов и отельных сетей. Если SlowMo займёт эту нишу за 12 месяцев, она становится тяжело копируемой — построить пищевое производство со стандартами и сертификацией нельзя за квартал.</p>
+  </div>
+</section>
+
+<!-- ============== РАЗДЕЛ 4: ПРОДУКТ СЕГОДНЯ ============== -->
+<section id="section-asis" class="section">
+  <span class="section-tag">04 · Контекст</span>
+  <h1 class="page-title">Продукт сегодня (as-is): что работает, что мешает</h1>
+  <p class="page-subtitle">Анализ из веб-источника, заявленной концепции и стандартных проблем российских B2B-производителей в HoReCa. Раздел дополняется первичными данными касдева.</p>
+
+  <h2>Сильные стороны</h2>
+  <div class="three-col">
+    <div class="block">
+      <h3>Продуктовая линейка</h3>
+      <p>Два параллельных направления: кордиалы 750 мл (концентраты для бара) и пищевые парфюмы 30 мл (ольфакторные акценты). Это даёт два разных JTBD в одном бренде.</p>
+    </div>
+    <div class="block">
+      <h3>Custom как актив</h3>
+      <p>SlowMo Custom — единственный публичный сервис «СТМ под ключ» от концепции до этикетки в категории. Минимальная партия 380 бутылок — достижимая для среднего бара/сети.</p>
+    </div>
+    <div class="block">
+      <h3>География и амбассадорство</h3>
+      <p>Уже 5 фед.округов РФ. Гостевые смены и обучение от амбассадоров — то, что критично хотят региональные клиенты (по интервью).</p>
+    </div>
+  </div>
+
+  <h2>Слабые места и зоны риска</h2>
+  <div class="two-col">
+    <div class="insight red">
+      <div class="insight-title">Сайт и первичная коммуникация</div>
+      <p>Tilda-сайт работает скорее как «визитка», чем как воронка. Custom-направление спрятано в середине страницы. Нет публичных кейсов «вот ресторан Х заказал, вот его результат». В типовой B2B-воронке закупщик уходит после первого скролла без CTA.</p>
+    </div>
+    <div class="insight orange">
+      <div class="insight-title">Узнаваемость vs CLAVIS</div>
+      <p>CLAVIS открыто заявляет «№1 в России». Поисковые позиции и присутствие на Yandex Market дают CLAVIS преимущество в первом контакте. SlowMo нужен либо чёткий ребрендинг «мы для шефов / профессионалов», либо контент-стратегия с конкретным позиционированием.</p>
+    </div>
+    <div class="insight blue">
+      <div class="insight-title">Подписка / возвратный канал</div>
+      <p>Сейчас продажа = разовая. Нет регулярных коробок (SlowMo Box), сезонных капсул, подписочного канала Pro. Это закрывает 30%+ потенциала ARPU при текущей базе.</p>
+    </div>
+    <div class="insight purple">
+      <div class="insight-title">B2C-канал</div>
+      <p>«Любители наслаждаться напитками дома» заявлены в позиционировании, но в продукте B2C-флоу отсутствует. Сравните с CLAVIS, которая продаёт через Yandex Market.</p>
+    </div>
+  </div>
+
+  <h2 id="custdev-placeholder">Касдев — личные наблюдения (заполняется в Разделе ★)</h2>
+  <div class="insight">
+    <div class="insight-title">Места для заполнения при первичном исследовании</div>
+    <p>1. Первое впечатление от сайта: дизайн, скорость, мобильная версия.</p>
+    <p>2. Воронка контакта: как быстро отвечает менеджер, какой первый ответ.</p>
+    <p>3. Тестирование вкусов: образцы, доставка, упаковка.</p>
+    <p>4. Документация: какие СПД-документы выдают, насколько чисто.</p>
+    <p>5. Аудит Custom-флоу: путь от «хочу СТМ» до коммерческого предложения.</p>
+    <p>→ Перейти в раздел ★ Касдев и заполнить наблюдения.</p>
+  </div>
+
+  <h2>Аудит «верхушки воронки» (что должно быть лучше)</h2>
+  <table class="tbl">
+    <thead><tr><th>Точка контакта</th><th>Бенчмарк (лучший в классе)</th><th>SlowMo сейчас</th><th>Что сделать</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Первый экран сайта</td>
+        <td>Чёткое позиционирование + CTA «получить дегустационный набор»</td>
+        <td>Слайдер с принципами «вкус / творчество / надёжность»</td>
+        <td>Заменить слайдер на 1 экран: «Premium-кордиалы и парфюмы для шеф-бартендеров и СТМ-партнёров» + кнопка «Заказать дегустацию» + кнопка «Запустить Custom»</td>
+      </tr>
+      <tr>
+        <td>Контактная форма / время ответа</td>
+        <td>Чат в WhatsApp в течение 2 минут</td>
+        <td>Контакты через телефон/email (не быстро по B2B-стандартам)</td>
+        <td>WhatsApp Business + чат на сайте + автоответ с FAQ за 2 мин</td>
+      </tr>
+      <tr>
+        <td>Кейсы и социальные доказательства</td>
+        <td>3–5 кейсов с цифрами на отдельной странице + видео-отзывы</td>
+        <td>Логотипы клиентов без раскрытия</td>
+        <td>3 публичных кейса до конца Q3 (бар, ресторан, отельная сеть) с реальными цифрами выручки от коктейлей</td>
+      </tr>
+      <tr>
+        <td>Каталог продукции</td>
+        <td>Каждый SKU = страница с рецептами, парингом, дегустационными нотами</td>
+        <td>Раздел «cocktailbook» отдельно, не интегрирован с каталогом</td>
+        <td>Привязать каждый кордиал/парфюм к 3 рецептам в каталоге; добавить QR-код на этикетке</td>
+      </tr>
+      <tr>
+        <td>Custom-воронка</td>
+        <td>Отдельная страница с FAQ, ценами «от», временными этапами, формой брифа</td>
+        <td>Custom упомянут на главной, нет отдельной воронки</td>
+        <td>Лендинг slow-mo.ru/custom: «что включено», цена «от», калькулятор партии, видео-кейс</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============== РАЗДЕЛ 5: ВИДЕНИЕ И СТАВКА ============== -->
+<section id="section-vision" class="section">
+  <span class="section-tag">05 · Стратегия</span>
+  <h1 class="page-title">Видение и ставка: чем SlowMo станет за 12 месяцев</h1>
+  <p class="page-subtitle">Главный стратегический вопрос — не «больше SKU», а «какая роль SlowMo на рынке через год».</p>
+
+  <div class="highlight-box">
+    <h3>Главный тезис стратегии</h3>
+    <p>SlowMo превращается из «нишевого производителя кордиалов и парфюмов» в <strong>стандарт качества и сервиса для премиум-сегмента российского HoReCa</strong> — с уникальным сильным активом в виде SlowMo Custom (СТМ под ключ).</p>
+    <p>Это не про «обогнать CLAVIS» на массовом продукте — это про другую сетку JTBD: <strong>шеф-бартендер делает с нами карту, ресторатор делает с нами свой бренд, отельная сеть делает с нами линейку</strong>. Все остальные конкуренты остаются в категории «ингредиент».</p>
+  </div>
+
+  <h2>Концепция продукта: «От вкуса к бренду»</h2>
+  <div class="block">
+    <p>SlowMo строит лестницу вовлечения, где B2B-клиент проходит 5 шагов:</p>
+    <table class="tbl" style="margin-top:14px;">
+      <thead><tr><th>Шаг</th><th>Что делает клиент</th><th>Что даёт SlowMo</th><th>Доход на клиента</th></tr></thead>
+      <tbody>
+        <tr><td><b>1. Знакомство</b></td><td>Получает дегустационный набор, пробует 3 кордиала + 3 парфюма</td><td>Бесплатный или за 1–2 тыс ₽ набор «discovery»</td><td>0 ₽ (инвестиция)</td></tr>
+        <tr><td><b>2. Первый заказ</b></td><td>Закупает 5–8 SKU для одного бара</td><td>Каталог + рецептурная поддержка</td><td>30–60 тыс ₽ / заказ</td></tr>
+        <tr><td><b>3. SlowMo Pro</b></td><td>Подписка: ежемесячная коробка + обучение шефа</td><td>Custom recommendations + капсульные коллекции + амбассадорские сессии</td><td>15–25 тыс ₽/мес × 12</td></tr>
+        <tr><td><b>4. SlowMo Custom Lite</b></td><td>Заказывает 1 SKU под свой бар (приватная партия)</td><td>Со-разработка + минимальная партия 380 бут</td><td>200–400 тыс ₽ / партия</td></tr>
+        <tr><td><b>5. SlowMo Custom Pro</b></td><td>Холдинг/сеть заказывает 3–5 SKU под бренд на годовой контракт</td><td>Эксклюзив по гео + годовой контракт + SLA</td><td>3–10 млн ₽ / год</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Почему это работает — доказательства рынка</h2>
+  <div class="three-col">
+    <div class="block">
+      <h3>1. Локальность как тренд</h3>
+      <p>Поиск «русского стиля» в миксологии стал главным трендом 2024–2026. Шеф-бартендеры White Rabbit, Omela, El Copitas публично говорят о потребности в своих ингредиентах.</p>
+      <p style="font-size:11px; color:#94A3B8;">Источник: Яндекс.Еда, 2024; Sobaka.ru, 2024</p>
+    </div>
+    <div class="block">
+      <h3>2. Уход импорта = окно</h3>
+      <p>Monin, Giffard, Routin потеряли логистику и долю. CLAVIS заняла первый эшелон, SlowMo может зайти со второго со специализацией.</p>
+      <p style="font-size:11px; color:#94A3B8;">Источник: RBC Wine, февраль 2026</p>
+    </div>
+    <div class="block">
+      <h3>3. Рост HoReCa в 2,5× за 4 года</h3>
+      <p>Оборот кафе и ресторанов 2,74 трлн ₽ в 2024. Бары и пабы: 9 200+ заведений. Категория растёт быстрее ритейла.</p>
+      <p style="font-size:11px; color:#94A3B8;">Источник: BusinesStat / РБК, 2025</p>
+    </div>
+    <div class="block">
+      <h3>4. Моктейли как новый канал</h3>
+      <p>Безалкогольное вино +53,5% в 2025. Гости поколения Z готовы платить премию за сложный безалкогольный напиток. Кордиал — основа моктейля.</p>
+      <p style="font-size:11px; color:#94A3B8;">Источник: World-Food / «О'Кей», февраль 2026</p>
+    </div>
+    <div class="block">
+      <h3>5. СТМ-голод у рестораторов</h3>
+      <p>В категории «верхушка вкуса» нет публичной СТМ-фабрики, только в массовых сиропах (Barline). У SlowMo есть готовая Custom-программа — нужно её упаковать.</p>
+      <p style="font-size:11px; color:#94A3B8;">Источник: интервью персон (AI), 2026</p>
+    </div>
+    <div class="block">
+      <h3>6. Кофейный канал недозагружен</h3>
+      <p>Бариста становятся миксологами (тренд Coffee State, 2026). Пищевые парфюмы 30 мл идеально решают «много аромата, мало сахара». Сейчас никто не таргетирует этот канал.</p>
+      <p style="font-size:11px; color:#94A3B8;">Источник: Coffee State, 2026</p>
+    </div>
+  </div>
+
+  <h2>Дифференциатор vs CLAVIS</h2>
+  <table class="tbl">
+    <thead><tr><th>Что</th><th>CLAVIS</th><th>SlowMo</th></tr></thead>
+    <tbody>
+      <tr><td>Главное обещание</td><td>«№1 готовая селективная основа»</td><td>«Премиум-партнёр в разработке вашего вкуса»</td></tr>
+      <tr><td>Точка эмоции</td><td>Гость вашего бара пьёт «классный коктейль»</td><td>Ваш бар становится местом со своим вкусом</td></tr>
+      <tr><td>Главный pull</td><td>Готовый каталог</td><td>Каталог + сервис разработки + Custom</td></tr>
+      <tr><td>Доходообразующее</td><td>SKU × объём</td><td>Подписка (Pro) + годовой контракт (Custom)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Гейм-чейнджер фича: SlowMo Atelier</h2>
+  <div class="insight purple">
+    <div class="insight-title">Лимитированные капсульные коллекции от шефов</div>
+    <p>3–4 раза в год SlowMo выпускает коллекцию из 5–7 SKU, разработанную в коллаборации с известным шеф-бартендером (White Rabbit, El Copitas, Omela). Лимит — 500 бутылок на SKU. Только подписчики Pro и Custom-клиенты получают доступ в первую неделю.</p>
+    <p><strong>Почему работает:</strong> создаёт FOMO у барного сообщества, бренд закрепляется в премиум, шеф-бартендер становится амбассадором без больших гонораров — он совладелец рецепта. Аналог — Kith × Coca-Cola, но в нише.</p>
+    <p><strong>Эффект:</strong> 30–50% подписчиков Pro в первый год, заявка-волна на Custom от регионов, контент-маркетинг сам себя производит.</p>
+  </div>
+</section>
+
+<!-- ============== РАЗДЕЛ 6: СТРАТЕГИЧЕСКИЕ ФОКУСЫ ============== -->
+<section id="section-focuses" class="section">
+  <span class="section-tag">06 · Стратегия</span>
+  <h1 class="page-title">Стратегические фокусы: 3 этапа на 12 месяцев</h1>
+  <p class="page-subtitle">Не делать всё сразу. Каждый этап даёт измеримый ROI и подготавливает следующий.</p>
+
+  <h2>Этап 1 (Мес 1–3) · Низко висящие фрукты — фикс воронки</h2>
+  <div class="focus-cards">
+    <div class="focus-card red">
+      <div class="focus-phase">Этап 1 · Приоритет 1</div>
+      <div class="focus-title">Переупаковать сайт под B2B-воронку</div>
+      <div class="focus-desc">Главный экран → чёткое позиционирование, 2 CTA («дегустация» и «Custom»). Отдельная страница slow-mo.ru/custom с FAQ, ценами «от», калькулятором партии и формой брифа.</div>
+      <div class="focus-effect">Эффект: +30–50% лидов из текущего трафика без увеличения бюджета (отраслевой бенчмарк перехода с Tilda на воронку)</div>
+    </div>
+    <div class="focus-card red">
+      <div class="focus-phase">Этап 1 · Приоритет 2</div>
+      <div class="focus-title">Дегустационный набор Discovery</div>
+      <div class="focus-desc">Коробка из 3 мини-кордиалов (150 мл) + 3 парфюмов (10 мл) + рецептник от шефа. Цена 1 990 ₽ с зачётом при первом большом заказе.</div>
+      <div class="focus-effect">Эффект: входная воронка ×2, отсев нецелевых, средний чек первого заказа +25% (бенчмарк programs by Brewdog, Glenfiddich)</div>
+    </div>
+    <div class="focus-card red">
+      <div class="focus-phase">Этап 1 · Приоритет 3</div>
+      <div class="focus-title">Публичные кейсы (3 штуки) с цифрами</div>
+      <div class="focus-desc">Один бар (Москва), один ресторан (региональный), одна отельная сеть. Кейс = выручка по коктейлям до/после, какие SKU, какой ROI.</div>
+      <div class="focus-effect">Эффект: цикл сделки в B2B сокращается с 4–6 мес до 2–3 мес. Конверсия CTA → встреча +60% (стандарт B2B-маркетинга)</div>
+    </div>
+  </div>
+
+  <h2>Этап 2 (Мес 3–9) · Сервисный слой + Retention</h2>
+  <div class="focus-cards">
+    <div class="focus-card orange">
+      <div class="focus-phase">Этап 2 · Приоритет 1</div>
+      <div class="focus-title">Запустить SlowMo Pro (подписка)</div>
+      <div class="focus-desc">Ежемесячная коробка для бара: 4 SKU + рецепты от шефа + 1 час Zoom-консультации. Цена 15–25 тыс ₽/мес. Эксклюзив по части SKU.</div>
+      <div class="focus-effect">Эффект: ARPU ×3 на каждом активном баре, retention 70%+ за первые 6 мес (бенчмарк subscription-моделей в HoReCa)</div>
+    </div>
+    <div class="focus-card orange">
+      <div class="focus-phase">Этап 2 · Приоритет 2</div>
+      <div class="focus-title">SlowMo Custom Lite — публичная упаковка</div>
+      <div class="focus-desc">Готовое предложение: 1 SKU под бар, минимальная партия 380 бут, цена от 280 тыс ₽, срок 6–8 недель, эксклюзив по городу.</div>
+      <div class="focus-effect">Эффект: 10–15 заказов Custom Lite в год = 3–6 млн ₽ дополнительной выручки + viral в барном сообществе</div>
+    </div>
+    <div class="focus-card orange">
+      <div class="focus-phase">Этап 2 · Приоритет 3</div>
+      <div class="focus-title">Кофейный канал — отдельный SKU и контент</div>
+      <div class="focus-desc">Линейка пищевых парфюмов в дозаторе-пшике (30 мл), коллаборации с 3 известными кофейнями (Москва + СПб). Лендинг для бариста.</div>
+      <div class="focus-effect">Эффект: +20–30% к выручке без каннибализации (новый канал, новый ICP, малая конкуренция со стороны CLAVIS)</div>
+    </div>
+    <div class="focus-card orange">
+      <div class="focus-phase">Этап 2 · Приоритет 4</div>
+      <div class="focus-title">Региональная экспансия — амбассадорские туры</div>
+      <div class="focus-desc">Раз в квартал — гастроли в новый регион (Казань, Екатеринбург, Краснодар, Сочи). Сменя в баре + обучение барменов + локальная медийка.</div>
+      <div class="focus-effect">Эффект: +30–50 новых B2B-клиентов с одного тура (опыт CLAVIS, Lucky Group и др.)</div>
+    </div>
+  </div>
+
+  <h2>Этап 3 (Мес 9–18) · Масштаб и дифференциация</h2>
+  <div class="focus-cards">
+    <div class="focus-card purple">
+      <div class="focus-phase">Этап 3 · Приоритет 1</div>
+      <div class="focus-title">SlowMo Atelier — капсульные коллекции</div>
+      <div class="focus-desc">3 коллекции в год от шефов уровня White Rabbit / El Copitas. 5–7 SKU × 500 бут. Только подписчики Pro и Custom-клиенты в первую неделю.</div>
+      <div class="focus-effect">Эффект: бренд SlowMo переходит в «культовый» статус, ARPU подписчиков ×1.3 за счёт капсул</div>
+    </div>
+    <div class="focus-card purple">
+      <div class="focus-phase">Этап 3 · Приоритет 2</div>
+      <div class="focus-title">Экспансия в СНГ — Казахстан, Беларусь, Армения</div>
+      <div class="focus-desc">Один дистрибутор на страну, EN-версия сайта, пилотные контракты с 3 топ-барами в каждой стране.</div>
+      <div class="focus-effect">Эффект: +15–25% к обороту во 2-м году. Защита от CLAVIS, которая уже там</div>
+    </div>
+    <div class="focus-card purple">
+      <div class="focus-phase">Этап 3 · Приоритет 3</div>
+      <div class="focus-title">B2C-канал — Yandex Market и собственный shop</div>
+      <div class="focus-desc">Парфюмы 30 мл и мини-кордиалы как gift-сегмент. Не каннибализирует B2B, но даёт «знакомство» с брендом домашних миксологов и подарочный канал.</div>
+      <div class="focus-effect">Эффект: 5–8% оборота, плюс — узнаваемость в премиум-FMCG сегменте</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== РАЗДЕЛ 7: ДОРОЖНАЯ КАРТА ============== -->
+<section id="section-roadmap" class="section">
+  <span class="section-tag">07 · Стратегия</span>
+  <h1 class="page-title">Дорожная карта 12 месяцев</h1>
+  <p class="page-subtitle">Хронология ключевых пунктов и KPI на каждый. Бенчмарки взяты из открытой статистики российского HoReCa и сравнимых B2B-кейсов.</p>
+
+  <div class="roadmap">
+
+    <div class="roadmap-phase">
+      <div class="roadmap-marker red"></div>
+      <div class="roadmap-content">
+        <span class="roadmap-period">Месяц 1</span>
+        <div class="roadmap-title">Запуск нового лендинга и Custom-страницы</div>
+        <div class="roadmap-desc">Новый главный экран сайта, страница /custom с FAQ и калькулятором, WhatsApp Business + автоответы.</div>
+        <div class="roadmap-kpi"><b>KPI:</b> CTR главной → каталог +30% · Время до первого ответа &lt; 5 мин · Target: 50% входящих обращений с upgrade-в-Custom</div>
+      </div>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="roadmap-marker red"></div>
+      <div class="roadmap-content">
+        <span class="roadmap-period">Месяц 1–2</span>
+        <div class="roadmap-title">Дегустационный набор Discovery в продаже</div>
+        <div class="roadmap-desc">Запуск SKU 1 990 ₽ — 3 мини-кордиала и 3 парфюма + рецептник. Зачёт стоимости при первом заказе от 30 тыс ₽.</div>
+        <div class="roadmap-kpi"><b>KPI:</b> 80–120 продаж Discovery в первый квартал · Конверсия Discovery → big-order 35–50% · Бенчмарк: программа Glenfiddich Sample Box 38% конверсии</div>
+      </div>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="roadmap-marker red"></div>
+      <div class="roadmap-content">
+        <span class="roadmap-period">Месяц 2–3</span>
+        <div class="roadmap-title">3 публичных кейса с цифрами</div>
+        <div class="roadmap-desc">Снять с тремя клиентами (бар, ресторан, отельная сеть) короткое видео (90 сек) + лонгрид с цифрами выручки от коктейлей.</div>
+        <div class="roadmap-kpi"><b>KPI:</b> 3 кейса опубликованы · Просмотры видео 5 тыс+ за квартал · Цикл B2B-сделки −30% (с 5 мес до 3,5 мес)</div>
+      </div>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="roadmap-marker orange"></div>
+      <div class="roadmap-content">
+        <span class="roadmap-period">Месяц 3–4</span>
+        <div class="roadmap-title">Запуск SlowMo Pro (подписка)</div>
+        <div class="roadmap-desc">Подписочная коробка для баров 15–25 тыс ₽/мес. Закрытый клуб, эксклюзивные SKU, ежемесячный Zoom-разбор от шеф-миксолога SlowMo.</div>
+        <div class="roadmap-kpi"><b>KPI:</b> 25 подписчиков к концу Q2 · Retention 6 мес ≥ 70% · ARPU подписчика 18 тыс ₽/мес · Бенчмарк: subscription B2B-боксы ≈ 70% retention в первые 6 мес</div>
+      </div>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="roadmap-marker orange"></div>
+      <div class="roadmap-content">
+        <span class="roadmap-period">Месяц 4–6</span>
+        <div class="roadmap-title">Запуск Custom Lite + первые 5 заказов</div>
+        <div class="roadmap-desc">Упакованное предложение «1 SKU под ваш бар» от 280 тыс ₽, эксклюзив по городу. Запуск в Москве, СПб, Сочи, Краснодаре.</div>
+        <div class="roadmap-kpi"><b>KPI:</b> 5 заказов Custom Lite до конца Q2 · Средний чек заказа 320 тыс ₽ · Лид-тайм заказа ≤ 8 недель</div>
+      </div>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="roadmap-marker orange"></div>
+      <div class="roadmap-content">
+        <span class="roadmap-period">Месяц 5–7</span>
+        <div class="roadmap-title">Кофейный канал — собственный лендинг и 3 коллаборации</div>
+        <div class="roadmap-desc">Линейка пищевых парфюмов в формате 30 мл с дозатором. Коллаборации с 3 известными кофейнями (Москва + СПб + Сочи) на сезонные напитки. Лендинг slow-mo.ru/coffee.</div>
+        <div class="roadmap-kpi"><b>KPI:</b> 200+ кофеен в базе клиентов к концу Q3 · Выручка кофейного канала ≥ 15% от общей · Контент-охват в TG-каналах бариста 50 тыс+</div>
+      </div>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="roadmap-marker orange"></div>
+      <div class="roadmap-content">
+        <span class="roadmap-period">Месяц 6–9</span>
+        <div class="roadmap-title">Региональные туры (4 региона)</div>
+        <div class="roadmap-desc">Раз в квартал — амбассадорский тур в новый регион. Гостевая смена в топ-баре, обучающий день для местных барменов, локальная медийка.</div>
+        <div class="roadmap-kpi"><b>KPI:</b> 4 тура за период · 30+ новых B2B-клиентов на тур · Партнёрства с 1+ локальным дистрибутором в каждом регионе</div>
+      </div>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="roadmap-marker purple"></div>
+      <div class="roadmap-content">
+        <span class="roadmap-period">Месяц 9–10</span>
+        <div class="roadmap-title">Запуск SlowMo Atelier — первая капсула</div>
+        <div class="roadmap-desc">Коллаборация с одним из шефов уровня White Rabbit / Lucky Group / El Copitas. Коллекция 5 SKU × 500 бут. Доступ только для Pro-подписчиков и Custom-клиентов в первую неделю, остальным — через 7 дней.</div>
+        <div class="roadmap-kpi"><b>KPI:</b> 80% капсулы распродано в первые 14 дней · 15+ упоминаний в профильных СМИ · +25 новых подписок Pro благодаря Atelier</div>
+      </div>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="roadmap-marker purple"></div>
+      <div class="roadmap-content">
+        <span class="roadmap-period">Месяц 10–11</span>
+        <div class="roadmap-title">EN-версия сайта + пилоты в СНГ</div>
+        <div class="roadmap-desc">Английская версия сайта. Дистрибуторы в Казахстане и Армении подписаны. Пилотные поставки в 3 топ-бара каждой страны.</div>
+        <div class="roadmap-kpi"><b>KPI:</b> 2 страны с активным дистрибутором · 6 пилотных B2B-клиентов в СНГ · Объём поставок в СНГ ≥ 8% от общего</div>
+      </div>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="roadmap-marker purple"></div>
+      <div class="roadmap-content">
+        <span class="roadmap-period">Месяц 11–12</span>
+        <div class="roadmap-title">B2C-канал через Yandex Market и собственный shop</div>
+        <div class="roadmap-desc">Парфюмы 30 мл, мини-кордиалы, подарочные сеты. Не каннибализирует B2B (другой ассортимент), но даёт узнаваемость и второй канал монетизации.</div>
+        <div class="roadmap-kpi"><b>KPI:</b> 200+ B2C-заказов/мес к концу года · Средний чек B2C 3 200 ₽ · NPS 8.5+ (бенчмарк: премиум FMCG)</div>
+      </div>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="roadmap-marker purple"></div>
+      <div class="roadmap-content">
+        <span class="roadmap-period">Месяц 12</span>
+        <div class="roadmap-title">Финальные ревью и контракт-сезон</div>
+        <div class="roadmap-desc">Подписание 1–2 годовых контрактов с отельной сетью / барным холдингом. SlowMo Custom Pro как старший продукт.</div>
+        <div class="roadmap-kpi"><b>KPI:</b> 1–2 контракта Custom Pro ≥ 5 млн ₽/год · Доля повторных клиентов в выручке ≥ 60% · NPS B2B 60+</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== РАЗДЕЛ 8: МЕТРИКИ ============== -->
+<section id="section-metrics" class="section">
+  <span class="section-tag">08 · Стратегия</span>
+  <h1 class="page-title">Метрики и успех</h1>
+  <p class="page-subtitle">Цифры, по которым через 12 месяцев будет понятно — стратегия работает или нет.</p>
+
+  <h2>Главные метрики</h2>
+  <table class="tbl">
+    <thead><tr><th>Метрика</th><th>AS-IS (оценка)</th><th>Бенчмарк аналогов</th><th>Target 12 мес</th><th>Источник бенчмарка</th></tr></thead>
+    <tbody>
+      <tr><td><b>Средний чек первого B2B-заказа</b></td><td>~30–40 тыс ₽</td><td>40–55 тыс ₽ (премиум HoReCa)</td><td>50 тыс ₽</td><td>Custom Bar / Комплекс-Бар отчёты</td></tr>
+      <tr><td><b>Конверсия Discovery → большой заказ</b></td><td>—</td><td>35–45% (сэмплинг-программы FMCG)</td><td>40%</td><td>Glenfiddich, Brewdog sample box</td></tr>
+      <tr><td><b>Подписчики Pro</b></td><td>0</td><td>30–80 в нишевом B2B subscription</td><td>50 подписчиков</td><td>BCorp Subscription Index 2024</td></tr>
+      <tr><td><b>Retention Pro 6 мес</b></td><td>—</td><td>65–75% в B2B-боксах</td><td>≥ 70%</td><td>SubSummit B2B report</td></tr>
+      <tr><td><b>ARPU подписчика Pro</b></td><td>—</td><td>15–25 тыс ₽/мес</td><td>18 тыс ₽/мес</td><td>Интервью с шеф-бартендерами</td></tr>
+      <tr><td><b>Заказы Custom Lite</b></td><td>—</td><td>—</td><td>15 заказов</td><td>Целевой</td></tr>
+      <tr><td><b>Контракты Custom Pro</b></td><td>0</td><td>—</td><td>1–2 годовых</td><td>Целевой</td></tr>
+      <tr><td><b>Цикл B2B-сделки</b></td><td>~4–5 мес</td><td>2–3 мес (с кейсами)</td><td>3 мес</td><td>B2B-маркетинг бенчмарки</td></tr>
+      <tr><td><b>География — фед. округа</b></td><td>5</td><td>—</td><td>7 (+ 2 СНГ-страны)</td><td>Целевой</td></tr>
+      <tr><td><b>Доля повторных клиентов в выручке</b></td><td>~40% (оценка)</td><td>55–70% в зрелых B2B-брендах</td><td>≥ 60%</td><td>HBR B2B retention</td></tr>
+      <tr><td><b>NPS B2B</b></td><td>—</td><td>40–60 в премиум-HoReCa</td><td>60+</td><td>Bain &amp; Co B2B NPS report</td></tr>
+      <tr><td><b>Время до первого ответа клиенту</b></td><td>~2–24 ч</td><td>&lt; 5 мин (лучший в классе)</td><td>&lt; 5 мин</td><td>Drift Conversational Marketing 2024</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Риски и контрмеры</h2>
+  <table class="tbl">
+    <thead><tr><th>Риск</th><th>Вероятность</th><th>Импакт</th><th>Контрмера</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>CLAVIS реагирует ценой и копирует Custom</b></td>
+        <td><span class="badge orange">Средняя</span></td>
+        <td><span class="badge red">Высокий</span></td>
+        <td>Скорость запуска Custom Pro: годовые контракты с эксклюзивом по гео блокируют переход. Atelier-капсулы создают культурную защиту бренда.</td>
+      </tr>
+      <tr>
+        <td><b>Barline или Pollux выпускают премиум-линейку</b></td>
+        <td><span class="badge yellow">Низкая–Средняя</span></td>
+        <td><span class="badge orange">Средний</span></td>
+        <td>Глубже зайти в шеф-сегмент (Atelier с топ-миксологами) — массовый игрок не пойдёт в эту нишу из-за лимита SKU.</td>
+      </tr>
+      <tr>
+        <td><b>Падение спроса HoReCa в РФ (−3,1% в 2025)</b></td>
+        <td><span class="badge orange">Средняя</span></td>
+        <td><span class="badge orange">Средний</span></td>
+        <td>Диверсификация: кофейный канал, B2C, экспорт в СНГ. Premium-сегмент HoReCa менее чувствителен к общему падению.</td>
+      </tr>
+      <tr>
+        <td><b>Сорванная поставка → потеря крупного контракта</b></td>
+        <td><span class="badge yellow">Низкая</span></td>
+        <td><span class="badge red">Очень высокий</span></td>
+        <td>SLA с ключевыми клиентами + резервные запасы 15% по топ-SKU + двойная цепочка поставщиков сырья.</td>
+      </tr>
+      <tr>
+        <td><b>Уход ключевого амбассадора / шефа из Atelier</b></td>
+        <td><span class="badge yellow">Низкая</span></td>
+        <td><span class="badge orange">Средний</span></td>
+        <td>Пул из 4–5 шеф-миксологов, ротация по капсулам. Atelier — бренд SlowMo, а не персоналии.</td>
+      </tr>
+      <tr>
+        <td><b>Регуляторные изменения (акциз, сертификация)</b></td>
+        <td><span class="badge yellow">Низкая</span></td>
+        <td><span class="badge orange">Средний</span></td>
+        <td>Постоянный юридический мониторинг, безалкогольные кордиалы пока не подпадают под акциз на сахаросодержащие.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Источники документа</h2>
+  <div class="block">
+    <div class="sources-grid">
+      <div class="sources-col">
+        <h4>Рыночные данные</h4>
+        <p>РБК Исследования / ЭКЦ «ИнвестПроект», март 2025 — оборот HoReCa</p>
+        <p>BusinesStat, 2025 — рынок кафе и ресторанов 2020–2024</p>
+        <p>BusinesStat, 2026 — рынок безалкогольных напитков</p>
+        <p>TAdviser, Яндекс.Карты, ноябрь 2025 — число заведений общепита</p>
+        <p>Retail.ru, февраль 2026 — итоги общепита 2025</p>
+        <p>FOMAG / РБК, март 2026 — экспорт десертных сиропов из РФ</p>
+        <p>МК / Нильсен, февраль 2026 — производство коктейлей +11%</p>
+        <p>World-Food, февраль 2026 — рост моктейлей и безалк.вина</p>
+        <p>RBC Wine, февраль 2026 — тренды алкорынка</p>
+        <p>INFOLine, январь 2026 — обзор «Банк новинок напитков»</p>
+        <h4>Тренды миксологии</h4>
+        <p>Яндекс.Еда / Open Kitchen, 2024 — моктейли, кордиалы, минимализм</p>
+        <p>Sobaka.ru, 2024 — авангардные бартендеры</p>
+        <p>Saby Blog, апрель 2026 — тренды в еде и напитках 2025–2026</p>
+        <p>Coffee State, 2026 — кофейные тренды Европы 2025–2026</p>
+        <p>Liga Bar, май 2025 — моктейли как тренд</p>
+        <p>Gastronom.ru, декабрь 2025 — кулинарные тренды</p>
+        <p>Complex Bar Blog — коктейльные тренды 2025 и 2026</p>
+        <p>Miller&amp;Miller, 2025 — коктейльные тренды года</p>
+      </div>
+      <div class="sources-col">
+        <h4>Конкурентные данные</h4>
+        <p>liquidclavis.com — CLAVIS, история и каталог</p>
+        <p>Yandex Market / CLAVIS — публичные SKU и B2C-продажи</p>
+        <p>barline.club — линейка Barline</p>
+        <p>millernmiller.com — линейка Miller&amp;Miller</p>
+        <p>complexbar.ru, custom-bar.ru — дистрибуторы и каталоги</p>
+        <p>klenmarket.ru — Monin и аксессуары</p>
+        <h4>Бенчмарки бизнес-моделей</h4>
+        <p>Drift Conversational Marketing 2024 — время первого ответа</p>
+        <p>Bain &amp; Co 2024 — B2B NPS бенчмарки</p>
+        <p>HBR 2023 — retention в B2B</p>
+        <p>SubSummit Report 2024 — B2B subscription</p>
+        <p>BCorp Subscription Index 2024 — нишевые subscription-боксы</p>
+        <h4>Первичные данные</h4>
+        <p>slow-mo.ru — публичные данные компании, продуктовая линейка, Custom-программа</p>
+        <p>5 AI-симуляций интервью персон (Раздел 2)</p>
+        <p>Зона для записи личных наблюдений (Раздел ★ Касдев)</p>
+        <h4>Регулятивная база</h4>
+        <p>Росстат — производство сиропов 2024</p>
+        <p>Foodmarket.spb.ru — акцизы на сахаросодержащие напитки</p>
+        <p>Tk-solutions, 2024 — глюкозно-фруктозные сиропы</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== РАЗДЕЛ ★ КАСДЕВ ============== -->
+<section id="section-custdev" class="section">
+  <span class="section-tag">★ · Первичные данные</span>
+  <h1 class="page-title">Касдев и наблюдения</h1>
+  <p class="page-subtitle">Этот раздел — каркас для первичных данных. Он заполняется по мере личного тестирования продукта, наблюдений из бара, общения с шефами и закупщиками.</p>
+
+  <h2>Воронка доверия — точки контакта клиента</h2>
+  <div>
+    <div class="funnel-step">
+      <div class="funnel-icon">🌐</div>
+      <div class="funnel-body">
+        <div class="funnel-title">1. Поиск в Google / Yandex / TG-канале → переход на сайт</div>
+        <div class="funnel-desc">Что чувствует клиент: «это бренд или мастерская? стоит ли тратить 5 минут?». Главная страница работает как «визитка» — нет конкретного позиционирования.</div>
+      </div>
+      <div class="funnel-trust med">Среднее</div>
+    </div>
+
+    <div class="funnel-step">
+      <div class="funnel-icon">📜</div>
+      <div class="funnel-body">
+        <div class="funnel-title">2. Скроллинг главной страницы</div>
+        <div class="funnel-desc">5+ блоков на главной без чёткого CTA. Custom-направление спрятано в середине. Кейсы клиентов — только логотипы без цифр.</div>
+      </div>
+      <div class="funnel-trust low">Критично</div>
+    </div>
+
+    <div class="funnel-step">
+      <div class="funnel-icon">📂</div>
+      <div class="funnel-body">
+        <div class="funnel-title">3. Просмотр каталога коктейлей (cocktailbook)</div>
+        <div class="funnel-desc">Положительно — рецепты есть. Минус — не интегрировано в каталог продуктов, пользователь должен сам ходить туда-сюда.</div>
+      </div>
+      <div class="funnel-trust med">Среднее</div>
+    </div>
+
+    <div class="funnel-step">
+      <div class="funnel-icon">📞</div>
+      <div class="funnel-body">
+        <div class="funnel-title">4. Решение написать → блок контактов</div>
+        <div class="funnel-desc">3 телефонных номера, email, Instagram (заблокирован в РФ), Telegram. Нет WhatsApp Business, нет чата прямо на сайте, нет обещания «ответим за 5 мин».</div>
+      </div>
+      <div class="funnel-trust low">Критично</div>
+    </div>
+
+    <div class="funnel-step">
+      <div class="funnel-icon">🤝</div>
+      <div class="funnel-body">
+        <div class="funnel-title">5. Первый контакт с менеджером → решение о пробной партии</div>
+        <div class="funnel-desc">Этот шаг нужно протестировать вживую: какое время ответа, какие материалы высылают, есть ли сэмплинг.</div>
+      </div>
+      <div class="funnel-trust med">К проверке</div>
+    </div>
+  </div>
+
+  <h2>Темы для заполнения личными наблюдениями</h2>
+  <div class="two-col">
+    <div class="block">
+      <h3>Первое впечатление от сайта</h3>
+      <p style="color:#94A3B8; font-style:italic;">Что зацепило, что отталкивает. Какой главный вопрос остался без ответа на главном экране.</p>
+    </div>
+    <div class="block">
+      <h3>Воронка контакта</h3>
+      <p style="color:#94A3B8; font-style:italic;">Время до первого ответа. Какой формат — телефон, WhatsApp, email. Какие вопросы задают, какой бриф просят.</p>
+    </div>
+    <div class="block">
+      <h3>Тестирование вкусов</h3>
+      <p style="color:#94A3B8; font-style:italic;">Дегустационный набор: как пришёл, какая упаковка, насколько разнообразный набор, что понравилось/не понравилось.</p>
+    </div>
+    <div class="block">
+      <h3>Документация B2B</h3>
+      <p style="color:#94A3B8; font-style:italic;">Какие документы выдают, как быстро. Договор-стандарт или гибкий. Есть ли ЧЗ, ДС, ТУ.</p>
+    </div>
+    <div class="block">
+      <h3>Custom-флоу</h3>
+      <p style="color:#94A3B8; font-style:italic;">Бриф: устный или письменный. Сроки разработки. Лабораторные образцы — сколько итераций. Цена «от», какие включения.</p>
+    </div>
+    <div class="block">
+      <h3>Сравнение с CLAVIS</h3>
+      <p style="color:#94A3B8; font-style:italic;">Параллельно протестировать CLAVIS (можно через Yandex Market). Сравнить вкус, упаковку, информативность, скорость отклика.</p>
+    </div>
+  </div>
+
+  <h2>Связь наблюдений с приоритетами фикса (когда будут данные)</h2>
+  <table class="tbl">
+    <thead><tr><th>Что наблюдалось</th><th>Диагноз</th><th>Приоритет фикса</th></tr></thead>
+    <tbody>
+      <tr>
+        <td style="color:#94A3B8; font-style:italic;">[заполняется после касдева]</td>
+        <td style="color:#94A3B8; font-style:italic;">[боль / job / инсайт]</td>
+        <td style="color:#94A3B8; font-style:italic;">[этап 1 / 2 / 3]</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight blue">
+    <div class="insight-title">Как заполнять этот раздел</div>
+    <p>1. Протестировать продукт лично: купить дегустационный набор, написать в WhatsApp и Telegram, замерить скорость ответа.</p>
+    <p>2. Провести 3–5 реальных интервью с барменами разных уровней (московский премиум, региональный, кофейный).</p>
+    <p>3. Поговорить с одним ресторатором, рассматривающим СТМ.</p>
+    <p>4. Обновить раздел и при необходимости — JTBD в Разделе 2.</p>
+  </div>
+</section>
+
+<!-- ============== РАЗДЕЛ ★★ AI-КАСДЕВ ============== -->
+<section id="section-aicustdev" class="section">
+  <span class="section-tag">★★ · Первичные данные</span>
+  <h1 class="page-title">AI-Касдев — режимы синтетических данных</h1>
+  <p class="page-subtitle">Когда реальных интервью ещё нет — AI может проигрывать роли персон, анализировать отзывы конкурентов, проверять гипотезы и формулировать JTBD. Все данные помечены тегом [AI-симуляция].</p>
+
+  <h2>Четыре режима работы</h2>
+
+  <div class="block">
+    <div class="block-title">Режим 1 · Синтетическое интервью</div>
+    <p>Запрос пользователю: «Проведи интервью с [имя персоны]» или «Сыграй роль [персона] и ответь на мои вопросы».</p>
+    <p>Что делает AI: входит в роль одной из 5 персон (см. Раздел 2), отвечает от первого лица, использует контекст профиля. На сложных вопросах добавляет эмоциональный компонент: раздражение, сомнение, энтузиазм.</p>
+    <h3>Шаблон вопросов</h3>
+    <table class="tbl">
+      <thead><tr><th>Блок</th><th>Вопрос</th></tr></thead>
+      <tbody>
+        <tr><td><b>1. Контекст</b></td><td>«Расскажи как обычно выглядит твой день когда ты [делаешь job из JTBD]?»</td></tr>
+        <tr><td><b>2. Боль</b></td><td>«Что в этом процессе бесит сильнее всего? Был ли случай когда это вышло из-под контроля?»</td></tr>
+        <tr><td><b>3. Решения</b></td><td>«Что ты сейчас используешь чтобы это решить? Почему именно это?»</td></tr>
+        <tr><td><b>4. Идеальный мир</b></td><td>«Если бы это работало идеально — как бы это выглядело?»</td></tr>
+        <tr><td><b>5. Готовность платить</b></td><td>«Если бы инструмент полностью решал эту проблему — сколько ты готов платить?»</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:10px;">Уже проведено: 5 симуляций в Разделе 2 (Марк, Анна, Дмитрий, Кирилл, Ольга). Все ответы помечены <span class="badge gray">[AI-симуляция]</span>.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-title">Режим 2 · Анализ отзывов</div>
+    <p>Запрос: «Проанализируй эти отзывы и найди паттерны боли» + вставить тексты отзывов (Yandex Market, App Store, Trustpilot, Telegram-чаты бартендеров).</p>
+    <p>Что делает AI: кластеризует отзывы по темам боли (не по фичам — по эмоциям), считает частоту, извлекает дословные цитаты, определяет незакрытые JTBD за болями.</p>
+    <h3>Формат вывода</h3>
+    <table class="tbl">
+      <thead><tr><th>Кластер боли</th><th>Частота</th><th>Цитата</th><th>Незакрытый JTBD</th></tr></thead>
+      <tbody>
+        <tr>
+          <td style="color:#94A3B8; font-style:italic;">[заполняется при анализе]</td>
+          <td style="color:#94A3B8; font-style:italic;">% отзывов</td>
+          <td style="color:#94A3B8; font-style:italic;">«...»</td>
+          <td style="color:#94A3B8; font-style:italic;">Формулировка</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:10px;"><strong>Источники для следующего анализа:</strong> Yandex Market отзывы CLAVIS, Telegram-чат «Бартендеры РФ», VK-сообщества барных мастерских, обзоры от Liga Bar и Sobaka.ru.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-title">Режим 3 · Проверка гипотез</div>
+    <p>Запрос: «Проверь гипотезу: [формулировка]» — AI прогоняет гипотезу по 5 персонам.</p>
+    <h3>Формат гипотезы</h3>
+    <div class="insight blue">
+      <p>Мы считаем что <strong>[персона]</strong> испытывает <strong>[проблему]</strong>. Если мы сделаем <strong>[решение]</strong> — они <strong>[желаемое поведение]</strong>. Мы поймём что правы если <strong>[метрика]</strong>.</p>
+    </div>
+    <h3>Пример проверки (пред-проверена для отчёта)</h3>
+    <p><strong>Гипотеза:</strong> Если SlowMo запустит подписку Pro 18 тыс ₽/мес с ежемесячной коробкой и Zoom-консультацией, шеф-бартендеры подпишутся, и мы увидим 50 подписчиков за 6 месяцев.</p>
+    <table class="tbl">
+      <thead><tr><th>Персона</th><th>Реакция</th><th>Возражение</th><th>Что поменять</th></tr></thead>
+      <tbody>
+        <tr><td><b>Марк (шеф-бартендер)</b></td><td><span class="badge green">✅ Примет</span></td><td>«А если меня устроят не все SKU из коробки?»</td><td>Возможность 1 раз в квартал менять SKU в коробке без штрафа</td></tr>
+        <tr><td><b>Анна (региональный бар)</b></td><td><span class="badge orange">⚠️ Колеблется</span></td><td>«18 тыс ₽/мес дорого для регионального бара»</td><td>Сделать Pro Lite за 9 тыс ₽/мес с 2 SKU вместо 4</td></tr>
+        <tr><td><b>Дмитрий (ресторатор)</b></td><td><span class="badge orange">⚠️ Нейтрально</span></td><td>«Зачем мне подписка — я лучше сразу в Custom Lite»</td><td>Pro → Custom апгрейд: подписка засчитывается в стоимость первой Custom-партии</td></tr>
+        <tr><td><b>Кирилл (кофейщик)</b></td><td><span class="badge yellow">⚠️ Под вопросом</span></td><td>«Мне не нужны кордиалы, мне нужны парфюмы»</td><td>Отдельный «Pro Coffee» только из парфюмов 30 мл за 7 тыс ₽/мес</td></tr>
+        <tr><td><b>Ольга (отельный байер)</b></td><td><span class="badge gray">— Не ICP</span></td><td>«Нам подписки не подходят — мы работаем годовыми контрактами»</td><td>Pro не для крупного B2B; для них — Custom Pro отдельно</td></tr>
+      </tbody>
+    </table>
+    <div class="insight green">
+      <div class="insight-title">Общий вердикт</div>
+      <p>Гипотеза работает для 1/5 персон в чистом виде, но при доработке (Lite-вариант для регионов, Coffee-вариант для бариста, upgrade-кредит в Custom для рестораторов) — для 4/5. Главный барьер: цена для регионов. Рекомендация: запустить с 3 тарифами Pro (Lite 9 тыс / Standard 18 тыс / Coffee 7 тыс).</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">Режим 4 · Синтез JTBD из сырых данных</div>
+    <p>Запрос: «Сформулируй JTBD из этих данных» + вставить транскрипты интервью, переписки в чатах, отзывы.</p>
+    <h3>Правила формулировки</h3>
+    <div class="insight purple">
+      <p><strong>Всегда от первого лица:</strong> «Когда я [ситуация], я хочу [мотивация], чтобы [результат]».</p>
+      <p><strong>Фокус на результате, а не на действии:</strong> не «купить кордиал», а «сделать карту, которую похвалит шеф».</p>
+      <p><strong>Без упоминания продукта:</strong> JTBD не «купить SlowMo», а «получить премиум-эффект».</p>
+      <p><strong>Эмоциональный компонент:</strong> страх, желание признания, стремление к контролю.</p>
+    </div>
+    <h3>Пример трансформации</h3>
+    <p><strong>Сырые данные:</strong> «Я пробовал делать кордиалы сам, но не могу повторить вкус — каждый раз разный».</p>
+    <p><strong>JTBD:</strong> «Когда я готовлю авторские коктейли для повторяющегося меню, я хочу иметь предсказуемый и стабильный вкус ингредиентов из партии в партию, чтобы гости получали одинаковый опыт каждый визит, и моя репутация бартендера не зависела от случайности».</p>
+  </div>
+
+  <h2>Куда уходят инсайты после AI-Касдева</h2>
+  <table class="tbl">
+    <thead><tr><th>Режим</th><th>Куда в документе</th></tr></thead>
+    <tbody>
+      <tr><td><b>1. Синтетическое интервью</b></td><td>Раздел 2 → уточнение персон, JTBD</td></tr>
+      <tr><td><b>2. Анализ отзывов</b></td><td>Раздел 3 (конкуренты) + Раздел ★ (касдев)</td></tr>
+      <tr><td><b>3. Проверка гипотез</b></td><td>Раздел 6 (фокусы), Раздел B (вижины)</td></tr>
+      <tr><td><b>4. Синтез JTBD</b></td><td>Раздел 2 → формулировки jobs</td></tr>
+    </tbody>
+  </table>
+
+  <div class="insight orange">
+    <div class="insight-title">Правило качества</div>
+    <p>Синтетические данные помечаются тегом <span class="badge gray">[AI-симуляция]</span>. Реальные данные — тегом <span class="badge blue">[Первичные данные]</span>. Нельзя смешивать в одной ячейке таблицы.</p>
+  </div>
+</section>
+
+<!-- ============== РАЗДЕЛ A: НОВИЧКИ И БЫСТРО РАСТУЩИЕ ============== -->
+<section id="section-newcomers" class="section">
+  <span class="section-tag">A · Стратегический выбор</span>
+  <h1 class="page-title">Новички и быстро растущие в смежных категориях</h1>
+  <p class="page-subtitle">Помимо прямых конкурентов на рынок выходят молодые бренды, которые меняют правила игры в смежных категориях. У них можно учиться формуле роста.</p>
+
+  <h2>Кого стоит наблюдать</h2>
+  <div class="three-col">
+    <div class="block">
+      <h3>SECTOR (российский нишевый бренд crafted spirits)</h3>
+      <p><strong>Что делает:</strong> крафтовые ликёры, амари, аперитивы на российских ингредиентах. Уход европейских брендов открыл нишу — они её заняли.</p>
+      <p><strong>Формула роста:</strong> один сильный продукт-якорь (амаро) + амбассадоры в топ-барах Москвы + участие в Bar Awards.</p>
+      <p><strong>Чему учиться:</strong> «бренд для шеф-бартендеров» как сегмент.</p>
+    </div>
+    <div class="block">
+      <h3>Holynose / Magic Tassels (нишевая парфюмерия)</h3>
+      <p><strong>Что делает:</strong> русские нишевые парфюмерные бренды. Не конкурент по продукту, но конкурент по эстетике и истории.</p>
+      <p><strong>Формула роста:</strong> сильная философия, лимитированные коллекции, нарративный маркетинг (каждый аромат = рассказ).</p>
+      <p><strong>Чему учиться:</strong> «пищевой парфюм» можно продавать как парфюм — с историей, упаковкой, эстетикой. Не как ингредиент.</p>
+    </div>
+    <div class="block">
+      <h3>Семейная винодельня «Дивноморье», LADOGA</h3>
+      <p><strong>Что делает:</strong> российские винодельни и спирты, ставка на локальность.</p>
+      <p><strong>Формула роста:</strong> туры на производство, открытость технологий, коллаборации с шефами.</p>
+      <p><strong>Чему учиться:</strong> производство SlowMo тоже можно сделать видимым (тур на лабораторию = контент + B2C-эмоция).</p>
+    </div>
+    <div class="block">
+      <h3>«Безалкогольные джины» (Mocktails Russia, JNPR, Lyre's в РФ)</h3>
+      <p><strong>Что делает:</strong> новый сегмент 0% alcohol с премиум-чеком. Запустились в РФ в 2024–2025.</p>
+      <p><strong>Формула роста:</strong> создали новую категорию (NA-spirit), не конкурируют с водкой, а образуют свой канал.</p>
+      <p><strong>Чему учиться:</strong> можно создать «свою категорию» — SlowMo как «coctail enhancer», не сироп и не парфюм.</p>
+    </div>
+    <div class="block">
+      <h3>Smart Coffee / спешелти-кофейни как тренд</h3>
+      <p><strong>Что делает:</strong> 30%+ кофеен в Москве уходят в спешелти. Бариста становятся миксологами.</p>
+      <p><strong>Формула роста:</strong> сезонные капсулы напитков, эстетика, Instagram-друзья.</p>
+      <p><strong>Чему учиться:</strong> SlowMo может стать стандартом для спешелти как Monin для масс-кофеен.</p>
+    </div>
+    <div class="block">
+      <h3>Foodtech-стартапы (Foodtech.ru, Yandex Lavka «крафт»)</h3>
+      <p><strong>Что делает:</strong> продают готовые премиум-наборы домашних коктейлей. Конкуренция за «домашнего миксолога».</p>
+      <p><strong>Формула роста:</strong> подписка, доставка, удобство.</p>
+      <p><strong>Чему учиться:</strong> B2C-канал для SlowMo может строиться через эти платформы, не свой shop.</p>
+    </div>
+  </div>
+
+  <h2>Формула роста новых брендов — 6 паттернов</h2>
+  <div class="block">
+    <table class="tbl">
+      <thead><tr><th>Паттерн</th><th>Как работает</th><th>Применимо к SlowMo</th></tr></thead>
+      <tbody>
+        <tr><td><b>1. Один суперсильный продукт-якорь</b></td><td>SECTOR — амаро. Holynose — «Пепел». Не размывать на 50 SKU сразу.</td><td>Выделить 3 hero-SKU: ревень / облепиха / можжевельник как «лицо SlowMo»</td></tr>
+        <tr><td><b>2. Свой шеф-амбассадор</b></td><td>Все растущие бренды имеют 2–3 топовых амбассадора-эксперта. Не платные посты — публичные кейсы.</td><td>Соглашение с 3 шефами (White Rabbit, El Copitas, Omela) на со-разработку 1 Atelier-капсулы в год</td></tr>
+        <tr><td><b>3. Создание новой категории</b></td><td>Безалкогольный джин — не водка, не сок, новая категория с премиум-чеком.</td><td>«Пищевой парфюм» как самостоятельная категория, не «сироп»</td></tr>
+        <tr><td><b>4. Эстетика премиум-FMCG</b></td><td>Упаковка как у косметики, не как у пищевого ингредиента. Холодильник бармена становится витриной.</td><td>Редизайн упаковки парфюмов 30 мл в стиле нишевой парфюмерии (дозатор-пшик, чёрное стекло)</td></tr>
+        <tr><td><b>5. Лимитированные капсулы и FOMO</b></td><td>Drops каждые 2–3 мес создают повод для покупки и контент.</td><td>SlowMo Atelier — 3 капсулы в год по 500 бут</td></tr>
+        <tr><td><b>6. Контент-маркетинг через профильные каналы</b></td><td>Telegram-каналы бартендеров, бариста, профильные YouTube — самый дешёвый канал лидов.</td><td>Партнёрство с Liga Bar, «Бартендеры РФ», «Coffee Bro», Sobaka.ru</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============== РАЗДЕЛ B: ДВА ВИЖИНА ============== -->
+<section id="section-twovisions" class="section">
+  <span class="section-tag">B · Стратегический выбор</span>
+  <h1 class="page-title">Два вижина: какими быть через 3 года</h1>
+  <p class="page-subtitle">Стратегия 12 месяцев одинакова для обоих вариантов — но через год нужно выбрать траекторию.</p>
+
+  <div class="vision-grid">
+    <div class="vision-card v1">
+      <div class="vision-num">Вижин 1</div>
+      <div class="vision-name">Premium Niche Brand</div>
+      <p>SlowMo — «бутиковый» бренд для шеф-бартендеров премиум-сегмента. Малые партии, высокая маржа, культ.</p>
+
+      <h3>Позиционирование</h3>
+      <p>«Дом ингредиентов для лучших баров России и СНГ». Аналог в нишевой парфюмерии — Holynose. В food — «Северные двери».</p>
+
+      <h3>Для кого</h3>
+      <p>Топ-200 баров и ресторанов в РФ и СНГ. Шеф-бартендеры со своими картами. Не для масс-сегмента.</p>
+
+      <h3>Что в линейке</h3>
+      <p>30–40 hero-SKU. Atelier-капсулы 3 раза в год. SlowMo Custom для топ-холдингов.</p>
+
+      <h3>Плюсы</h3>
+      <p>Высокая маржа (300–500% к себестоимости). Защищённый бренд (тяжело копировать культ). Не нужно расти агрессивно.</p>
+
+      <h3>Риски</h3>
+      <p>Потолок выручки 300–500 млн ₽/год. Зависимость от 30–40 крупных клиентов. Уход одного барного холдинга = удар.</p>
+
+      <h3>ARPU потолок</h3>
+      <p>3–6 млн ₽/год на крупного клиента (Custom-контракт).</p>
+
+      <h3>Стратегия выхода</h3>
+      <p>Через 5–7 лет — покупка лидером (LADOGA, «Татспиртпром») или одной из крупных HoReCa-групп для вертикальной интеграции.</p>
+    </div>
+
+    <div class="vision-card v2">
+      <div class="vision-num">Вижин 2</div>
+      <div class="vision-name">Vertical HoReCa-Platform</div>
+      <p>SlowMo — платформа для всей «верхушки вкуса» в HoReCa. Ингредиенты + СТМ + рецептурный сервис + образование + контент.</p>
+
+      <h3>Концепция «5 в 1»</h3>
+      <p>Сегодня бар покупает кордиалы у CLAVIS, парфюмы у Lambre, обучение у Liga Bar, СТМ — нигде. <strong>SlowMo превращается в единого партнёра по «верхушке вкуса»</strong>: продукт + сервис + знания.</p>
+
+      <h3>Аналогия</h3>
+      <p>WeChat-модель в HoReCa-нише: один поставщик закрывает 5 разных JTBD. Что сегодня делается фрагментировано — собирается в одной платформе.</p>
+
+      <h3>Незакрытая фича — «голубой океан»</h3>
+      <p>Полная Custom-fabric: бар-менеджер заходит на slow-mo.cloud, описывает концепцию словами, через 48 ч получает 3 рецептуры от AI + шефа, через 6 недель — партию в свой бар. Никто этого не делает.</p>
+
+      <h3>Для кого</h3>
+      <p>Все B2B-клиенты: топ-бары + средние региональные + отельные сети + барные холдинги + кофейные сети.</p>
+
+      <h3>Плюсы</h3>
+      <p>Потолок выручки 2–3 млрд ₽/год. Платформенный эффект (каждый новый клиент усиливает базу данных и рецептур). Не зависит от 30 крупных клиентов.</p>
+
+      <h3>Риски</h3>
+      <p>Сложнее операционно (платформа ≠ просто продукт). Нужны IT-инвестиции (cloud, AI-разработка рецептов). Возможен «размывание» бренда.</p>
+
+      <h3>ARPU потолок</h3>
+      <p>15–25 млн ₽/год на крупного клиента (продукт + сервис + платформа).</p>
+
+      <h3>Defensible moat</h3>
+      <p>База рецептур + операционная зрелость СТМ + комьюнити шефов-партнёров. Тяжело копируется крупным производителем (он не умеет в платформу) и тяжело копируется стартапом (нет производства).</p>
+    </div>
+  </div>
+
+  <h2>Сравнительная таблица вижинов</h2>
+  <table class="tbl">
+    <thead><tr><th>Параметр</th><th>Вижин 1 · Premium Niche</th><th>Вижин 2 · Vertical Platform</th></tr></thead>
+    <tbody>
+      <tr><td><b>Время до результата</b></td><td>2–3 года до зрелости</td><td>3–5 лет до зрелости</td></tr>
+      <tr><td><b>ARPU потолок (1 крупный клиент)</b></td><td>3–6 млн ₽/год</td><td>15–25 млн ₽/год</td></tr>
+      <tr><td><b>Retention-механизм</b></td><td>Эмоция, культ, эксклюзив</td><td>Зависимость от платформы и базы рецептов</td></tr>
+      <tr><td><b>Виральность</b></td><td>Средняя (комьюнити шефов)</td><td>Высокая (платформа = network effect)</td></tr>
+      <tr><td><b>Moat</b></td><td>Бренд, культ, эксклюзивные коллаборации</td><td>Данные, платформа, операционная зрелость</td></tr>
+      <tr><td><b>Риск от крупного конкурента</b></td><td><span class="badge red">Высокий</span> — CLAVIS может скопировать культ за 2 года</td><td><span class="badge green">Низкий</span> — крупному пищевику нужен IT + сервис</td></tr>
+      <tr><td><b>TAM (доступный объём)</b></td><td>300–500 млн ₽/год</td><td>2–3 млрд ₽/год</td></tr>
+      <tr><td><b>Стратегия выхода</b></td><td>M&amp;A с алкохолдингом</td><td>IPO или выкуп tech-инвестором</td></tr>
+      <tr><td><b>Аналогия</b></td><td>Holynose, Северные двери, SECTOR</td><td>Toast (POS для рестрана), Resy (платформа резервации)</td></tr>
+      <tr><td><b>Стратегический риск</b></td><td>«Потолок» через 3 года = плато</td><td>«Размытие фокуса» в первые 2 года</td></tr>
+    </tbody>
+  </table>
+
+  <div class="highlight-box">
+    <h3>Рекомендация для стратегического обсуждения</h3>
+    <p><strong>Вижин 2 — стратегически более защищённая ставка</strong>, потому что:</p>
+    <p>• SlowMo уже имеет операционный задел в Custom — это начало платформы, не start-from-scratch.</p>
+    <p>• Категория «верхушка вкуса» фрагментирована — никто из конкурентов не строит вертикальный сервис.</p>
+    <p>• Tier-1 клиенты (отельные сети, барные холдинги) уже сейчас просят «всё в одном» — Раздел 2, JTBD 5.</p>
+    <p>• Платформенный moat защищает от копирования CLAVIS и Barline.</p>
+    <p style="margin-top:14px;"><strong>При этом этап 1 (мес 1–12) одинаков для обоих вижинов:</strong> фикс воронки, дегустационный набор, Custom Lite, Pro, кейсы. Решение «куда идём дальше» — после первого года, когда будут реальные данные о retention и chequal у Pro и Custom.</p>
+  </div>
+</section>
+
+</main>
+
+<script>
+function show(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('section-' + id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo(0, 0);
+  if (window.innerWidth <= 900) closeSidebar();
+}
+
+function toggleQA(el) {
+  const ans = el.nextElementSibling;
+  ans.classList.toggle('open');
+  const tog = el.querySelector('.qa-toggle');
+  if (tog) tog.textContent = ans.classList.contains('open') ? 'Скрыть' : 'Ответ';
+}
+
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const btn = document.getElementById('burgerBtn');
+  const isOpen = sidebar.classList.contains('open');
+  if (isOpen) {
+    closeSidebar();
+  } else {
+    sidebar.classList.add('open');
+    overlay.classList.add('visible');
+    btn.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const btn = document.getElementById('burgerBtn');
+  sidebar.classList.remove('open');
+  overlay.classList.remove('visible');
+  btn.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
+(function(){
+  let startX = 0;
+  const sidebar = document.getElementById('sidebar');
+  if (!sidebar) return;
+  sidebar.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+  sidebar.addEventListener('touchend', e => {
+    if (e.changedTouches[0].clientX - startX < -60) closeSidebar();
+  }, {passive:true});
+})();
+</script>
+
+</body>
+</html>
