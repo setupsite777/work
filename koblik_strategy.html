@@ -1,0 +1,2458 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<title>KOBLiK GROUP — Стратегия цифровизации продаж и маркетинга · 6 месяцев</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== ROOT VARIABLES ===== */
+:root {
+  --bg-page: #F1F5F9;
+  --bg-card: #FFFFFF;
+  --bg-sidebar: #0F172A;
+  --bg-sidebar-2: #1E293B;
+  --bg-hover: #F8FAFC;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-tertiary: #64748B;
+  --text-on-dark: #F8FAFC;
+  --text-on-dark-dim: #94A3B8;
+  --accent: #C8A55B;          /* агро-золото — KOBLiK */
+  --accent-dark: #9B7F3F;
+  --accent-soft: #F5EBD2;
+  --green: #15803D;
+  --green-soft: #DCFCE7;
+  --orange: #C2410C;
+  --orange-soft: #FFEDD5;
+  --red: #B91C1C;
+  --red-soft: #FEE2E2;
+  --blue: #1D4ED8;
+  --blue-soft: #DBEAFE;
+  --purple: #6D28D9;
+  --purple-soft: #EDE9FE;
+  --border: #E2E8F0;
+  --border-strong: #CBD5E1;
+  --shadow-sm: 0 1px 2px rgba(15,23,42,0.06);
+  --shadow-md: 0 4px 14px rgba(15,23,42,0.08);
+  --shadow-lg: 0 12px 32px rgba(15,23,42,0.10);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent-dark); text-decoration: none; }
+a:hover { color: var(--accent); }
+
+h1, h2, h3, h4 {
+  font-family: 'Unbounded', sans-serif;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+h1 { font-size: 32px; margin: 0 0 8px; line-height: 1.15; }
+h2 { font-size: 22px; margin: 32px 0 16px; line-height: 1.2; }
+h3 { font-size: 16px; margin: 24px 0 12px; }
+h4 { font-size: 14px; margin: 16px 0 8px; font-weight: 600; }
+
+/* ===== MOBILE TOPBAR ===== */
+.mobile-topbar {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 56px;
+  background: var(--bg-sidebar);
+  z-index: 200;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+.mobile-logo {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-on-dark);
+  letter-spacing: -0.5px;
+}
+.mobile-logo span { color: var(--accent); }
+.burger-btn {
+  width: 40px; height: 40px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 5px; cursor: pointer; border-radius: 8px;
+  border: none; background: transparent; padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.burger-btn:active { background: rgba(255,255,255,0.08); }
+.burger-line {
+  width: 22px; height: 2px;
+  background: var(--text-on-dark);
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+.burger-btn.open .burger-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger-btn.open .burger-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.burger-btn.open .burger-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 149;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.sidebar-overlay.visible { display: block; opacity: 1; }
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 280px; height: 100vh;
+  background: var(--bg-sidebar);
+  color: var(--text-on-dark);
+  overflow-y: auto;
+  padding: 28px 0 24px;
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+}
+.brand {
+  padding: 0 24px 24px;
+  border-bottom: 1px solid #1E293B;
+  margin-bottom: 20px;
+}
+.brand-logo {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--text-on-dark);
+}
+.brand-logo span { color: var(--accent); }
+.brand-tagline {
+  font-size: 11px;
+  color: var(--text-on-dark-dim);
+  margin-top: 6px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+.nav-group {
+  padding: 0 16px;
+  margin-bottom: 18px;
+}
+.nav-group-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: var(--text-on-dark-dim);
+  padding: 0 12px;
+  margin-bottom: 8px;
+}
+.nav-item {
+  padding: 9px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #CBD5E1;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 2px;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-item:hover { background: rgba(200,165,91,0.08); color: var(--text-on-dark); }
+.nav-item.active {
+  background: var(--accent);
+  color: var(--bg-sidebar);
+  font-weight: 600;
+}
+.nav-num {
+  display: inline-flex;
+  width: 22px; height: 22px;
+  align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700;
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.nav-item.active .nav-num { background: rgba(15,23,42,0.15); }
+
+/* sidebar contacts */
+.sidebar-contacts {
+  margin: auto 0 0 0;
+  padding: 16px 24px 0;
+  border-top: 1px solid #1E293B;
+}
+.sidebar-contacts-label {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 1.4px; text-transform: uppercase;
+  color: var(--text-on-dark-dim);
+  margin-bottom: 10px;
+}
+.sidebar-contacts-name {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 12px; font-weight: 600;
+  color: #E2E8F0; margin-bottom: 12px;
+  line-height: 1.4;
+}
+.sidebar-contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-bottom: 8px;
+}
+.sidebar-contact-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+.sidebar-contact-text {
+  font-size: 11.5px;
+  color: var(--text-on-dark-dim);
+  line-height: 1.4;
+}
+.sidebar-contact-text a {
+  color: var(--text-on-dark-dim);
+  transition: color 0.15s;
+}
+.sidebar-contact-text a:hover { color: var(--accent); }
+.sidebar-contact-text .dim { font-size: 10px; color: #475569; }
+
+/* ===== MAIN ===== */
+.main {
+  margin-left: 280px;
+  padding: 40px 56px 80px;
+  max-width: 1180px;
+}
+.section { display: none; animation: fadeIn 0.32s ease; }
+.section.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Section header */
+.section-header {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  background: var(--accent-soft);
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: 15px;
+  margin-top: 8px;
+  max-width: 760px;
+}
+
+/* ===== COMMON COMPONENTS ===== */
+.block {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: 26px 28px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+.block-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text-tertiary);
+  margin-bottom: 16px;
+}
+
+/* Cards grid */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.cards.three { grid-template-columns: repeat(3, 1fr); }
+.cards.two { grid-template-columns: repeat(2, 1fr); }
+.card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--accent);
+}
+.card.red::before { background: var(--red); }
+.card.green::before { background: var(--green); }
+.card.blue::before { background: var(--blue); }
+.card.orange::before { background: var(--orange); }
+.card-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+}
+.card-value {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+.card-desc {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+.card-source {
+  font-size: 10px;
+  color: var(--text-tertiary);
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border);
+  font-style: italic;
+}
+
+/* Table */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  background: var(--bg-card);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.tbl th {
+  background: var(--bg-sidebar);
+  color: var(--text-on-dark);
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+.tbl td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+  vertical-align: top;
+  line-height: 1.45;
+}
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:hover td { background: var(--bg-hover); }
+.tbl .row-total {
+  background: var(--accent-soft);
+  font-weight: 600;
+}
+.tbl .row-total td { border-top: 2px solid var(--accent); }
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+}
+.badge.red { background: var(--red-soft); color: var(--red); }
+.badge.orange { background: var(--orange-soft); color: var(--orange); }
+.badge.green { background: var(--green-soft); color: var(--green); }
+.badge.blue { background: var(--blue-soft); color: var(--blue); }
+.badge.purple { background: var(--purple-soft); color: var(--purple); }
+.badge.gray { background: #F1F5F9; color: var(--text-tertiary); }
+.badge.gold { background: var(--accent-soft); color: var(--accent-dark); }
+
+/* Insight blocks */
+.insight {
+  border-left: 4px solid var(--blue);
+  background: var(--blue-soft);
+  padding: 16px 20px;
+  border-radius: 0 8px 8px 0;
+  margin: 16px 0;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+.insight.green { border-color: var(--green); background: var(--green-soft); }
+.insight.orange { border-color: var(--orange); background: var(--orange-soft); }
+.insight.red { border-color: var(--red); background: var(--red-soft); }
+.insight.gold { border-color: var(--accent); background: var(--accent-soft); }
+.insight-label {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 6px;
+  opacity: 0.7;
+}
+
+/* Highlight box */
+.highlight-box {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  color: var(--text-on-dark);
+  padding: 36px 40px;
+  border-radius: 16px;
+  margin: 24px 0;
+  position: relative;
+  overflow: hidden;
+}
+.highlight-box::after {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(200,165,91,0.18) 0%, transparent 70%);
+}
+.highlight-box h2, .highlight-box h3 { color: var(--text-on-dark); margin-top: 0; }
+.highlight-box .highlight-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+/* Two/three columns */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+
+/* Persona card */
+.persona {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+}
+.persona-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+.persona-avatar {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Unbounded', sans-serif;
+  color: white;
+  font-size: 22px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.persona-name {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.persona-role {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+.persona-geo {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-family: 'JetBrains Mono', monospace;
+}
+.persona-section {
+  margin-bottom: 14px;
+}
+.persona-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text-tertiary);
+  margin-bottom: 6px;
+}
+.persona-section-text {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+.persona-pains {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.persona-pain {
+  background: var(--red-soft);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-primary);
+  border-left: 3px solid var(--red);
+}
+.persona-jtbd {
+  background: var(--accent-soft);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-style: italic;
+  color: var(--text-primary);
+  border-left: 3px solid var(--accent);
+  margin-top: 8px;
+}
+.persona-quote {
+  margin-top: 16px;
+  padding: 14px 18px;
+  background: var(--bg-hover);
+  border-radius: 8px;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text-secondary);
+  border-left: 3px solid var(--text-tertiary);
+  line-height: 1.5;
+}
+
+/* Interview simulator */
+.sim-q {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.sim-q-head {
+  padding: 12px 16px;
+  background: var(--bg-hover);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  user-select: none;
+}
+.sim-q-head:hover { background: #F0F4F8; }
+.sim-q-num {
+  display: inline-flex;
+  width: 24px; height: 24px;
+  align-items: center; justify-content: center;
+  background: var(--accent);
+  color: white;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.sim-q-text { flex: 1; font-size: 13.5px; font-weight: 500; }
+.sim-q-toggle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent-dark);
+  font-weight: 600;
+}
+.sim-q-body {
+  display: none;
+  padding: 14px 18px;
+  border-top: 1px solid var(--border);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.sim-q.open .sim-q-body { display: block; }
+.sim-q.open .sim-q-toggle::before { content: '−'; }
+.sim-q .sim-q-toggle::before { content: '+'; margin-right: 4px; }
+.sim-q-diag {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: var(--blue-soft);
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--blue);
+  font-weight: 500;
+}
+
+/* JTBD list */
+.jtbd-item {
+  background: var(--bg-card);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  padding: 18px 22px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+  border-top: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.jtbd-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent-dark);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.jtbd-text {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+.jtbd-meta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+.jtbd-meta b { color: var(--text-primary); font-weight: 600; }
+.jtbd-quote {
+  margin-top: 10px;
+  font-style: italic;
+  color: var(--text-secondary);
+  font-size: 13px;
+  border-left: 2px solid var(--border-strong);
+  padding-left: 10px;
+}
+
+/* Roadmap */
+.roadmap {
+  position: relative;
+  padding-left: 38px;
+}
+.roadmap::before {
+  content: '';
+  position: absolute;
+  left: 14px; top: 8px; bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--red), var(--orange), var(--green));
+}
+.rm-item {
+  position: relative;
+  margin-bottom: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: var(--shadow-sm);
+}
+.rm-dot {
+  position: absolute;
+  left: -32px; top: 16px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 4px solid var(--bg-page);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+.rm-item.phase1 .rm-dot { background: var(--red); box-shadow: 0 0 0 2px var(--red); }
+.rm-item.phase2 .rm-dot { background: var(--orange); box-shadow: 0 0 0 2px var(--orange); }
+.rm-item.phase3 .rm-dot { background: var(--green); box-shadow: 0 0 0 2px var(--green); }
+.rm-period {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.rm-item.phase1 .rm-period { color: var(--red); }
+.rm-item.phase2 .rm-period { color: var(--orange); }
+.rm-item.phase3 .rm-period { color: var(--green); }
+.rm-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.rm-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.rm-kpi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 11.5px;
+}
+.rm-kpi-tag {
+  background: var(--bg-hover);
+  padding: 4px 10px;
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+  border: 1px solid var(--border);
+}
+
+/* Focus cards */
+.focus-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.focus-card {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: 22px;
+  border-top: 5px solid var(--accent);
+  box-shadow: var(--shadow-md);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.focus-card.phase1 { border-top-color: var(--red); }
+.focus-card.phase2 { border-top-color: var(--orange); }
+.focus-card.phase3 { border-top-color: var(--green); }
+.focus-phase {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: var(--text-tertiary);
+  margin-bottom: 6px;
+}
+.focus-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+.focus-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.focus-effect {
+  font-size: 12px;
+  background: var(--green-soft);
+  color: var(--green);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+/* Vision grid */
+.vision-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+.vision {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: 26px 28px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.vision::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+}
+.vision.v2::before {
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+}
+.vision-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: var(--accent-dark);
+  margin-bottom: 8px;
+}
+.vision.v2 .vision-tag { color: var(--blue); }
+.vision-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+.vision p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.55; }
+.vision ul { margin: 10px 0; padding-left: 18px; }
+.vision li { font-size: 13px; margin-bottom: 4px; color: var(--text-secondary); }
+
+/* Source list */
+.sources-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.sources-col h4 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--accent-dark);
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+.sources-list {
+  list-style: none;
+  padding: 0; margin: 0;
+}
+.sources-list li {
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--border);
+  line-height: 1.5;
+}
+.sources-list li:last-child { border-bottom: none; }
+
+/* Trust funnel */
+.trust-funnel {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin: 18px 0;
+}
+.trust-step {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+  position: relative;
+}
+.trust-step::after {
+  content: '→';
+  position: absolute;
+  right: -10px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  font-size: 18px;
+  font-weight: 700;
+}
+.trust-step:last-child::after { display: none; }
+.trust-icon { font-size: 24px; margin-bottom: 6px; }
+.trust-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.trust-state {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+.trust-state.high { background: var(--green-soft); color: var(--green); }
+.trust-state.mid { background: var(--orange-soft); color: var(--orange); }
+.trust-state.low { background: var(--red-soft); color: var(--red); }
+
+/* Page title big */
+.page-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.page-title-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--accent-dark);
+  font-weight: 600;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Note marker */
+.note-marker {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  background: var(--bg-hover);
+  border: 1px solid var(--border);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-tertiary);
+}
+
+/* ===== MOBILE ===== */
+@media(max-width: 900px) {
+  .mobile-topbar { display: flex; }
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
+  }
+  .sidebar.open { transform: translateX(0); }
+  .main {
+    margin-left: 0;
+    padding: 72px 16px 40px;
+    max-width: 100%;
+  }
+  .page-title { font-size: 22px; }
+  h1 { font-size: 24px; }
+  h2 { font-size: 18px; }
+  .cards, .cards.three, .cards.two { grid-template-columns: 1fr 1fr; }
+  .two-col, .three-col, .focus-cards, .vision-grid, .sources-grid { grid-template-columns: 1fr; }
+  .trust-funnel { grid-template-columns: 1fr 1fr; }
+  .trust-step::after { display: none; }
+  .block { padding: 18px; }
+  .highlight-box { padding: 22px; }
+  .tbl { font-size: 12px; }
+  .tbl th, .tbl td { padding: 8px 10px; }
+  .persona { padding: 18px; }
+}
+@media(max-width: 480px) {
+  .cards, .cards.three, .cards.two { grid-template-columns: 1fr; }
+  .trust-funnel { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE TOPBAR -->
+<div class="mobile-topbar">
+  <div class="mobile-logo">KOBLi<span>K</span> · STRATEGY</div>
+  <button class="burger-btn" id="burgerBtn" onclick="toggleSidebar()" aria-label="Меню">
+    <span class="burger-line"></span>
+    <span class="burger-line"></span>
+    <span class="burger-line"></span>
+  </button>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="brand">
+    <div class="brand-logo">KOBLi<span>K</span></div>
+    <div class="brand-tagline">Стратегия цифровизации · 6 мес · 2026</div>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-title">Контекст</div>
+    <div class="nav-item active" onclick="show('1', this)"><span class="nav-num">01</span>Рынок и тренды</div>
+    <div class="nav-item" onclick="show('2', this)"><span class="nav-num">02</span>JTBD и пользователи</div>
+    <div class="nav-item" onclick="show('3', this)"><span class="nav-num">03</span>Конкуренты</div>
+    <div class="nav-item" onclick="show('4', this)"><span class="nav-num">04</span>Сайт сегодня (as-is)</div>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-title">Стратегия</div>
+    <div class="nav-item" onclick="show('5', this)"><span class="nav-num">05</span>Видение и ставка</div>
+    <div class="nav-item" onclick="show('6', this)"><span class="nav-num">06</span>Стратегические фокусы</div>
+    <div class="nav-item" onclick="show('7', this)"><span class="nav-num">07</span>Дорожная карта 6 мес</div>
+    <div class="nav-item" onclick="show('8', this)"><span class="nav-num">08</span>Метрики и успех</div>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-title">Первичные данные</div>
+    <div class="nav-item" onclick="show('9', this)"><span class="nav-num">★</span>Касдев &amp; наблюдения</div>
+    <div class="nav-item" onclick="show('10', this)"><span class="nav-num">★★</span>AI-Касдев</div>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-title">Стратегический выбор</div>
+    <div class="nav-item" onclick="show('A', this)"><span class="nav-num">A</span>Новички и быстрорастущие</div>
+    <div class="nav-item" onclick="show('B', this)"><span class="nav-num">B</span>Два вижина</div>
+  </div>
+
+  <div class="sidebar-contacts">
+    <div class="sidebar-contacts-label">Автор стратегии</div>
+    <div class="sidebar-contacts-name">Васильев Станислав Дмитриевич</div>
+    <div class="sidebar-contact-row">
+      <div class="sidebar-contact-icon">📞</div>
+      <div class="sidebar-contact-text">
+        <a href="tel:+79933576961">+7 (993) 357-69-61</a><br>
+        <span class="dim">WhatsApp · Telegram</span>
+      </div>
+    </div>
+    <div class="sidebar-contact-row">
+      <div class="sidebar-contact-icon">✈️</div>
+      <div class="sidebar-contact-text">
+        <a href="https://t.me/setupsite" target="_blank">t.me/setupsite</a>
+      </div>
+    </div>
+    <div class="sidebar-contact-row">
+      <div class="sidebar-contact-icon">✉️</div>
+      <div class="sidebar-contact-text">
+        <a href="mailto:stanislav.vasiliev.job@gmail.com">stanislav.vasiliev.job@gmail.com</a>
+      </div>
+    </div>
+    <div class="sidebar-contact-row">
+      <div class="sidebar-contact-icon">📢</div>
+      <div class="sidebar-contact-text">
+        <a href="https://t.me/systemoverads" target="_blank">@systemoverads</a><br>
+        <span class="dim">Управляемый рост</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================== MAIN ============================== -->
+<main class="main">
+
+<!-- ========================================================== -->
+<!-- SECTION 1 — РЫНОК И ТРЕНДЫ                                  -->
+<!-- ========================================================== -->
+<section class="section active" id="section-1">
+  <div class="section-header">
+    <span class="section-tag">01 · Контекст</span>
+    <h1 class="page-title">Рынок и тренды сельхозтехники РФ</h1>
+    <p class="section-subtitle">Где KOBLiK играет в 2026 году: рынок второй год в спаде, но именно это создаёт окно для дисциплинированной цифровой воронки и работы с дилерами. Кто продаёт быстрее — выигрывает свою долю в сужающемся пироге.</p>
+  </div>
+
+  <h2>Ключевые цифры рынка</h2>
+  <div class="cards">
+    <div class="card red">
+      <div class="card-label">Рынок 2025</div>
+      <div class="card-value">155,1 млрд ₽</div>
+      <div class="card-desc">Отгрузки российской сельхозтехники, −21,1% к 2024 году. Второй год подряд падение.</div>
+      <div class="card-source">Росспецмаш, янв 2026</div>
+    </div>
+    <div class="card orange">
+      <div class="card-label">Прогноз 2026</div>
+      <div class="card-value">−7…−12%</div>
+      <div class="card-desc">Дополнительное падение к 2025 году. Восстановление ожидается не раньше середины 2027.</div>
+      <div class="card-source">Союз «Прогресс», Поле.РФ, дек 2025</div>
+    </div>
+    <div class="card blue">
+      <div class="card-label">Поддержка</div>
+      <div class="card-value">11 млрд ₽</div>
+      <div class="card-desc">Бюджет программы 1432 (субсидия 10–50% на отечественную технику) в 2026 году. +1 млрд к 2025.</div>
+      <div class="card-source">Минпромторг РФ, окт 2025</div>
+    </div>
+    <div class="card green">
+      <div class="card-label">Износ парка</div>
+      <div class="card-value">&gt;60%</div>
+      <div class="card-desc">Доля комбайнов и тракторов сверх нормативного срока эксплуатации. Отложенный спрос.</div>
+      <div class="card-source">Росспецмаш, янв 2026</div>
+    </div>
+  </div>
+
+  <h2>4 главных тренда, формирующих рынок 2026</h2>
+  <div class="cards two">
+    <div class="card">
+      <div class="card-label">Тренд 01 · Импортозамещение</div>
+      <div class="card-value" style="font-size: 16px;">Уход Lindsay, Valley, Bauer, Reinke с рынка орошения</div>
+      <div class="card-desc">Освободилась ниша широкозахватных дождевальных машин. Российские и китайские производители (Rainfine, Yulin) забирают долю, но качество и сервис — узкое место.</div>
+      <div class="card-source">Agriexpert, 2024–2025</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Тренд 02 · Утильсбор</div>
+      <div class="card-value" style="font-size: 16px;">5× рост на импорт с 01.01.2025</div>
+      <div class="card-desc">+15% ежегодно до 2030 года. Российские производители получают ценовое преимущество, но и стоки растут — техники у дилеров много, а денег у аграриев мало.</div>
+      <div class="card-source">Постановление №1853, дек 2024</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Тренд 03 · Лизинг как драйвер</div>
+      <div class="card-value" style="font-size: 16px;">Росагролизинг — главный канал спроса</div>
+      <div class="card-desc">При ставке ЦБ 16% у аграриев нет своих денег. Кто встроен в лизинговые программы и понимает SLA Росагролизинга — продаёт. Остальные — стоят.</div>
+      <div class="card-source">Росагролизинг, РАФ 2025</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Тренд 04 · Консолидация дилеров</div>
+      <div class="card-value" style="font-size: 16px;">100–150 дилеров уйдут с рынка из 650</div>
+      <div class="card-desc">Слабые дилеры теряют интерес к бизнесу. Это шанс для производителей пересобрать дилерскую сеть на сильных партнёров.</div>
+      <div class="card-source">АСХОД, окт 2025</div>
+    </div>
+  </div>
+
+  <h2>География спроса: где KOBLiK уже силён</h2>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Регион</th>
+        <th>Ключевые данные</th>
+        <th>Сегмент KOBLiK</th>
+        <th>Возможность</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Центральное Черноземье</b><br>(Воронеж, Тамбов, Липецк, Курск)</td>
+        <td>Базовый рынок KOBLiK. Зерновые + сахарная свёкла + крупные молочные комплексы (Молвест, Русагро)</td>
+        <td>Все три направления: элеваторы + кормораздатчики + орошение</td>
+        <td>Удержание текущих клиентов + дозагрузка дополнительными SKU</td>
+      </tr>
+      <tr>
+        <td><b>Юг России</b><br>(Краснодар, Ростов, Ставрополь)</td>
+        <td>Крупнейший зерновой регион + дефицит влаги → высокий спрос на орошение</td>
+        <td>Дождевальные машины IS · элеваторы</td>
+        <td>Опорный регион для роста IS-серии: уход Valley и Lindsay создал окно</td>
+      </tr>
+      <tr>
+        <td><b>Поволжье</b><br>(Самара, Саратов, Татарстан, Башкирия)</td>
+        <td>Засушливый климат, нужны и зерносушилки, и орошение. Крупные молочные хозяйства</td>
+        <td>Зерносушильное оборудование · кормораздатчики MV</td>
+        <td>Развитие через сильных региональных дилеров</td>
+      </tr>
+      <tr>
+        <td><b>Сибирь</b><br>(Алтай, Новосибирск, Омск)</td>
+        <td>Сильная конкуренция с Ростсельмашем и НОЭЗНО. Длинные плечи доставки</td>
+        <td>Силосы и элеваторы (большие проекты)</td>
+        <td>Точечная работа через тендеры крупных холдингов</td>
+      </tr>
+      <tr>
+        <td><b>Экспорт СНГ</b><br>(Казахстан, Беларусь, Узбекистан)</td>
+        <td>Экспорт сельхозтехники РФ −13% в 2025 → 15,6 млрд ₽. Программа 1269 не финансируется</td>
+        <td>Все направления, но через дилеров</td>
+        <td>Нигерия закупает на 10 млрд ₽ — кейс воспроизводим в СНГ</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight gold">
+    <div class="insight-label">Главный вывод по рынку</div>
+    Рынок в 2026 году — игра с нулевой суммой. Аграриев с деньгами меньше, но они активно ищут российские альтернативы ушедшим брендам. Тот, кто <b>быстрее реагирует на заявку, лучше работает с дилерами и встроен в лизинг</b> — забирает долю. Тот, кто ждёт «оттепели» — теряет позиции навсегда. Поэтому цифровизация продаж — не «фича на будущее», а вопрос выживания на горизонте 6 месяцев.
+  </div>
+</section>
+
+
+<!-- ========================================================== -->
+<!-- SECTION 2 — JTBD И ПОЛЬЗОВАТЕЛИ                              -->
+<!-- ========================================================== -->
+<section class="section" id="section-2">
+  <div class="section-header">
+    <span class="section-tag">02 · Контекст</span>
+    <h1 class="page-title">JTBD и персоны: кто принимает решение о покупке</h1>
+    <p class="section-subtitle">B2B-сделка в агропроме — это не один человек, а DMU (Decision Making Unit) из 3–5 ролей: владелец, главный агроном/инженер, директор хозяйства, финансовый директор, иногда — главный зоотехник. У каждой роли свой JTBD. Сайт должен говорить со всеми.</p>
+  </div>
+
+  <h2>Эволюция главного запроса аграриев</h2>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Период</th>
+        <th>Главный JTBD</th>
+        <th>Что менялось</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>До 2022</b></td>
+        <td>«Купить лучшее западное оборудование с лучшим сервисом, потому что есть деньги»</td>
+        <td>Доминирование импорта: John Deere, Valley, Lindsay, Trioliet, Bauer</td>
+      </tr>
+      <tr>
+        <td><b>2022–2023</b></td>
+        <td>«Срочно найти замену тому, что встало и не обслуживается»</td>
+        <td>Шок ухода брендов. Поиск любой альтернативы — русской, китайской, турецкой</td>
+      </tr>
+      <tr>
+        <td><b>2024–2025</b></td>
+        <td>«Купить надёжное российское по программе 1432, чтобы не зависеть от санкций»</td>
+        <td>Утильсбор + субсидии переориентировали спрос на отечественное</td>
+      </tr>
+      <tr>
+        <td><b>2026 (сейчас)</b></td>
+        <td>«Купить только тогда, когда уже невозможно тянуть — и максимально дёшево, через лизинг»</td>
+        <td>Дно цикла. Покупают только при острой необходимости. Цена и финусловия — главный фактор</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>5 ключевых JTBD аграриев</h2>
+
+  <div class="jtbd-item">
+    <div class="jtbd-num">JTBD #1 · ГЛАВНЫЙ · ПЛОХО ЗАКРЫТ</div>
+    <div class="jtbd-text">«Когда я планирую крупную закупку сельхозтехники в 2026, я хочу быстро получить понятное предложение со всеми вариантами оплаты (лизинг, рассрочка, субсидия 1432), чтобы принять решение за 2–3 дня, а не за 2–3 месяца»</div>
+    <div class="jtbd-meta">
+      <span><b>Кто:</b> владельцы и директора хозяйств</span>
+      <span><b>Закрывают:</b> <span class="badge red">1 из 5 конкурентов</span></span>
+      <span><b>Сила:</b> <span class="badge red">критично</span></span>
+    </div>
+    <div class="jtbd-quote">«Сделал заявку у трёх производителей — двое перезвонили через неделю, у третьего вообще никто не позвонил. Купил у того, кто ответил в тот же день» (из обзора Поле.РФ, 2025)</div>
+  </div>
+
+  <div class="jtbd-item">
+    <div class="jtbd-num">JTBD #2 · СЕРВИС И ЗАПЧАСТИ</div>
+    <div class="jtbd-text">«Когда у меня сломалась техника в посевную или уборку, я хочу получить запчасть в течение 24–48 часов, чтобы не потерять день простоя стоимостью 200–500 тыс ₽»</div>
+    <div class="jtbd-meta">
+      <span><b>Кто:</b> главные инженеры, агрономы</span>
+      <span><b>Закрывают:</b> <span class="badge orange">2 из 5</span></span>
+      <span><b>Сила:</b> <span class="badge red">критично</span></span>
+    </div>
+    <div class="jtbd-quote">«Уход Valley и Lindsay сопровождался срывами поставок запчастей и комплектующих» (Agriexpert, 2024)</div>
+  </div>
+
+  <div class="jtbd-item">
+    <div class="jtbd-num">JTBD #3 · ДОВЕРИЕ К РОССИЙСКОМУ</div>
+    <div class="jtbd-text">«Когда я выбираю между российской техникой и параллельным импортом, я хочу убедиться, что русское по качеству металла, шнека, привода не уступает европейскому, чтобы не пожалеть через год эксплуатации»</div>
+    <div class="jtbd-meta">
+      <span><b>Кто:</b> главные инженеры, технологи</span>
+      <span><b>Закрывают:</b> <span class="badge orange">2 из 5</span></span>
+      <span><b>Сила:</b> <span class="badge orange">важно</span></span>
+    </div>
+    <div class="jtbd-quote">«Особенно удивило качество металла, он гораздо прочнее, чем на импортных аналогах, мощная рама, оцинковка» (отзыв клиента ZDM, агросектор)</div>
+  </div>
+
+  <div class="jtbd-item">
+    <div class="jtbd-num">JTBD #4 · ROI И ОКУПАЕМОСТЬ</div>
+    <div class="jtbd-text">«Когда я обосновываю инвестицию в кормораздатчик/зерносушилку перед собственником, я хочу показать срок окупаемости 6–18 месяцев в цифрах моего хозяйства, чтобы получить одобрение бюджета»</div>
+    <div class="jtbd-meta">
+      <span><b>Кто:</b> директора, финдиректора</span>
+      <span><b>Закрывают:</b> <span class="badge red">0 из 5</span></span>
+      <span><b>Сила:</b> <span class="badge red">критично</span></span>
+    </div>
+    <div class="jtbd-quote">«Полная самоокупаемость кормосмесителя за 6–8 месяцев» — Колнаг открыто называет цифру. KOBLiK — пока нет.</div>
+  </div>
+
+  <div class="jtbd-item">
+    <div class="jtbd-num">JTBD #5 · СУБСИДИИ И ЛИЗИНГ</div>
+    <div class="jtbd-text">«Когда я хочу купить технику в 2026, я хочу понять, какая часть будет покрыта программой 1432, сколько даст Росагролизинг и какой будет мой реальный платёж в месяц, чтобы спланировать cash-flow»</div>
+    <div class="jtbd-meta">
+      <span><b>Кто:</b> финдиректора, главбухи</span>
+      <span><b>Закрывают:</b> <span class="badge orange">2 из 5</span></span>
+      <span><b>Сила:</b> <span class="badge orange">важно</span></span>
+    </div>
+    <div class="jtbd-quote">«ЗДМ помогает с подачей заявки и ускоренным ответом по субсидиям Минсельхоза» — встроено как фича, а не как сноска (zdm-irrigation.ru)</div>
+  </div>
+
+  <h2>5 персон в DMU</h2>
+
+  <!-- PERSONA 1 -->
+  <div class="persona">
+    <div class="persona-head">
+      <div class="persona-avatar">ВД</div>
+      <div>
+        <div class="persona-name">Владимир Душкин</div>
+        <div class="persona-role">Директор элеваторного комплекса · ООО «Воронежпищепродукт»</div>
+        <div class="persona-geo">📍 Воронежская область · Новоусманский район</div>
+      </div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Контекст</div>
+      <div class="persona-section-text">Управляет одним из крупнейших хозяйств района — зерновые и масличные. Принимает решения по элеваторному оборудованию: зерносушилки, силосы, конвейеры, очистка. Закупки на десятки миллионов рублей. <span class="note-marker">из отзыва на koblik.ru</span></div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Топ-3 боли</div>
+      <div class="persona-pains">
+        <div class="persona-pain">Сравнить 3–4 поставщика без вызова менеджеров каждый раз — на сайтах либо «оставьте заявку» либо обрывочная информация</div>
+        <div class="persona-pain">Понять полную стоимость комплекса под ключ, включая монтаж и пусконаладку, а не только базовую цену оборудования</div>
+        <div class="persona-pain">Получить гарантии по срокам поставки и пусконаладке к началу уборочной — это вопрос «жизни и смерти» урожая</div>
+      </div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Главный JTBD</div>
+      <div class="persona-jtbd">«Когда я закладываю бюджет на модернизацию элеватора, я хочу за 1 встречу получить от поставщика готовый ТЭО с ценой и сроком окупаемости, чтобы защитить инвестицию перед собственником»</div>
+    </div>
+    <div class="persona-quote">«Наше хозяйство — одно из крупнейших хозяйств Новоусманского района. Мы занимаемся выращиванием зерновых и масличных культур» <span class="note-marker">отзыв на koblik.ru</span></div>
+  </div>
+
+  <!-- PERSONA 2 -->
+  <div class="persona">
+    <div class="persona-head">
+      <div class="persona-avatar">НА</div>
+      <div>
+        <div class="persona-name">Николай Артаков</div>
+        <div class="persona-role">Зам. ген.директора · ООО «Суворово», ГК «Молвест»</div>
+        <div class="persona-geo">📍 Тамбовская область · крупный молочный холдинг</div>
+      </div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Контекст</div>
+      <div class="persona-section-text">Молочный холдинг, поголовье КРС в тысячах. Уже клиент KOBLiK — приобрели MV 300 весной 2023. Принимает решения по кормозаготовительной и раздаточной технике. Для него KOBLiK — проверенный поставщик. <span class="note-marker">из отзыва на koblik.ru</span></div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Топ-3 боли</div>
+      <div class="persona-pains">
+        <div class="persona-pain">Поддержание парка кормораздатчиков: запчасти, ножи, шнеки в наличии без 2-недельного ожидания</div>
+        <div class="persona-pain">Обоснование новых закупок перед холдингом: нужны конкретные цифры производительности и экономии</div>
+        <div class="persona-pain">Подготовка специалистов к работе с новой техникой — обучение операторов</div>
+      </div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Главный JTBD</div>
+      <div class="persona-jtbd">«Когда мне нужно расширить парк техники в холдинге, я хочу заказать у уже знакомого поставщика без повторного цикла "холодной" продажи, чтобы сэкономить время и нервы»</div>
+    </div>
+    <div class="persona-quote">«Приобрели кормосмеситель-раздатчик MV 300 весной 2023 года. В работе показал себя очень хорошо, нареканий не было. Планируем работать вместе и дальше» <span class="note-marker">отзыв на koblik.ru</span></div>
+  </div>
+
+  <!-- PERSONA 3 -->
+  <div class="persona">
+    <div class="persona-head">
+      <div class="persona-avatar">АП</div>
+      <div>
+        <div class="persona-name">Андрей Перегудов</div>
+        <div class="persona-role">Главный агроном крупного фермерского хозяйства</div>
+        <div class="persona-geo">📍 Ставропольский край · 12 000 га · зерновые + кукуруза</div>
+      </div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Контекст</div>
+      <div class="persona-section-text">Хозяйство в зоне рискованного земледелия — без орошения урожай зависит от погоды. Раньше работали на Valley и Bauer, после ухода нужно срочно найти замену. Дополнительно — модернизировать сушку зерна. <span class="note-marker">архетип на основе обзоров Agriexpert</span></div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Топ-3 боли</div>
+      <div class="persona-pains">
+        <div class="persona-pain">Российские аналоги Valley — реально работают или сэкономлено на металле и оцинковке?</div>
+        <div class="persona-pain">Кто гарантирует пусконаладку и сервис на 10 лет вперёд — а не «продали и забыли»</div>
+        <div class="persona-pain">Можно ли совместить машину с существующей насосной станцией и трубопроводами</div>
+      </div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Главный JTBD</div>
+      <div class="persona-jtbd">«Когда я выбираю дождевальную машину взамен ушедшего Valley, я хочу увидеть честное сравнение по металлу, оцинковке, шнеку и гарантийному сервису — чтобы убедиться, что не куплю кота в мешке»</div>
+    </div>
+    <div class="persona-quote">«Свято место пусто не бывает: рынок дождевальных машин активно заполняется китайскими брендами. Но мы не считаем китайские машины конкурентоспособными из-за сомнительного качества ПЭТ, недостаточной толщины металла, цинкового и лакокрасочного покрытий» <span class="note-marker">из интервью производителя Agriexpert</span></div>
+  </div>
+
+  <!-- PERSONA 4 -->
+  <div class="persona">
+    <div class="persona-head">
+      <div class="persona-avatar">ЕС</div>
+      <div>
+        <div class="persona-name">Елена Сергеева</div>
+        <div class="persona-role">Финансовый директор агрохолдинга</div>
+        <div class="persona-geo">📍 Краснодарский край · 25 000 га + молочные комплексы</div>
+      </div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Контекст</div>
+      <div class="persona-section-text">Подписывает все договоры свыше 5 млн ₽. Считает CAPEX, ROI и cash-flow. Знает наизусть условия программы 1432 и тарифы Росагролизинга. С продавцами разговаривает только на языке цифр.</div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Топ-3 боли</div>
+      <div class="persona-pains">
+        <div class="persona-pain">Производители не дают сравнительный TCO (total cost of ownership) — только базовая цена</div>
+        <div class="persona-pain">Условия лизинга и субсидии приходится высчитывать самостоятельно — нет калькулятора на сайте</div>
+        <div class="persona-pain">Доказать собственникам, что инвестиция при ставке ЦБ 16% оправдана — нужны проектные расчёты</div>
+      </div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Главный JTBD</div>
+      <div class="persona-jtbd">«Когда я готовлю инвест-обоснование, я хочу за 15 минут на сайте получить расчёт цена + лизинг + субсидия + срок окупаемости — а не ждать менеджера 3 дня»</div>
+    </div>
+    <div class="persona-quote">«Если бы инструмент полностью решал эту проблему — сколько готова платить? Готова платить как за дорогую немецкую технику, если ROI ниже 18 месяцев и есть проверяемые кейсы окупаемости» <span class="note-marker">[AI-симуляция]</span></div>
+  </div>
+
+  <!-- PERSONA 5 -->
+  <div class="persona">
+    <div class="persona-head">
+      <div class="persona-avatar">ЮБ</div>
+      <div>
+        <div class="persona-name">Юрий Бабенков</div>
+        <div class="persona-role">Директор ПУ «Новотроицкое» · Группа Русагро</div>
+        <div class="persona-geo">📍 Тамбовская область · уже клиент KOBLiK</div>
+      </div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Контекст</div>
+      <div class="persona-section-text">Зерновой и масличный комплекс. Уже использует бункер-перегрузчик KOBLiK TL — заменяет один комбайн по эффективности. Опытный пользователь, говорит цифрами производительности. Готов рекомендовать. <span class="note-marker">из отзыва на koblik.ru</span></div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Топ-3 боли</div>
+      <div class="persona-pains">
+        <div class="persona-pain">Большой холдинг покупает технику централизованно — нужны единые условия по всем филиалам</div>
+        <div class="persona-pain">Сервис в удалённых районах: кто приедет на ферму в Тамбовскую область при поломке зимой</div>
+        <div class="persona-pain">Гарантия запчастей на 5+ лет — холдинг закладывает технику в долгую амортизацию</div>
+      </div>
+    </div>
+    <div class="persona-section">
+      <div class="persona-section-label">Главный JTBD</div>
+      <div class="persona-jtbd">«Когда мой опыт с поставщиком уже положительный, я хочу простой канал расширения сотрудничества — без новых тендеров и циклов согласований»</div>
+    </div>
+    <div class="persona-quote">«Появился у нас новый перегрузчик от KOBLiK GROUP с большим объёмом. Теперь выгрузка проходит быстро, фактически он заменяет один комбайн» <span class="note-marker">отзыв на koblik.ru</span></div>
+  </div>
+
+  <div class="insight gold">
+    <div class="insight-label">Что это значит для сайта KOBLiK</div>
+    Из 5 персон <b>4 говорят цифрами</b> (производительность, окупаемость, сроки, ROI). Только одна — Артаков из «Молвеста» — действует по принципу «уже работали, доверяю». Это значит: сайт должен быть «калькуляторно-цифровым», а не «маркетингово-картинно-эмоциональным». Кейсы с цифрами окупаемости — главный контент-актив. И отдельный сценарий для повторных клиентов (Артаков, Бабенков) — не «оставить заявку», а «связаться с моим менеджером».
+  </div>
+</section>
+
+
+<!-- ========================================================== -->
+<!-- SECTION 3 — КОНКУРЕНТЫ                                       -->
+<!-- ========================================================== -->
+<section class="section" id="section-3">
+  <div class="section-header">
+    <span class="section-tag">03 · Контекст</span>
+    <h1 class="page-title">Конкурентный ландшафт</h1>
+    <p class="section-subtitle">Три эшелона конкуренции: гиганты с большой ассортиментной матрицей, прямые нишевые соперники по каждому направлению, и быстрорастущие новички, которые отъедают долю агрессивной digital-воронкой.</p>
+  </div>
+
+  <h2>Карта конкурентов: кто играет в трёх сегментах KOBLiK</h2>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Игрок</th>
+        <th>Сегмент</th>
+        <th>Сильные стороны</th>
+        <th>Слабые места</th>
+        <th>Динамика</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Воронеж Агромаш (AGROSTROY)</b></td>
+        <td>Элеваторное оборудование</td>
+        <td>1000+ проектов за 25 лет, география за пределы РФ, MOTUM/Ventum сушилки, контент-маркетинг (видео-отзывы)</td>
+        <td>Слабее по прицепной технике и орошению — фокус только на элеваторах</td>
+        <td><span class="badge green">Растёт</span></td>
+      </tr>
+      <tr>
+        <td><b>Корпорация СКЭСС</b></td>
+        <td>Силосы, элеваторное оборудование</td>
+        <td>«Работает на полную мощность несмотря на санкции», заявляет о замещении ушедших европейцев</td>
+        <td>Узкая ассортиментная линейка, нет прицепной техники</td>
+        <td><span class="badge green">Растёт</span></td>
+      </tr>
+      <tr>
+        <td><b>Колнаг</b></td>
+        <td>Кормораздатчики (Solomix Trioliet)</td>
+        <td>Лицензионное производство Trioliet, известный бренд, открыто называют ROI 6–8 мес</td>
+        <td>Зависимость от лицензии, нет элеваторов и орошения</td>
+        <td><span class="badge orange">Stable</span></td>
+      </tr>
+      <tr>
+        <td><b>Профидтех</b></td>
+        <td>Кормораздатчики (от 8 до 45 м³)</td>
+        <td>«Единственная в России компания, производящая кормосмесители свыше 25 м³». Патент на систему</td>
+        <td>Нишевая компания, малый масштаб, нет сервисной сети</td>
+        <td><span class="badge orange">Stable</span></td>
+      </tr>
+      <tr>
+        <td><b>НОЭЗНО (КИС)</b></td>
+        <td>Кормораздатчики КИС, Сибирь</td>
+        <td>Сильны в Сибири, длинная история, постоянная модернизация</td>
+        <td>Старомодная подача, слабый digital, мало контента</td>
+        <td><span class="badge orange">Stable</span></td>
+      </tr>
+      <tr>
+        <td><b>ZDM-Irrigation</b></td>
+        <td>Дождевальные машины барабанного типа</td>
+        <td>Очень сильный контент: видео-отзывы от хозяйств с цифрами урожая, помощь с субсидиями Минсельхоза прямо на сайте</td>
+        <td>Только барабанный тип, нет круговых широкозахватных</td>
+        <td><span class="badge green">Растёт</span></td>
+      </tr>
+      <tr>
+        <td><b>AquaField</b></td>
+        <td>Широкозахватные дождевальные машины</td>
+        <td>Совместимость с Valley, Lindsay, Zimmatic, Bauer для модернизации старых систем — сильное USP</td>
+        <td>Молодой бренд, мало проектов, не везде доверяют</td>
+        <td><span class="badge green">Растёт</span></td>
+      </tr>
+      <tr>
+        <td><b>FIMAKS (Турция)</b></td>
+        <td>Кормораздатчики</td>
+        <td>Параллельный импорт через российских дилеров, широкий ассортимент 1.5–20 м³</td>
+        <td>Утильсбор ×5, риски с запчастями и сервисом</td>
+        <td><span class="badge orange">Под давлением утильсбора</span></td>
+      </tr>
+      <tr>
+        <td><b>Rainfine / Yulin (Китай)</b></td>
+        <td>Круговые дождевальные машины</td>
+        <td>Аналог Lindsay/Valley по цене ниже, поставки с 2002 года</td>
+        <td>Сомнительное качество металла и оцинковки по мнению российских производителей; зависимость от поставок из КНР</td>
+        <td><span class="badge orange">Растёт за счёт цены</span></td>
+      </tr>
+      <tr>
+        <td><b>Petkus (Германия, теперь Casa Crinos)</b></td>
+        <td>Зерноочистка, семеноводство</td>
+        <td>Премиум-бренд, технологический лидер, есть у крупнейших холдингов</td>
+        <td>Уход из РФ, утильсбор, проблемы с запчастями</td>
+        <td><span class="badge red">Сворачивает</span></td>
+      </tr>
+      <tr>
+        <td><b>Lindsay / Valley</b></td>
+        <td>Дождевальные машины</td>
+        <td>Глобальные лидеры орошения, технологии управления</td>
+        <td>Ушли с российского рынка, запчасти только через параллель</td>
+        <td><span class="badge red">Ушёл</span></td>
+      </tr>
+      <tr>
+        <td><b>Trioliet, Kuhn, BVL</b></td>
+        <td>Кормораздатчики премиум</td>
+        <td>Технологические лидеры, эталон качества</td>
+        <td>Параллельный импорт + утильсбор + сложности с сервисом</td>
+        <td><span class="badge red">Тяжело</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Эшелон 1 · Платформы-гиганты с широкой матрицей</h2>
+  <div class="block">
+    <div class="block-title">Ростсельмаш и крупные многопрофильные</div>
+    <p style="margin: 0 0 12px;">Ростсельмаш — №1 в РФ по комбайнам и тракторам, формально не конкурент KOBLiK напрямую (нет элеваторов/орошения). Но влияет на бюджеты аграриев — если покупают комбайн от Ростсельмаша, на остальное денег меньше. Также KOBLiK играет «вокруг» Ростсельмаша — бункеры-перегрузчики, прицепы, кормораздатчики дополняют их парк.</p>
+    <div class="insight">
+      <div class="insight-label">Стратегический инсайт</div>
+      Ростсельмаш не конкурент, а «соседняя экосистема». KOBLiK логично позиционировать как <b>дополнение к парку Ростсельмаша</b> — особенно в категории прицепной техники, где аграрии всё равно покупают «не у того же поставщика».
+    </div>
+  </div>
+
+  <h2>Эшелон 2 · Прямые нишевые конкуренты</h2>
+  <p>По каждому из 3 направлений KOBLiK конкурирует со специализированными игроками. Большинство сильны в чём-то одном — KOBLiK уникален тем, что закрывает 3 категории под одним брендом. Но эта же широта = риск, что в каждой узкой нише найдётся более сфокусированный игрок.</p>
+
+  <h2>Эшелон 3 · Быстрорастущие digital-конкуренты</h2>
+  <div class="block">
+    <div class="block-title">Кто отъедает долю не продуктом, а маркетингом</div>
+    <p>В B2B-агропроме есть свои «AI-новички» — игроки, которые при сопоставимом продукте обгоняют по продажам за счёт сильного digital. См. раздел A (Новички и быстрорастущие) — там 6 конкретных игроков и их формула роста.</p>
+  </div>
+
+  <h2>Матрица JTBD × Конкурент</h2>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>JTBD</th>
+        <th>KOBLiK</th>
+        <th>Воронеж Агромаш</th>
+        <th>Колнаг</th>
+        <th>ZDM</th>
+        <th>AquaField</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>#1 КП за 2–3 дня с лизингом/субсидией</b></td>
+        <td>❌ Нет</td>
+        <td>⚠️ Частично</td>
+        <td>⚠️ Частично</td>
+        <td>✅ Да — встроено</td>
+        <td>⚠️ Частично</td>
+      </tr>
+      <tr>
+        <td><b>#2 Запчасть за 24–48 часов</b></td>
+        <td>⚠️ Зависит от региона</td>
+        <td>⚠️ Аналогично</td>
+        <td>✅ Сильный сервис</td>
+        <td>⚠️ Партнёрская сеть</td>
+        <td>❌ Слабое</td>
+      </tr>
+      <tr>
+        <td><b>#3 Доверие к российскому: показать металл и качество</b></td>
+        <td>⚠️ Есть, но не выпукло</td>
+        <td>✅ Прямо показывают</td>
+        <td>⚠️ Через лицензию Trioliet</td>
+        <td>✅ Видео-отзывы с цифрами</td>
+        <td>⚠️ Молодой бренд</td>
+      </tr>
+      <tr>
+        <td><b>#4 Срок окупаемости в цифрах</b></td>
+        <td>❌ Нет калькуляторов</td>
+        <td>⚠️ Есть в статьях</td>
+        <td>✅ «6–8 мес» — прямо</td>
+        <td>✅ Видео с урожайностью</td>
+        <td>❌ Нет</td>
+      </tr>
+      <tr>
+        <td><b>#5 Помощь с субсидией 1432 и лизингом</b></td>
+        <td>❌ Не видно на сайте</td>
+        <td>⚠️ Через менеджеров</td>
+        <td>⚠️ Через менеджеров</td>
+        <td>✅ Прямо на сайте, с инструкцией</td>
+        <td>⚠️ Через менеджеров</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight red">
+    <div class="insight-label">Главный конкурентный гэп KOBLiK</div>
+    Из 5 главных JTBD аграриев KOBLiK <b>четыре закрывает хуже, чем нишевые конкуренты</b>. Особенно опасны JTBD #1, #4, #5 — это всё цифровой опыт на сайте, который можно закрыть за 1–3 месяца без изменения продукта. ZDM-Irrigation — пример того, как малый игрок с правильным сайтом перевешивает крупного производителя без digital. Это и есть главная возможность стратегии 6 месяцев.
+  </div>
+</section>
+
+
+<!-- ========================================================== -->
+<!-- SECTION 4 — САЙТ СЕГОДНЯ (AS-IS)                             -->
+<!-- ========================================================== -->
+<section class="section" id="section-4">
+  <div class="section-header">
+    <span class="section-tag">04 · Контекст</span>
+    <h1 class="page-title">Сайт koblik.ru сегодня: as-is аудит</h1>
+    <p class="section-subtitle">Сайт — главный digital-актив KOBLiK и единственная точка контакта с лидом до звонка. Аудит из позиции нового лида: что видит главный агроном, который зашёл сравнить KOBLiK с тремя другими производителями.</p>
+  </div>
+
+  <h2>Сильные стороны сайта (что работает)</h2>
+  <div class="cards two">
+    <div class="card green">
+      <div class="card-label">Социальное доказательство</div>
+      <div class="card-value" style="font-size: 16px;">3 крупных клиента на главной</div>
+      <div class="card-desc">Русагро, Молвест, Воронежпищепродукт — отзывы директоров с фото, должностью и хозяйством. Это сильно: аграрии верят аграриям.</div>
+    </div>
+    <div class="card green">
+      <div class="card-label">Масштабные цифры</div>
+      <div class="card-value" style="font-size: 16px;">6 млн КРС · 7000 га · 1,9 млн м³</div>
+      <div class="card-desc">Три якорные цифры на главной — кормит 6 млн голов КРС, орошает 7000 га, выпускает 1,9 млн м³ силосов в год. Сразу формирует масштаб.</div>
+    </div>
+    <div class="card green">
+      <div class="card-label">Контент-присутствие</div>
+      <div class="card-value" style="font-size: 16px;">Статьи + новости + соцсети</div>
+      <div class="card-desc">VK, Telegram, Дзен, Rutube, MAX, OK. Регулярные статьи (как выбрать элеватор, ирригацию, опыт хозяйств). Это уже основа SEO-стратегии.</div>
+    </div>
+    <div class="card green">
+      <div class="card-label">Структура каталога</div>
+      <div class="card-value" style="font-size: 16px;">3 чётких направления</div>
+      <div class="card-desc">Каталог разделён на 3 верхнеуровневые категории — это правильно для крупного промпроизводителя. Не сваливается всё в кучу.</div>
+    </div>
+  </div>
+
+  <h2>Аудит воронки доверия лида</h2>
+  <p>Путь нового лида от первого захода до заявки — 5 шагов. На каждом сайт KOBLiK либо удерживает доверие, либо теряет его.</p>
+
+  <div class="trust-funnel">
+    <div class="trust-step">
+      <div class="trust-icon">🔍</div>
+      <div class="trust-label">Главная</div>
+      <span class="trust-state high">Высокое</span>
+    </div>
+    <div class="trust-step">
+      <div class="trust-icon">📋</div>
+      <div class="trust-label">Каталог</div>
+      <span class="trust-state mid">Среднее</span>
+    </div>
+    <div class="trust-step">
+      <div class="trust-icon">💰</div>
+      <div class="trust-label">Карточка товара</div>
+      <span class="trust-state low">Критично</span>
+    </div>
+    <div class="trust-step">
+      <div class="trust-icon">📞</div>
+      <div class="trust-label">Заявка</div>
+      <span class="trust-state mid">Среднее</span>
+    </div>
+    <div class="trust-step">
+      <div class="trust-icon">✅</div>
+      <div class="trust-label">После заявки</div>
+      <span class="trust-state mid">Среднее</span>
+    </div>
+  </div>
+
+  <h2>Зоны критической потери лида</h2>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Шаг</th>
+        <th>Наблюдение</th>
+        <th>Диагноз</th>
+        <th>Приоритет</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Главная</b></td>
+        <td>Слайдер занимает экран, но первое впечатление — «спецпредложение до 31.05.2026», «демо-тур», «ваш урожай достоин лучшей техники»</td>
+        <td>Нет позиционирования: «Что вы предлагаете?» — приходится скроллить</td>
+        <td><span class="badge orange">Средний</span></td>
+      </tr>
+      <tr>
+        <td><b>Каталог</b></td>
+        <td>3 направления видны, но отсутствует фильтр «по задаче»: «для молочной фермы», «для зернового хозяйства», «для овощевода»</td>
+        <td>Аграрий не покупает «оборудование», он решает свою задачу. Каталог не говорит на его языке</td>
+        <td><span class="badge orange">Средний</span></td>
+      </tr>
+      <tr>
+        <td><b>Карточка товара</b></td>
+        <td>Нет открытой цены или диапазона. Нет калькулятора лизинга и субсидии 1432. Нет «срок окупаемости» в цифрах</td>
+        <td><b>Это критическая зона</b>. Лид с финансовым вопросом уходит к конкуренту, где цифры есть. См. ZDM, Колнаг</td>
+        <td><span class="badge red">Критичный</span></td>
+      </tr>
+      <tr>
+        <td><b>Заявка</b></td>
+        <td>Форма «Свяжитесь с нами» — стандартная: ФИО, телефон, почта, сообщение. Нет квалификации (тип хозяйства, размер, направление, бюджет)</td>
+        <td>Менеджер тратит первый звонок на квалификацию вместо продажи. Терять время = терять сделки</td>
+        <td><span class="badge orange">Средний</span></td>
+      </tr>
+      <tr>
+        <td><b>После заявки</b></td>
+        <td>«Заявка принята! Менеджер свяжется в ближайшее время». Нет автоматического подтверждения на почту, нет ETA звонка</td>
+        <td>Лид остаётся в неопределённости. Параллельно ищет ещё 2–3 поставщиков. Кто перезвонит первым — тот и получит сделку</td>
+        <td><span class="badge red">Критичный</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Аудит конверсионной воронки сайта</h2>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Механика</th>
+        <th>Бенчмарк B2B-агропром</th>
+        <th>koblik.ru сейчас</th>
+        <th>Что сделать</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Конверсия сайта в заявку</td>
+        <td>3–5% (B2B нормa, СВО ИТЭК 2025)</td>
+        <td>Неизвестно — нет публичных данных</td>
+        <td>Поставить аналитику событий: микро-конверсии</td>
+      </tr>
+      <tr>
+        <td>Лид → квалификация</td>
+        <td>40–60%</td>
+        <td>Зависит от менеджера, нет квалификации на сайте</td>
+        <td>Квалифицирующая форма + скоринг по гео/чеку</td>
+      </tr>
+      <tr>
+        <td>Квалификация → КП</td>
+        <td>30–50%</td>
+        <td>Не оцифровано в CRM</td>
+        <td>Внедрить CRM-этапы, измерять переходы</td>
+      </tr>
+      <tr>
+        <td>КП → договор</td>
+        <td>15–30%</td>
+        <td>Не оцифровано</td>
+        <td>Шаблоны КП + системные follow-up</td>
+      </tr>
+      <tr>
+        <td>Калькулятор лизинга/субсидии</td>
+        <td>Есть у ZDM, нет у большинства</td>
+        <td>❌ Отсутствует</td>
+        <td><b>Внедрить в первые 2 месяца</b></td>
+      </tr>
+      <tr>
+        <td>Кейсы клиентов с цифрами ROI</td>
+        <td>Колнаг: «окупаемость 6–8 мес»</td>
+        <td>Есть отзывы, но без цифр окупаемости</td>
+        <td>Переснять 5 кейсов с цифрами урожая/экономии</td>
+      </tr>
+      <tr>
+        <td>Время ответа на заявку</td>
+        <td>Лучшие — &lt;2 часа в рабочее время</td>
+        <td>«Свяжемся в ближайшее время» — без SLA</td>
+        <td>Внедрить SLA 30 минут в рабочее время</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight red">
+    <div class="insight-label">Главный диагноз сайта</div>
+    Сайт KOBLiK сделан как <b>визитка крупной компании</b>, но не как <b>конверсионный лидген-инструмент</b>. У него отличный фундамент (отзывы, цифры, контент), но отсутствуют 3 ключевых механики продаж: цены/калькулятор, квалификация лида и SLA на ответ. Это и есть быстрые победы — их можно внедрить за 6 месяцев без переделки всего сайта.
+  </div>
+
+  <div class="insight orange">
+    <div class="insight-label">Блок для заполнения после касдева</div>
+    <p style="margin:8px 0 0;">Раздел ★ (Касдев &amp; наблюдения) предназначен для записей по реальному тестированию сайта менеджерами продаж, агрономами и финдиректорами хозяйств. После проведения 5–10 интервью этот раздел нужно расширить конкретными цитатами и привязать к приоритетам фиксов. Это даст вторую волну быстрых побед.</p>
+  </div>
+</section>
+
+
+<!-- ========================================================== -->
+<!-- SECTION 5 — ВИДЕНИЕ И СТАВКА                                 -->
+<!-- ========================================================== -->
+<section class="section" id="section-5">
+  <div class="section-header">
+    <span class="section-tag">05 · Стратегия</span>
+    <h1 class="page-title">Видение и главная ставка</h1>
+    <p class="section-subtitle">Куда KOBLiK движется в digital за 6 месяцев. Это не про красивый сайт — это про систему, в которой каждый лид с koblik.ru проходит измеримую воронку и заканчивается контрактом или статусом «не наш клиент». Без потерь, без зависших заявок, с прозрачным конверсионным потоком.</p>
+  </div>
+
+  <div class="highlight-box">
+    <div class="highlight-label">Главный тезис стратегии</div>
+    <h2 style="margin: 0 0 16px;">Не нужно перепридумывать продукт. Нужно перестроить путь лида.</h2>
+    <p style="color: #CBD5E1; font-size: 16px; line-height: 1.6; margin: 0;">У KOBLiK сильный продукт, известные клиенты-якоря (Русагро, Молвест) и работающее производство. Но при ставке ЦБ 16%, утильсборе ×5 и падении рынка на 21% — выигрывает не тот, у кого лучше шнек, а тот, у кого <b style="color: var(--accent);">за 30 минут от первой заявки до КП с лизингом и субсидией</b>. KOBLiK должен стать самым быстрым и прозрачным B2B-производителем сельхозоборудования в России. Это можно сделать за 6 месяцев без капитальных затрат.</p>
+  </div>
+
+  <h2>Архитектура цифровой воронки KOBLiK</h2>
+  <div class="block">
+    <div class="block-title">От первого касания до контракта — 7 шагов</div>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Шаг</th>
+          <th>Что происходит</th>
+          <th>Сейчас</th>
+          <th>Цель</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1 · Первое касание</td>
+          <td>Аграрий находит KOBLiK через Google/Яндекс/Дзен/выставку/рекомендацию</td>
+          <td>Трафик есть, но не сегментирован</td>
+          <td>Промо-страницы под каждый JTBD и регион</td>
+        </tr>
+        <tr>
+          <td>2 · Карточка продукта</td>
+          <td>Изучает технику, сравнивает с конкурентами</td>
+          <td>Технические характеристики</td>
+          <td>+ Цена / диапазон, ROI, лизинг, кейсы</td>
+        </tr>
+        <tr>
+          <td>3 · Квалификация</td>
+          <td>Оставляет заявку с указанием хозяйства, размера, направления</td>
+          <td>Простая форма «ФИО + телефон»</td>
+          <td>Квалифицирующая форма + автоскоринг</td>
+        </tr>
+        <tr>
+          <td>4 · Первый контакт</td>
+          <td>Менеджер связывается, уточняет потребность</td>
+          <td>«В ближайшее время»</td>
+          <td>SLA 30 минут в рабочее время</td>
+        </tr>
+        <tr>
+          <td>5 · КП</td>
+          <td>Получает коммерческое предложение с расчётом</td>
+          <td>2–7 дней, ручная подготовка</td>
+          <td>Базовое КП за 24 часа, шаблонизировано</td>
+        </tr>
+        <tr>
+          <td>6 · Демо / пилот</td>
+          <td>Демо-тур, выезд, реф-визит к клиенту</td>
+          <td>Есть для MV (отлично)</td>
+          <td>Расширить на элеваторы и орошение</td>
+        </tr>
+        <tr>
+          <td>7 · Контракт</td>
+          <td>Подписание, монтаж, пусконаладка</td>
+          <td>Зависит от менеджера</td>
+          <td>Системный follow-up, NPS после монтажа</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Почему эта стратегия работает в 2026 году</h2>
+  <div class="cards two">
+    <div class="card">
+      <div class="card-label">Доказательство 01</div>
+      <div class="card-value" style="font-size: 16px;">До 80% B2B-лидов теряется без системной работы</div>
+      <div class="card-desc">Средний цикл сделки в B2B — 3–18 месяцев. Без CRM и SLA лиды просто «забываются». Это деньги, которые KOBLiK уже потратил на привлечение, но не превратил в контракт.</div>
+      <div class="card-source">DM-Marketing, 2025</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Доказательство 02</div>
+      <div class="card-value" style="font-size: 16px;">+20–30% к конверсии от автоматизированной воронки</div>
+      <div class="card-desc">Системная работа с лидами увеличивает превращение заявок в продажи на 20–30%. При том же трафике — на треть больше денег.</div>
+      <div class="card-source">DM-Marketing, 2025</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Доказательство 03</div>
+      <div class="card-value" style="font-size: 16px;">ZDM-Irrigation: малый игрок обгоняет гигантов</div>
+      <div class="card-desc">Барабанные дождевальные машины от 1 завода в Волжском обгоняют крупные холдинги — за счёт видео-кейсов с цифрами и помощи с субсидиями прямо на сайте.</div>
+      <div class="card-source">zdm-irrigation.ru</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Доказательство 04</div>
+      <div class="card-value" style="font-size: 16px;">Колнаг: «окупаемость 6–8 мес» — главный аргумент</div>
+      <div class="card-desc">Конкретная цифра окупаемости — главный аргумент в B2B. Колнаг строит вокруг неё всё позиционирование. У KOBLiK таких цифр на сайте нет.</div>
+      <div class="card-source">kolnag.ru</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Доказательство 05</div>
+      <div class="card-value" style="font-size: 16px;">Сужающийся рынок усиливает digital-выигрыш</div>
+      <div class="card-desc">Когда денег у аграриев меньше, они тщательнее сравнивают и быстрее уходят к тому, кто отвечает первым. Цифровая воронка = выигрыш доли рынка у пассивных конкурентов.</div>
+      <div class="card-source">«Кузница», Поле.РФ 2025</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Доказательство 06</div>
+      <div class="card-value" style="font-size: 16px;">KOBLiK уже есть в кейсах рыночных СМИ</div>
+      <div class="card-desc">Поле.РФ цитирует KOBLiK Group по рынку 2025 года — это бесплатный PR-актив, который можно усилить через регулярные комментарии аналитики.</div>
+      <div class="card-source">Поле.РФ, апр 2025</div>
+    </div>
+  </div>
+
+  <h2>Дифференциатор KOBLiK vs остальные</h2>
+  <div class="insight gold">
+    <div class="insight-label">Уникальное позиционирование</div>
+    KOBLiK — единственный российский B2B-производитель, который закрывает <b>три направления сразу</b>: элеваторы + прицепная техника + орошение. Это значит — для крупного агрохолдинга он может быть <b>«одним поставщиком на всё»</b>. Это сильный B2B-аргумент: меньше тендеров, меньше согласований, единый сервис, единый менеджер по ключевому клиенту. Но это преимущество <b>не озвучено на сайте</b> и не использовано как продающий нарратив. Это game-changer feature, которую можно активировать без переделки продукта.
+  </div>
+
+  <h2>Game-Changer фича 6 месяцев</h2>
+  <div class="block" style="background: linear-gradient(135deg, #FFFFFF 0%, #F5EBD2 100%); border: 2px solid var(--accent);">
+    <div class="block-title" style="color: var(--accent-dark);">«Калькулятор KOBLiK» — на сайте</div>
+    <p style="font-size: 15px; margin: 0 0 14px;">Один онлайн-инструмент, который объединяет 4 главных JTBD аграриев:</p>
+    <ol style="font-size: 14px; line-height: 1.7; margin: 0;">
+      <li><b>Цена техники</b> — выбор модели и комплектации</li>
+      <li><b>Программа 1432</b> — расчёт субсидии (10–50% в зависимости от региона и типа)</li>
+      <li><b>Лизинг Росагролизинга</b> — расчёт ежемесячного платежа</li>
+      <li><b>Срок окупаемости</b> — на основании параметров хозяйства (поголовье КРС / тонны зерна / гектары орошения)</li>
+    </ol>
+    <p style="font-size: 13px; color: var(--text-secondary); margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--accent);"><b>Эффект:</b> аграрий за 5 минут на сайте получает то, чего у конкурентов нет — полный финансовый расчёт с учётом субсидий. Это не косметика, а главное конверсионное оружие на ближайшие 12 месяцев. Бенчмарк: ZDM-Irrigation, который помогает с заявкой на субсидии прямо на сайте.</p>
+  </div>
+</section>
+
+
+<!-- ========================================================== -->
+<!-- SECTION 6 — СТРАТЕГИЧЕСКИЕ ФОКУСЫ                            -->
+<!-- ========================================================== -->
+<section class="section" id="section-6">
+  <div class="section-header">
+    <span class="section-tag">06 · Стратегия</span>
+    <h1 class="page-title">Стратегические фокусы 6 месяцев</h1>
+    <p class="section-subtitle">Все инициативы делятся на 3 фазы по 2 месяца. Каждая фаза имеет чёткий приоритет: первая — закрыть критические дыры воронки, вторая — построить систему квалификации, третья — масштабировать на дилеров и партнёров.</p>
+  </div>
+
+  <h2>Фаза 1 · Месяцы 1–2 · Низковисящие фрукты</h2>
+  <p>Что можно сделать без изменения продукта, без больших бюджетов и за 4–8 недель — и что даст быстрый ROI.</p>
+  <div class="focus-cards">
+    <div class="focus-card phase1">
+      <div class="focus-phase">Фаза 1 · Приоритет 01</div>
+      <div class="focus-title">SLA на ответ за 30 минут в рабочее время</div>
+      <div class="focus-desc">Все заявки с сайта — в Bitrix24/AmoCRM с автоматическим назначением менеджера. SLA 30 минут в рабочее время. Если просрочка — эскалация руководителю отдела.</div>
+      <div class="focus-effect">+20–30% к конверсии лид → встреча (DM-Marketing 2025)</div>
+    </div>
+    <div class="focus-card phase1">
+      <div class="focus-phase">Фаза 1 · Приоритет 02</div>
+      <div class="focus-title">Квалифицирующая форма заявки</div>
+      <div class="focus-desc">Заменить «ФИО + телефон» на 5–7 полей: тип хозяйства, размер (га / голов), направление интереса, регион, временной горизонт покупки, бюджет. Скоринг → правильному менеджеру.</div>
+      <div class="focus-effect">Менеджер тратит первый звонок на продажу, а не квалификацию</div>
+    </div>
+    <div class="focus-card phase1">
+      <div class="focus-phase">Фаза 1 · Приоритет 03</div>
+      <div class="focus-title">Открыть цены / диапазоны в каталоге</div>
+      <div class="focus-desc">Указать ценовые диапазоны «от — до» на ключевые модели. Это не раскрывает коммерческой тайны, но фильтрует «нецелевые лиды» и повышает доверие. Хорошие аналоги — Колнаг, Воронеж Агромаш.</div>
+      <div class="focus-effect">Меньше неквалифицированных лидов, больше квалифицированных</div>
+    </div>
+  </div>
+
+  <h2>Фаза 2 · Месяцы 3–4 · Конверсионный движок</h2>
+  <p>Запустить инструменты, которые превращают трафик в системные продажи.</p>
+  <div class="focus-cards">
+    <div class="focus-card phase2">
+      <div class="focus-phase">Фаза 2 · Приоритет 04</div>
+      <div class="focus-title">«Калькулятор KOBLiK»: цена + 1432 + лизинг + ROI</div>
+      <div class="focus-desc">Главная game-changer фича стратегии. См. раздел 5. Аграрий за 5 минут получает полный финансовый расчёт. Аналог: ZDM, но шире — со всеми сегментами KOBLiK.</div>
+      <div class="focus-effect">Уникальное оружие на рынке РФ. +30–50% к конверсии в КП</div>
+    </div>
+    <div class="focus-card phase2">
+      <div class="focus-phase">Фаза 2 · Приоритет 05</div>
+      <div class="focus-title">5 кейсов с цифрами окупаемости</div>
+      <div class="focus-desc">Переснять 5 видео-кейсов с действующими клиентами: ПУ «Новотроицкое» (Русагро), Молвест, Воронежпищепродукт + 2 новых. С цифрами: производительность до/после, экономия, ROI в месяцах.</div>
+      <div class="focus-effect">Закрывает JTBD #3 (доверие) и #4 (ROI)</div>
+    </div>
+    <div class="focus-card phase2">
+      <div class="focus-phase">Фаза 2 · Приоритет 06</div>
+      <div class="focus-title">SEO + контекст под нишевые запросы</div>
+      <div class="focus-desc">Создать промо-страницы под 20–30 нишевых запросов: «кормораздатчик для молочного комплекса 1000 голов», «зерносушилка под кукурузу 30 т/ч», «дождевальная машина вместо Valley». Запустить контекст в Яндекс.Директ.</div>
+      <div class="focus-effect">+30–50% к качественному трафику. CPL по B2B-агро: 3000–8000 ₽</div>
+    </div>
+  </div>
+
+  <h2>Фаза 3 · Месяцы 5–6 · Масштаб и дилеры</h2>
+  <p>Распространить выстроенную систему на дилерскую сеть и автоматизировать постоянную работу с базой.</p>
+  <div class="focus-cards">
+    <div class="focus-card phase3">
+      <div class="focus-phase">Фаза 3 · Приоритет 07</div>
+      <div class="focus-title">Дилерский кабинет на koblik.ru</div>
+      <div class="focus-desc">Личный кабинет для дилеров: распределение лидов по гео, видимость стока, маркетинговые материалы под их регион, обучающие видео. Замена «звоните в Воронеж».</div>
+      <div class="focus-effect">Дилеры активнее продают, KOBLiK видит, кто работает, а кто стоит</div>
+    </div>
+    <div class="focus-card phase3">
+      <div class="focus-phase">Фаза 3 · Приоритет 08</div>
+      <div class="focus-title">Email/мессенджер прогрев базы</div>
+      <div class="focus-desc">Регулярная рассылка по базе: новые модели, успехи клиентов, акции (как 1432 в конкретном регионе), сезонные напоминания (пора готовить технику к посевной). Через VK, MAX, Telegram, email.</div>
+      <div class="focus-effect">Закрытые ранее лиды возвращаются. +15–20% к LTV клиента</div>
+    </div>
+    <div class="focus-card phase3">
+      <div class="focus-phase">Фаза 3 · Приоритет 09</div>
+      <div class="focus-title">Программа повторных продаж (cross/up-sell)</div>
+      <div class="focus-desc">Каждому действующему клиенту — план «следующей покупки» через 12–18 месяцев. Например, тот, кто купил MV, через год — кандидат на TS (полуприцеп). Менеджер KAM ведёт ключевых клиентов системно.</div>
+      <div class="focus-effect">Доля повторных продаж — главный недооценённый ресурс</div>
+    </div>
+  </div>
+
+  <div class="insight gold">
+    <div class="insight-label">Логика всей стратегии 6 месяцев</div>
+    Фаза 1 — это <b>«склейка дырявого ведра»</b>: перестать терять лиды, которые уже приходят. Фаза 2 — это <b>«насыпать в ведро больше воды»</b>: за счёт калькулятора и кейсов поднять конверсию каждого зашедшего. Фаза 3 — это <b>«разлить воду по сети»</b>: распространить систему на дилеров и удержать тех, кто уже купил. Каждая фаза самодостаточна — даже если бюджет на следующую не одобрят, предыдущая уже даст ROI.
+  </div>
+</section>
+
+
+<!-- ========================================================== -->
+<!-- SECTION 7 — ДОРОЖНАЯ КАРТА                                   -->
+<!-- ========================================================== -->
+<section class="section" id="section-7">
+  <div class="section-header">
+    <span class="section-tag">07 · Стратегия</span>
+    <h1 class="page-title">Дорожная карта 6 месяцев</h1>
+    <p class="section-subtitle">Детализация по месяцам: что делать, какие KPI отслеживать, на каком бенчмарке основан target.</p>
+  </div>
+
+  <div class="roadmap">
+
+    <div class="rm-item phase1">
+      <div class="rm-dot"></div>
+      <div class="rm-period">Месяц 1 · Старт фазы 1</div>
+      <div class="rm-title">Внедрение CRM + SLA 30 минут</div>
+      <div class="rm-desc">Bitrix24 или AmoCRM с интеграцией с сайтом, телефонией, мессенджерами. Все заявки автоматически распределяются по менеджерам. SLA 30 минут на первый контакт.</div>
+      <div class="rm-kpi">
+        <span class="rm-kpi-tag">KPI: 100% заявок в CRM</span>
+        <span class="rm-kpi-tag">KPI: время ответа ≤30 мин</span>
+        <span class="rm-kpi-tag">Бенчмарк: лучшие &lt;2 ч (CBO 2025)</span>
+      </div>
+    </div>
+
+    <div class="rm-item phase1">
+      <div class="rm-dot"></div>
+      <div class="rm-period">Месяц 1–2</div>
+      <div class="rm-title">Квалифицирующая форма заявки + скоринг</div>
+      <div class="rm-desc">Заменить простую форму на квалифицирующую с 5–7 полями. Автоматический скоринг в CRM по сегменту, объёму, региону. Распределение к нужному менеджеру.</div>
+      <div class="rm-kpi">
+        <span class="rm-kpi-tag">KPI: SQL-доля 40%+</span>
+        <span class="rm-kpi-tag">KPI: lead→встреча +20%</span>
+        <span class="rm-kpi-tag">Бенчмарк: B2B 40–60% (Речка 2025)</span>
+      </div>
+    </div>
+
+    <div class="rm-item phase1">
+      <div class="rm-dot"></div>
+      <div class="rm-period">Месяц 2 · Финал фазы 1</div>
+      <div class="rm-title">Открыть цены + добавить аналитику в карточки</div>
+      <div class="rm-desc">Цены «от — до» на 50% карточек товара. Внедрить аналитику событий (Яндекс.Метрика + цели): просмотр карточки, открытие цен, начало заявки, отправка.</div>
+      <div class="rm-kpi">
+        <span class="rm-kpi-tag">KPI: конверсия сайта в заявку 2–4%</span>
+        <span class="rm-kpi-tag">Бенчмарк: B2B-агро 3–5%</span>
+        <span class="rm-kpi-tag">KPI: 30+ событий настроено</span>
+      </div>
+    </div>
+
+    <div class="rm-item phase2">
+      <div class="rm-dot"></div>
+      <div class="rm-period">Месяц 3 · Старт фазы 2</div>
+      <div class="rm-title">Калькулятор KOBLiK: MVP (только цена + 1432)</div>
+      <div class="rm-desc">Первая версия — на 2 категории (кормораздатчики MV + дождевальные машины IS). Только два блока: базовая цена и расчёт субсидии 1432.</div>
+      <div class="rm-kpi">
+        <span class="rm-kpi-tag">KPI: 200+ расчётов/мес</span>
+        <span class="rm-kpi-tag">KPI: конверсия в заявку 8–15%</span>
+        <span class="rm-kpi-tag">Бенчмарк: ZDM</span>
+      </div>
+    </div>
+
+    <div class="rm-item phase2">
+      <div class="rm-dot"></div>
+      <div class="rm-period">Месяц 3–4</div>
+      <div class="rm-title">5 видеокейсов с цифрами окупаемости</div>
+      <div class="rm-desc">Съёмка у 5 действующих клиентов. В каждом видео: до/после, цифры, ROI. Размещение на сайте + Дзен + Rutube + Telegram + VK. По одному кейсу на каждое направление + 2 универсальных.</div>
+      <div class="rm-kpi">
+        <span class="rm-kpi-tag">KPI: 5 кейсов опубликовано</span>
+        <span class="rm-kpi-tag">KPI: 30 000+ просмотров</span>
+        <span class="rm-kpi-tag">Бенчмарк: ZDM, AGROSTROY</span>
+      </div>
+    </div>
+
+    <div class="rm-item phase2">
+      <div class="rm-dot"></div>
+      <div class="rm-period">Месяц 4 · Финал фазы 2</div>
+      <div class="rm-title">Калькулятор v2 + контекст в Яндекс.Директ</div>
+      <div class="rm-desc">Калькулятор расширен до 5 категорий + лизинг от Росагролизинга + ROI. Запуск контекстной рекламы под 20+ нишевых запросов. Промо-страницы под каждый сегмент.</div>
+      <div class="rm-kpi">
+        <span class="rm-kpi-tag">KPI: CPL 3000–8000 ₽</span>
+        <span class="rm-kpi-tag">KPI: качественный трафик +30%</span>
+        <span class="rm-kpi-tag">KPI: 500+ расчётов/мес</span>
+      </div>
+    </div>
+
+    <div class="rm-item phase3">
+      <div class="rm-dot"></div>
+      <div class="rm-period">Месяц 5 · Старт фазы 3</div>
+      <div class="rm-title">Дилерский кабинет (бета)</div>
+      <div class="rm-desc">Личный кабинет для 5–10 ключевых дилеров (бета-тест). Распределение лидов по гео, маркетинговые материалы, отчёты. Сбор обратной связи.</div>
+      <div class="rm-kpi">
+        <span class="rm-kpi-tag">KPI: 5+ активных дилеров</span>
+        <span class="rm-kpi-tag">KPI: 100% лидов из их гео</span>
+        <span class="rm-kpi-tag">KPI: NPS дилера 7+/10</span>
+      </div>
+    </div>
+
+    <div class="rm-item phase3">
+      <div class="rm-dot"></div>
+      <div class="rm-period">Месяц 5–6</div>
+      <div class="rm-title">Прогрев базы через email/Telegram/VK/MAX</div>
+      <div class="rm-desc">Регулярная рассылка по базе клиентов и лидов. 4 рассылки/мес: 1 — новинки и кейсы, 1 — отраслевая аналитика, 1 — региональные акции, 1 — сезонные напоминания. Все каналы синхронизированы.</div>
+      <div class="rm-kpi">
+        <span class="rm-kpi-tag">KPI: open rate 25%+</span>
+        <span class="rm-kpi-tag">KPI: 10+ реактиваций/мес</span>
+        <span class="rm-kpi-tag">Бенчмарк: B2B 20–30%</span>
+      </div>
+    </div>
+
+    <div class="rm-item phase3">
+      <div class="rm-dot"></div>
+      <div class="rm-period">Месяц 6 · Финал стратегии</div>
+      <div class="rm-title">KAM-программа для топ-20 клиентов + измерение результатов</div>
+      <div class="rm-desc">Каждый из топ-20 действующих клиентов закреплён за персональным KAM. План «следующей покупки» на 12 месяцев. Запуск процесса повторных продаж. Финальная оценка всех KPI и подготовка стратегии на следующие 6 месяцев.</div>
+      <div class="rm-kpi">
+        <span class="rm-kpi-tag">KPI: 20 активных KAM-планов</span>
+        <span class="rm-kpi-tag">KPI: повторные продажи +25%</span>
+        <span class="rm-kpi-tag">KPI: общая конверсия лид→договор 4–6%</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="insight green">
+    <div class="insight-label">Принцип дорожной карты</div>
+    Каждый месяц завершается с измеримым результатом, который можно показать на совете директоров. Никаких задач «на 6 месяцев» — только спринты по 4–8 недель с конкретными KPI. Это снижает риск, что инициатива «зависнет», и позволяет менять курс каждый квартал.
+  </div>
+</section>
+
+
+<!-- ========================================================== -->
+<!-- SECTION 8 — МЕТРИКИ И УСПЕХ                                  -->
+<!-- ========================================================== -->
+<section class="section" id="section-8">
+  <div class="section-header">
+    <span class="section-tag">08 · Стратегия</span>
+    <h1 class="page-title">Метрики и определение успеха</h1>
+    <p class="section-subtitle">Что измеряется — то управляется. Все ключевые метрики, их текущее состояние (где известно), бенчмарки B2B-агропрома и целевые значения на 6 месяцев вперёд.</p>
+  </div>
+
+  <h2>Конверсионная воронка сайта</h2>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Метрика</th>
+        <th>AS-IS (оценка)</th>
+        <th>Бенчмарк B2B</th>
+        <th>Target 6 мес</th>
+        <th>Источник</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Конверсия сайта в заявку</td>
+        <td>Не измеряется</td>
+        <td>3–5%</td>
+        <td>3–4%</td>
+        <td>CBO 2025</td>
+      </tr>
+      <tr>
+        <td>Стоимость лида (CPL)</td>
+        <td>Не измеряется</td>
+        <td>3000–8000 ₽ агро-B2B</td>
+        <td>≤6000 ₽</td>
+        <td>Leadconnect 2025</td>
+      </tr>
+      <tr>
+        <td>Лид → квалификация (SQL)</td>
+        <td>Зависит от менеджера</td>
+        <td>40–60%</td>
+        <td>50%+</td>
+        <td>Речка 2025</td>
+      </tr>
+      <tr>
+        <td>SQL → КП</td>
+        <td>Не оцифровано</td>
+        <td>30–50%</td>
+        <td>40%+</td>
+        <td>Речка 2025</td>
+      </tr>
+      <tr>
+        <td>КП → договор</td>
+        <td>Не оцифровано</td>
+        <td>15–30%</td>
+        <td>20%+</td>
+        <td>Речка 2025</td>
+      </tr>
+      <tr class="row-total">
+        <td><b>Общая конверсия лид → договор</b></td>
+        <td>Неизвестно</td>
+        <td>2–9%</td>
+        <td><b>4–6%</b></td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Метрики цикла сделки и сервиса</h2>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Метрика</th>
+        <th>AS-IS</th>
+        <th>Бенчмарк</th>
+        <th>Target 6 мес</th>
+        <th>Источник</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Время ответа на заявку</td>
+        <td>«В ближайшее время»</td>
+        <td>Лучшие &lt;2 ч</td>
+        <td>≤30 мин в раб.часы</td>
+        <td>CBO, DM-Marketing 2025</td>
+      </tr>
+      <tr>
+        <td>Время от заявки до первого КП</td>
+        <td>2–7 дней</td>
+        <td>Лучшие 24–48 ч</td>
+        <td>≤24 часа</td>
+        <td>Экспертная оценка</td>
+      </tr>
+      <tr>
+        <td>Средний цикл сделки</td>
+        <td>Неизвестно</td>
+        <td>3–18 мес B2B</td>
+        <td>Измерять, сокращать</td>
+        <td>DM-Marketing 2025</td>
+      </tr>
+      <tr>
+        <td>Доля повторных продаж</td>
+        <td>Не оцифровано</td>
+        <td>30–40% B2B</td>
+        <td>≥25% к 6 мес</td>
+        <td>Экспертная оценка</td>
+      </tr>
+      <tr>
+        <td>NPS клиента после монтажа</td>
+        <td>Не измеряется</td>
+        <td>50+ — хороший B2B</td>
+        <td>Внедрить замер</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>NPS дилера</td>
+        <td>Не измеряется</td>
+        <td>7+/10</td>
+        <td>≥7/10</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Метрики контента и трафика</h2>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Метрика</th>
+        <th>AS-IS</th>
+        <th>Target 6 мес</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Видео-кейсов с цифрами окупаемости</td>
+        <td>0–2</td>
+        <td>5 (по одному на сегмент + 2 универсальных)</td>
+      </tr>
+      <tr>
+        <td>Расчётов через калькулятор/мес</td>
+        <td>0</td>
+        <td>500+</td>
+      </tr>
+      <tr>
+        <td>Конверсия расчёт → заявка</td>
+        <td>—</td>
+        <td>8–15%</td>
+      </tr>
+      <tr>
+        <td>Open rate email-рассылки</td>
+        <td>—</td>
+        <td>25%+</td>
+      </tr>
+      <tr>
+        <td>Качественный SEO-трафик (по нишевым запросам)</td>
+        <td>—</td>
+        <td>+30% к текущему</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Риски и контрмеры</h2>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>Риск</th>
+        <th>Вероятность</th>
+        <th>Влияние</th>
+        <th>Контрмера</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Рынок упадёт ещё на 10–15% в 2026 — лидов меньше ожидаемого</td>
+        <td><span class="badge orange">Средняя</span></td>
+        <td><span class="badge red">Высокое</span></td>
+        <td>Увеличить долю выигрыша среди оставшихся — тот же план, но фокус на 1432 + лизинг</td>
+      </tr>
+      <tr>
+        <td>Менеджеры продаж сопротивляются CRM и SLA</td>
+        <td><span class="badge red">Высокая</span></td>
+        <td><span class="badge orange">Среднее</span></td>
+        <td>RTO 1 неделя, мотивация по SLA, прозрачные дашборды</td>
+      </tr>
+      <tr>
+        <td>Калькулятор требует обновления цен каждый месяц</td>
+        <td><span class="badge red">Высокая</span></td>
+        <td><span class="badge orange">Среднее</span></td>
+        <td>Использовать диапазоны «от — до», обновлять раз в квартал</td>
+      </tr>
+      <tr>
+        <td>Дилеры не хотят светить свои лиды в общую CRM</td>
+        <td><span class="badge orange">Средняя</span></td>
+        <td><span class="badge orange">Среднее</span></td>
+        <td>Изолированные кабинеты, политика «лид с гео — твой по умолчанию»</td>
+      </tr>
+      <tr>
+        <td>Бюджет на digital сократят при падении продаж</td>
+        <td><span class="badge orange">Средняя</span></td>
+        <td><span class="badge red">Высокое</span></td>
+        <td>Каждая фаза самодостаточна, ROI после каждой</td>
+      </tr>
+      <tr>
+        <td>Программа 1432 не будет продлена в полном объёме</td>
+        <td><span class="badge orange">Средняя</span></td>
+        <td><span class="badge red">Высокое</span></td>
+        <td>Не делать ставку только на 1432 — встроить и Росагролизинг, и регио. программы</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Все источники документа</h2>
+  <div class="sources-grid">
+    <div class="sources-col">
+      <h4>Рынок и тренды</h4>
+      <ul class="sources-list">
+        <li>Росспецмаш — отгрузки сельхозтехники 2024–2025 (янв 2026)</li>
+        <li>Forbes — продажи −21% в 2025 (янв 2026)</li>
+        <li>Коммерсантъ — прогноз рынка 2026 (окт 2025, янв 2026)</li>
+        <li>Поле.РФ — обзоры рынка и прогнозы (2025)</li>
+        <li>iGrader — снижение на 20% в 2025 (дек 2025)</li>
+        <li>Союз «Прогресс» — прогноз 7–12% падения в 2026 (дек 2025)</li>
+        <li>РАФ 2025 (Союзмаш) — итоги отрасли (окт 2025)</li>
+        <li>Минпромторг — программа 1432, бюджет 11 млрд ₽</li>
+        <li>МегаРесерч — влияние утильсбора (май 2025)</li>
+        <li>Агроинвестор — рынок элеваторного оборудования</li>
+      </ul>
+    </div>
+    <div class="sources-col">
+      <h4>Конкуренты</h4>
+      <ul class="sources-list">
+        <li>agrosplus.ru — Воронеж Агромаш AGROSTROY</li>
+        <li>kolnag.ru — Колнаг + Trioliet Solomix, ROI 6–8 мес</li>
+        <li>zdm-irrigation.ru — ZDM-Irrigation, помощь с субсидиями</li>
+        <li>agrobase.ru — AquaField, российские орошения</li>
+        <li>agriexpert.ru — обзор рынка дождевальных машин</li>
+        <li>sdelanounas.ru — Профидтех (8–45 м³)</li>
+        <li>direct.farm — подборка российских производителей орошения</li>
+        <li>agropost.ru — обзор кормораздатчиков по брендам</li>
+        <li>skillagro.ru — НОЭЗНО, КИС, обзор кормосмесителей</li>
+        <li>agrosektor23.ru — поставки Yulin/Lindsay через Китай</li>
+      </ul>
+    </div>
+    <div class="sources-col">
+      <h4>Воронки и B2B-лидген</h4>
+      <ul class="sources-list">
+        <li>Carrot Quest — этапы воронки (сен 2025)</li>
+        <li>Речка — 7 этапов B2B-воронки, бенчмарки (дек 2025)</li>
+        <li>DM-Marketing — автоматизация B2B-воронки</li>
+        <li>Leadconnect — адаптивные воронки B2B (ноя 2025)</li>
+        <li>Completo — холодные воронки B2B (авг 2025)</li>
+        <li>CBO — B2B-лидген: каналы и метрики (ноя 2025)</li>
+        <li>tomat.team — B2B vs B2C воронка</li>
+        <li>moko.pro — KPI воронки и цикл сделки</li>
+        <li>Envybox — этапы воронки</li>
+      </ul>
+    </div>
+    <div class="sources-col">
+      <h4>koblik.ru и публичные данные</h4>
+      <ul class="sources-list">
+        <li>koblik.ru — каталог, отзывы, статьи, новости</li>
+        <li>Отзыв В. Душкина (Воронежпищепродукт)</li>
+        <li>Отзыв Н. Артакова (Молвест, MV 300)</li>
+        <li>Отзыв Ю. Бабенкова (Русагро, бункер-перегрузчик)</li>
+        <li>Запуск нового завода прицепов и ирригации (фев 2026)</li>
+        <li>Демо-тур MV нового поколения (фев 2026)</li>
+        <li>Цитирование KOBLiK в обзорах Поле.РФ (2025)</li>
+        <li>Участие в AGRAVIA 2026 (янв 2026)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<script>
+function show(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const sec = document.getElementById('section-' + id);
+  if (sec) sec.classList.add('active');
+  el.classList.add('active');
+  window.scrollTo(0, 0);
+  if (window.innerWidth <= 900) closeSidebar();
+}
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const btn = document.getElementById('burgerBtn');
+  if (sidebar.classList.contains('open')) {
+    closeSidebar();
+  } else {
+    sidebar.classList.add('open');
+    overlay.classList.add('visible');
+    btn.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('visible');
+  document.getElementById('burgerBtn').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
+(function(){
+  let startX = 0;
+  const sidebar = document.getElementById('sidebar');
+  sidebar.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+  sidebar.addEventListener('touchend', e => {
+    if (e.changedTouches[0].clientX - startX < -60) closeSidebar();
+  }, {passive:true});
+})();
+function toggleSimQ(el) {
+  el.classList.toggle('open');
+}
+</script>
+
+</body>
+</html>
