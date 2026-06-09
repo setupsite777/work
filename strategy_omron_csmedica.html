@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Продуктовая стратегия — omron.csmedica.ru · 12 месяцев</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F1F5F9;color:#1E293B;font-family:'Inter',system-ui,sans-serif;line-height:1.6;font-size:15px}
+a{color:#3B82F6}
+/* SIDEBAR */
+.sidebar{background:#1E293B;color:#F1F5F9;width:268px;position:fixed;height:100vh;overflow-y:auto;display:flex;flex-direction:column;z-index:150}
+.sidebar-logo{font-family:'Unbounded',sans-serif;font-size:17px;font-weight:700;padding:22px 20px 8px;letter-spacing:-0.5px}
+.sidebar-logo span{color:#3B82F6}
+.sidebar-sub{font-size:11px;color:#64748B;padding:0 20px 16px;border-bottom:1px solid #334155}
+.nav-group{padding:14px 12px 4px}
+.nav-group-label{font-size:10px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:#475569;padding:0 8px 6px}
+.nav-item{padding:8px 16px;cursor:pointer;border-radius:6px;color:#CBD5E1;font-size:13.5px;transition:.15s;display:flex;gap:8px;align-items:flex-start}
+.nav-item:hover{background:#334155;color:#fff}
+.nav-item.active{background:#3B82F6;color:#fff}
+.nav-num{font-weight:700;opacity:.6;flex-shrink:0}
+.nav-star{color:#F59E0B}
+/* CONTACTS */
+.sidebar-contacts{margin:auto 0 0 0;padding:16px 20px 20px;border-top:1px solid #334155}
+.sidebar-contacts-label{font-size:10px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:#475569;margin-bottom:10px}
+.sidebar-contacts-name{font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;color:#E2E8F0;margin-bottom:10px;line-height:1.4}
+.sidebar-contact-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px}
+.sidebar-contact-icon{font-size:13px;flex-shrink:0;margin-top:1px}
+.sidebar-contact-text{font-size:11.5px;color:#94A3B8;line-height:1.4}
+.sidebar-contact-text a{color:#94A3B8;text-decoration:none;transition:color .15s}
+.sidebar-contact-text a:hover{color:#3B82F6}
+/* MAIN */
+.main{margin-left:268px;padding:32px 40px;max-width:1100px}
+.section{display:none}
+.section.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.page-eyebrow{font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#3B82F6;margin-bottom:6px}
+.page-title{font-family:'Unbounded',sans-serif;font-size:28px;font-weight:700;color:#0F172A;margin-bottom:8px;line-height:1.2}
+.page-lead{font-size:16px;color:#475569;margin-bottom:24px;max-width:760px}
+h2{font-family:'Unbounded',sans-serif;font-size:19px;color:#0F172A;margin:28px 0 14px}
+h3{font-size:16px;font-weight:600;color:#0F172A;margin:18px 0 10px}
+p{margin-bottom:12px}
+.block{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid #E2E8F0}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid #E2E8F0}
+.card-big{font-family:'Unbounded',sans-serif;font-size:24px;font-weight:700;color:#0F172A;margin-bottom:4px}
+.card-label{font-size:12px;color:#64748B;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.card-src{font-size:11px;color:#94A3B8;margin-top:8px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px;margin:8px 0 4px}
+.tbl th{background:#1E293B;color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:12.5px}
+.tbl td{padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#1E293B;vertical-align:top}
+.tbl tr:hover td{background:#F8FAFC}
+.badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+.b-red{background:#FEE2E2;color:#B91C1C}
+.b-orange{background:#FFEDD5;color:#C2410C}
+.b-green{background:#DCFCE7;color:#15803D}
+.b-blue{background:#DBEAFE;color:#1D4ED8}
+.b-purple{background:#EDE9FE;color:#6D28D9}
+.b-gray{background:#F1F5F9;color:#475569}
+.insight{border-left:4px solid #3B82F6;background:#EFF6FF;padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0;font-size:14px}
+.insight.green{border-color:#22C55E;background:#F0FDF4}
+.insight.yellow{border-color:#F59E0B;background:#FFFBEB}
+.insight.red{border-color:#EF4444;background:#FEF2F2}
+.insight-label{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;color:#1D4ED8}
+.insight.green .insight-label{color:#15803D}
+.insight.yellow .insight-label{color:#B45309}
+.insight.red .insight-label{color:#B91C1C}
+.highlight-box{background:linear-gradient(135deg,#3B82F6,#6366F1);color:#fff;padding:26px;border-radius:14px;margin:18px 0}
+.highlight-box h3{color:#fff;font-size:18px;margin-top:0}
+.highlight-box p{color:#E0E7FF;margin-bottom:0}
+.quote{background:#F8FAFC;border-left:3px solid #CBD5E1;padding:12px 16px;border-radius:0 8px 8px 0;font-style:italic;color:#334155;margin:10px 0;font-size:14px}
+.quote .meta{display:block;font-style:normal;font-size:12px;color:#94A3B8;margin-top:6px}
+.tag-data{font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;background:#FEF3C7;color:#92400E;vertical-align:middle}
+.tag-prim{font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;background:#DCFCE7;color:#166534;vertical-align:middle}
+/* PERSONA */
+.persona{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid #E2E8F0;margin-bottom:16px}
+.persona-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid #F1F5F9;padding-bottom:12px;margin-bottom:12px}
+.persona-name{font-family:'Unbounded',sans-serif;font-size:16px;color:#0F172A}
+.persona-role{font-size:13px;color:#64748B}
+.pain-pill{display:inline-block;background:#FEF2F2;color:#B91C1C;border:1px solid #FECACA;padding:4px 10px;border-radius:8px;font-size:12.5px;margin:3px 4px 3px 0}
+/* INTERVIEW */
+.qa{border:1px solid #E2E8F0;border-radius:10px;margin:8px 0;overflow:hidden}
+.qa-q{background:#F8FAFC;padding:12px 16px;cursor:pointer;font-weight:600;font-size:14px;display:flex;justify-content:space-between;gap:10px}
+.qa-q:hover{background:#F1F5F9}
+.qa-q .arrow{color:#3B82F6;transition:.2s}
+.qa.open .qa-q .arrow{transform:rotate(180deg)}
+.qa-a{display:none;padding:14px 16px;border-top:1px solid #E2E8F0;font-size:14px}
+.qa.open .qa-a{display:block}
+.qa-diag{margin-top:10px;font-size:12.5px;color:#475569;background:#EFF6FF;border-radius:6px;padding:8px 12px}
+/* ROADMAP */
+.roadmap{position:relative;padding-left:8px}
+.phase{border-radius:12px;padding:18px 20px;margin-bottom:16px;color:#fff}
+.phase.p1{background:linear-gradient(135deg,#EF4444,#F87171)}
+.phase.p2{background:linear-gradient(135deg,#F59E0B,#FB923C)}
+.phase.p3{background:linear-gradient(135deg,#8B5CF6,#A78BFA)}
+.phase h3{color:#fff;margin-top:0}
+.phase-item{background:rgba(255,255,255,.14);border-radius:8px;padding:12px 14px;margin:8px 0}
+.phase-item b{color:#fff}
+.phase-kpi{font-size:12.5px;color:rgba(255,255,255,.9);margin-top:4px}
+/* VISION */
+.vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.vision-card{border-radius:12px;padding:22px;border:2px solid #E2E8F0;background:#fff}
+.vision-card.v1{border-color:#3B82F6}
+.vision-card.v2{border-color:#8B5CF6}
+.vision-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.v1 .vision-tag{color:#3B82F6}
+.v2 .vision-tag{color:#8B5CF6}
+.steps-flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.step{background:#EFF6FF;border:1px solid #BFDBFE;border-radius:8px;padding:8px 12px;font-size:12.5px;font-weight:600;color:#1D4ED8}
+.step-arr{color:#94A3B8;font-weight:700}
+.src-cols{columns:2;column-gap:24px;font-size:12.5px;color:#475569}
+.src-cols li{margin-bottom:6px;break-inside:avoid}
+ul.clean{list-style:none}
+ul.clean li{padding:4px 0 4px 22px;position:relative}
+ul.clean li:before{content:"▸";position:absolute;left:4px;color:#3B82F6}
+/* MOBILE TOPBAR */
+.mobile-topbar{display:none;position:fixed;top:0;left:0;right:0;height:56px;background:#0F172A;z-index:200;align-items:center;justify-content:space-between;padding:0 16px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.mobile-logo{font-family:'Unbounded',sans-serif;font-size:15px;font-weight:700;color:#F8FAFC;letter-spacing:-0.5px}
+.mobile-logo span{color:#3B82F6}
+.burger-btn{width:40px;height:40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;border-radius:8px;border:none;background:transparent;padding:0;-webkit-tap-highlight-color:transparent}
+.burger-line{width:22px;height:2px;background:#F8FAFC;border-radius:2px;transition:all .25s ease;transform-origin:center}
+.burger-btn.open .burger-line:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger-btn.open .burger-line:nth-child(2){opacity:0;transform:scaleX(0)}
+.burger-btn.open .burger-line:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:149;opacity:0;transition:opacity .25s ease}
+.sidebar-overlay.visible{display:block;opacity:1}
+@media(max-width:900px){
+.mobile-topbar{display:flex}
+.sidebar{transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);top:0;height:100vh}
+.sidebar.open{transform:translateX(0)}
+.main{margin-left:0;padding:72px 16px 24px;max-width:100%}
+.vision-grid,.two-col,.three-col{grid-template-columns:1fr}
+.cards{grid-template-columns:1fr 1fr}
+.page-title{font-size:22px}
+.block{padding:16px}
+.tbl{font-size:12px}
+.tbl th,.tbl td{padding:8px 9px}
+.src-cols{columns:1}
+}
+@media(max-width:480px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="mobile-topbar">
+  <div class="mobile-logo">OMRON<span>·CS</span></div>
+  <button class="burger-btn" id="burgerBtn" onclick="toggleSidebar()" aria-label="Меню">
+    <span class="burger-line"></span><span class="burger-line"></span><span class="burger-line"></span>
+  </button>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo">OMRON<span>·CS Medica</span></div>
+  <div class="sidebar-sub">Продуктовая стратегия e-commerce · omron.csmedica.ru · горизонт 12 мес</div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Контекст</div>
+    <div class="nav-item active" onclick="show('1',this)"><span class="nav-num">1</span> Рынок и тренды</div>
+    <div class="nav-item" onclick="show('2',this)"><span class="nav-num">2</span> JTBD и покупатели</div>
+    <div class="nav-item" onclick="show('3',this)"><span class="nav-num">3</span> Конкуренты</div>
+    <div class="nav-item" onclick="show('4',this)"><span class="nav-num">4</span> Магазин сегодня</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Стратегия</div>
+    <div class="nav-item" onclick="show('5',this)"><span class="nav-num">5</span> Видение и ставка</div>
+    <div class="nav-item" onclick="show('6',this)"><span class="nav-num">6</span> Стратегические фокусы</div>
+    <div class="nav-item" onclick="show('7',this)"><span class="nav-num">7</span> Дорожная карта 12 мес</div>
+    <div class="nav-item" onclick="show('8',this)"><span class="nav-num">8</span> Метрики и успех</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Первичные данные</div>
+    <div class="nav-item" onclick="show('cd',this)"><span class="nav-star">★</span> Касдев и наблюдения</div>
+    <div class="nav-item" onclick="show('ai',this)"><span class="nav-star">★★</span> AI-Касдев</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Стратегический выбор</div>
+    <div class="nav-item" onclick="show('A',this)"><span class="nav-num">A</span> AI-новички рынка</div>
+    <div class="nav-item" onclick="show('B',this)"><span class="nav-num">B</span> Два вижина</div>
+  </div>
+
+  <div class="sidebar-contacts">
+    <div class="sidebar-contacts-label">Автор стратегии</div>
+    <div class="sidebar-contacts-name">Васильев Станислав Дмитриевич</div>
+    <div class="sidebar-contact-row"><div class="sidebar-contact-icon">📞</div>
+      <div class="sidebar-contact-text"><a href="tel:+79933576961">+7 (993) 357-69-61</a><br><span style="font-size:10px;color:#475569">WhatsApp · Telegram</span></div></div>
+    <div class="sidebar-contact-row"><div class="sidebar-contact-icon">✈️</div>
+      <div class="sidebar-contact-text"><a href="https://t.me/setupsite" target="_blank">t.me/setupsite</a></div></div>
+    <div class="sidebar-contact-row"><div class="sidebar-contact-icon">✉️</div>
+      <div class="sidebar-contact-text"><a href="mailto:stanislav.vasiliev.job@gmail.com">stanislav.vasiliev.job@gmail.com</a></div></div>
+    <div class="sidebar-contact-row"><div class="sidebar-contact-icon">📢</div>
+      <div class="sidebar-contact-text"><a href="https://t.me/systemoverads" target="_blank">@systemoverads</a><br><span style="font-size:10px;color:#475569">Управляемый рост</span></div></div>
+  </div>
+</nav>
+
+<div class="main">
+<!-- ===== РАЗДЕЛ 1: РЫНОК ===== -->
+<section class="section active" id="section-1">
+  <div class="page-eyebrow">Контекст · 01</div>
+  <h1 class="page-title">Рынок и тренды</h1>
+  <p class="page-lead">Медтехника для дома в РФ растёт двузначными темпами, но почти весь онлайн-спрос перетекает на маркетплейсы. Для собственного магазина дистрибьютора это одновременно угроза и единственное защитимое окно.</p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-label">Рынок медоборудования РФ</div>
+      <div class="card-big">₽850 млрд</div>
+      <div>+14% за год. Приборы для измерения давления — отдельный быстрорастущий сегмент.</div>
+      <div class="card-src">zdrav.expert, март 2026</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Продажи тонометров</div>
+      <div class="card-big">+30%</div>
+      <div>Рост продаж приборов для измерения артериального давления в РФ за год — ядро ассортимента OMRON.</div>
+      <div class="card-src">zdrav.expert, март 2026</div>
+    </div>
+    <div class="card">
+      <div class="card-label">AI в e-commerce (мир)</div>
+      <div class="card-big">CAGR 24%</div>
+      <div>Рынок AI в e-commerce: $9 млрд (2025) → $64 млрд (2034). Персонализация даёт до +15% выручки.</div>
+      <div class="card-src">Precedence Research; McKinsey 2024</div>
+    </div>
+    <div class="card">
+      <div class="card-label">⚠️ Сигнал-угроза</div>
+      <div class="card-big">~2/3</div>
+      <div>Доля маркетплейсов в онлайн-рознице. 97% онлайн-продаж проходит через них — прямой магазин теряет трафик.</div>
+      <div class="card-src">Oborot.ru; vc.ru, 2026</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Где находится спрос покупателя</h2>
+    <p>Совокупные продажи Wildberries, Ozon и Яндекс Маркета в 2025 достигли <b>₽8,59 трлн (+32,2%)</b>, и это растёт быстрее рынка e-commerce в целом (+9%). На регионы приходится ~77% объёма интернет-торговли. Для покупателя тонометра первая точка поиска — маркетплейс или поисковик, а не сайт дистрибьютора.</p>
+    <div class="insight yellow">
+      <div class="insight-label">Ключевой вывод</div>
+      omron.csmedica.ru не может и не должен выигрывать у маркетплейсов в «дешевле и быстрее доставим». Его единственная защитимая территория — <b>экспертиза, доверие к официальному источнику и подбор прибора под здоровье</b>. Это и есть стратегическое окно.
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Целевые рынки и сегменты внутри РФ</h2>
+    <table class="tbl">
+      <tr><th>Сегмент рынка</th><th>Ключевые данные</th><th>Канал спроса</th><th>Возможность для магазина</th></tr>
+      <tr><td><b>Москва и МО</b></td><td>16,5% всех онлайн-продаж РФ, но доля снижается</td><td>Поиск бренда + прямые заходы</td><td>Премиальные модели, экспресс-доставка, сервис</td></tr>
+      <tr><td><b>Регионы РФ</b></td><td>~77% интернет-торговли; рост в регионах опережает столицы</td><td>Маркетплейсы доминируют</td><td>Дилерская сеть + «официальная гарантия» как аргумент</td></tr>
+      <tr><td><b>Гипертоники 45+</b></td><td>Регулярная перепокупка манжет, расходников, новых моделей</td><td>Аптеки, рекомендация врача</td><td>Подписка на расходники, напоминания о поверке</td></tr>
+      <tr><td><b>Семьи с детьми</b></td><td>Небулайзеры — №1 в рекомендациях педиатров (Kantar)</td><td>Сезонный спрос (ОРВИ)</td><td>Комплекты «семейная аптечка», контент-гайды</td></tr>
+      <tr><td><b>Wellness / ЗОЖ</b></td><td>Массажёры, ирригаторы, зубные щётки CS Medica</td><td>Импульсный + контентный спрос</td><td>Собственная марка с лучшей маржой, бандлы</td></tr>
+    </table>
+    <div class="insight">
+      <div class="insight-label">Тренд AI в категории</div>
+      AI-квизы подбора в health-нишах дают рост конверсии до <b>+141%</b> (кейс CrazyBulk, Digioh, 2026): квиз работает как «цифровой консультант» там, где покупатель не разбирается в моделях. Для тонометров с их путаницей «плечо/запястье, размер манжеты, авто/полуавто» это прямое попадание.
+    </div>
+  </div>
+</section>
+
+<!-- ===== РАЗДЕЛ 2: JTBD И ПОКУПАТЕЛИ ===== -->
+<section class="section" id="section-2">
+  <div class="page-eyebrow">Контекст · 02</div>
+  <h1 class="page-title">JTBD и покупатели</h1>
+  <p class="page-lead">Покупатель медтехники для дома редко «хочет тонометр». Он хочет вернуть контроль над здоровьем — своим или близкого — и не ошибиться с выбором прибора, от которого зависят решения о лечении.</p>
+
+  <div class="block">
+    <h2>Эволюция главного запроса</h2>
+    <table class="tbl">
+      <tr><th>Период</th><th>Что хотел покупатель</th><th>Как закрывал</th></tr>
+      <tr><td>2019–2021</td><td>«Купить надёжный прибор известной марки»</td><td>Аптека, выбор по бренду</td></tr>
+      <tr><td>2022–2023</td><td>«Найти где дешевле и оригинал, а не подделку»</td><td>Маркетплейс + проверка продавца</td></tr>
+      <tr><td>2024–2026</td><td><b>«Понять, какой именно прибор мне подходит, и доверять данным, которые он показывает»</b></td><td>Плохо закрыто: маркетплейс не консультирует, а врач не продаёт</td></tr>
+    </table>
+    <div class="insight green">
+      <div class="insight-label">Незакрытый job = окно</div>
+      Главный запрос 2024–2026 — <b>уверенность в правильном выборе и в точности измерений</b> — не закрывает ни один маркетплейс. Именно его должен забрать официальный магазин дистрибьютора.
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>5 ключевых Jobs-to-be-Done</h2>
+    <table class="tbl">
+      <tr><th>JTBD</th><th>Чьё</th><th>Закрыто конкурентами</th></tr>
+      <tr><td><b>1.</b> «Когда у меня/близкого проблемы с давлением, я хочу выбрать прибор, которому смогу доверять, чтобы принимать решения о здоровье без сомнений в цифрах»</td><td>Гипертоник, дочь пожилого родителя</td><td><span class="badge b-red">0/5</span></td></tr>
+      <tr><td><b>2.</b> «Когда я не разбираюсь в моделях, я хочу чтобы мне подобрали прибор под мои параметры, чтобы не переплатить и не купить не то»</td><td>Все новички</td><td><span class="badge b-orange">1/5</span></td></tr>
+      <tr><td><b>3.</b> «Когда я уже купил прибор, я хочу легко докупать манжеты/расходники и обслуживать его, чтобы он служил годами»</td><td>Гипертоник со стажем</td><td><span class="badge b-orange">1/5</span></td></tr>
+      <tr><td><b>4.</b> «Когда ребёнок заболел, я хочу быстро получить рабочий небулайзер и понять как им пользоваться, чтобы помочь сегодня»</td><td>Родитель</td><td><span class="badge b-orange">2/5</span></td></tr>
+      <tr><td><b>5.</b> «Когда я покупаю дорогой прибор, я хочу быть уверен что это оригинал с гарантией, чтобы не нарваться на подделку»</td><td>Все</td><td><span class="badge b-orange">2/5</span></td></tr>
+    </table>
+  </div>
+
+  <h2>5 персон покупателей</h2>
+  <div class="persona">
+    <div class="persona-head">
+      <div><div class="persona-name">Тамара Петровна, 64</div><div class="persona-role">Пенсионерка, гипертоник · Воронеж</div></div>
+      <span class="badge b-blue">Регион</span>
+    </div>
+    <p><b>Контекст:</b> измеряет давление 2 раза в день, записывает в тетрадь. Старый тонометр «начал врать». Покупает по совету участкового врача и дочери.</p>
+    <p style="font-size:13px;color:#64748B"><b>Данные:</b> кнопочный телефон + планшет от детей · доход низкий · покупает раз в 3–4 года</p>
+    <div>
+      <span class="pain-pill">Боится купить «китайскую подделку»</span>
+      <span class="pain-pill">Не понимает разницы между моделями</span>
+      <span class="pain-pill">Манжета не подошла по размеру руки</span>
+    </div>
+    <div class="quote">«Дочка заказала на каком-то сайте, а манжета мне мала, рука полная. Теперь не знаю, тот ли это вообще Омрон или нет».<span class="meta">— собирательная цитата по отзывам Megamarket / ЕАПТЕКА <span class="tag-data">AI-симуляция на основе отзывов</span></span></div>
+    <div><b>JTBD:</b> «Когда мне нужен новый тонометр, я хочу быть уверена что он настоящий и подходит моей руке, чтобы доверять цифрам и не покупать вслепую».</div>
+  </div>
+
+  <div class="persona">
+    <div class="persona-head">
+      <div><div class="persona-name">Андрей, 38</div><div class="persona-role">Менеджер, покупает родителям · Москва</div></div>
+      <span class="badge b-purple">ЛПР-дети</span>
+    </div>
+    <p><b>Контекст:</b> заботливый сын, покупает прибор маме дистанционно. Сам не гипертоник, в моделях не разбирается, хочет «лучшее в разумных деньгах» и чтобы мама разобралась сама.</p>
+    <p style="font-size:13px;color:#64748B"><b>Данные:</b> iPhone · доход выше среднего · ценит время больше денег</p>
+    <div>
+      <span class="pain-pill">Слишком много моделей, неясна разница</span>
+      <span class="pain-pill">Нужен крупный дисплей и простота для мамы</span>
+      <span class="pain-pill">Хочет подключить к приложению, но боится что мама не справится</span>
+    </div>
+    <div class="quote">«Долго выбирал с какой манжетой брать. Взял с большой и не прогадал — но это была лотерея, нигде толком не объясняют».<span class="meta">— по мотивам отзывов Megamarket, дек 2024 <span class="tag-data">AI-симуляция на основе отзывов</span></span></div>
+    <div><b>JTBD:</b> «Когда я покупаю прибор пожилому родителю, я хочу чтобы мне подобрали простую и точную модель, чтобы родитель пользовался сам, а я был спокоен».</div>
+  </div>
+
+  <div class="persona">
+    <div class="persona-head">
+      <div><div class="persona-name">Марина, 33</div><div class="persona-role">Мама двоих детей · Казань</div></div>
+      <span class="badge b-green">Семья</span>
+    </div>
+    <p><b>Контекст:</b> покупает небулайзер, когда младший заболел. Решение срочное, под давлением. Доверяет рекомендации педиатра «берите OMRON».</p>
+    <p style="font-size:13px;color:#64748B"><b>Данные:</b> смартфон, активный онлайн-покупатель · средний доход · сезонный спрос</p>
+    <div>
+      <span class="pain-pill">Нужно «сегодня», а не через 3 дня</span>
+      <span class="pain-pill">Не знает как часто менять расходники</span>
+      <span class="pain-pill">Боится что прибор шумный и напугает ребёнка</span>
+    </div>
+    <div class="quote">«Небулайзер нужен был вчера. Заказала на маркетплейсе, потому что там доставка завтра — на официальном сайте даже не смотрела сроки».<span class="meta">— собирательный инсайт <span class="tag-data">AI-симуляция</span></span></div>
+    <div><b>JTBD:</b> «Когда ребёнок заболел, я хочу быстро получить рабочий прибор и инструкцию как лечить, чтобы помочь сегодня».</div>
+  </div>
+
+  <div class="persona">
+    <div class="persona-head">
+      <div><div class="persona-name">Сергей, 52</div><div class="persona-role">Гипертоник со стажем, «продвинутый» · СПб</div></div>
+      <span class="badge b-blue">Power-user</span>
+    </div>
+    <p><b>Контекст:</b> уже 3-й тонометр OMRON, ведёт дневник давления в приложении OMRON connect, ездит в командировки с запястным прибором. Докупает манжеты, адаптеры.</p>
+    <p style="font-size:13px;color:#64748B"><b>Данные:</b> Android + iOS · доход выше среднего · покупает регулярно</p>
+    <div>
+      <span class="pain-pill">Не найти оригинальную манжету нужного размера</span>
+      <span class="pain-pill">Запястный «врёт» относительно плечевого</span>
+      <span class="pain-pill">Приложение неудобно синхронизировать</span>
+    </div>
+    <div class="quote">«Показывает 110, а плечевой домашний 140–150. Какому верить? Купил для поездок, а доверия к запястному нет».<span class="meta">— по мотивам отзывов ЕАПТЕКА <span class="tag-data">AI-симуляция на основе отзывов</span></span></div>
+    <div><b>JTBD:</b> «Когда я слежу за давлением годами, я хочу один надёжный источник приборов и расходников, чтобы не искать оригинал по всему интернету».</div>
+  </div>
+
+  <div class="persona">
+    <div class="persona-head">
+      <div><div class="persona-name">Алина, 29</div><div class="persona-role">Wellness / ЗОЖ · Екатеринбург</div></div>
+      <span class="badge b-purple">Wellness</span>
+    </div>
+    <p><b>Контекст:</b> покупает ирригатор и массажный пистолет CS Medica. Решение импульсное, под влиянием контента и отзывов. Бренд OMRON не знает, CS Medica — тем более.</p>
+    <p style="font-size:13px;color:#64748B"><b>Данные:</b> iPhone, активна в соцсетях · средний доход · импульсный спрос</p>
+    <div>
+      <span class="pain-pill">Не знает марку CS Medica, нет доверия</span>
+      <span class="pain-pill">Сравнивает с Xiaomi/Revyline по картинкам</span>
+      <span class="pain-pill">Решает по визуалу и отзывам, а не по ТТХ</span>
+    </div>
+    <div class="quote">«Массажёр REVOLT выглядит мощно, но кто такие CS Medica? На WB я бы хоть отзывы почитала, а тут — непонятный сайт».<span class="meta">— собирательный инсайт <span class="tag-data">AI-симуляция</span></span></div>
+    <div><b>JTBD:</b> «Когда я хочу следить за собой, я хочу красивый и работающий гаджет от марки которой можно верить, чтобы это вписалось в мой образ жизни».</div>
+  </div>
+
+  <div class="block">
+    <h2>Симулятор интервью — Тамара Петровна (гипертоник)</h2>
+    <p style="font-size:13px;color:#64748B">Нажмите на вопрос, чтобы раскрыть ответ персоны и диагноз. <span class="tag-data">AI-симуляция на основе реальных отзывов</span></p>
+
+    <div class="qa"><div class="qa-q" onclick="toggleQa(this)"><span>1. Расскажите, как обычно проходит ваш день, когда вы измеряете давление?</span><span class="arrow">▾</span></div>
+      <div class="qa-a">«Утром натощак и вечером. Записываю в тетрадку, потом показываю врачу. Раньше механическим мерила, теперь руки не те — нужен автоматический, чтоб сам всё показал».
+      <div class="qa-diag"><b>Диагноз:</b> рутина = регулярность → возможность подписки на расходники и напоминаний. <b>Job:</b> контроль здоровья, а не покупка прибора.</div></div></div>
+
+    <div class="qa"><div class="qa-q" onclick="toggleQa(this)"><span>2. Сколько времени и сил уходит на выбор прибора?</span><span class="arrow">▾</span></div>
+      <div class="qa-a">«Ой, долго. Дочка показывала на телефоне десять штук, я ничего не поняла. M2, M3, какие-то буквы. В итоге взяли что посоветовал фармацевт».
+      <div class="qa-diag"><b>Диагноз:</b> паралич выбора. <b>Боль:</b> непонятная номенклатура моделей. <b>Инсайт:</b> квиз-подбор закрыл бы боль напрямую.</div></div></div>
+
+    <div class="qa"><div class="qa-q" onclick="toggleQa(this)"><span>3. Что в покупке и использовании бесит сильнее всего?</span><span class="arrow">▾</span></div>
+      <div class="qa-a">«Манжета не подошла! Рука полная, а она маленькая оказалась. Пришлось отдельно искать большую, намучились. И до сих пор думаю — настоящий ли Омрон, или подделка попалась».
+      <div class="qa-diag"><b>Диагноз (топ-боль):</b> размер манжеты + страх подделки. <b>Это два главных барьера доверия для всего сегмента 45+.</b></div></div></div>
+
+    <div class="qa"><div class="qa-q" onclick="toggleQa(this)"><span>4. А если бы всё работало идеально — как бы это выглядело?</span><span class="arrow">▾</span></div>
+      <div class="qa-a">«Чтобы спросили какая у меня рука, какой возраст, и сразу сказали — вам вот этот, с такой манжетой. И чтоб гарантия была что настоящий, от завода».
+      <div class="qa-diag"><b>Диагноз:</b> дословное описание AI-квиза + гарантии оригинала. <b>Желаемое состояние = ровно то, что магазин может дать, а маркетплейс — нет.</b></div></div></div>
+
+    <div class="qa"><div class="qa-q" onclick="toggleQa(this)"><span>5. Где вы сейчас покупаете и почему именно там?</span><span class="arrow">▾</span></div>
+      <div class="qa-a">«В аптеке у дома или дочка на Озоне заказывает. На сайт самой фирмы не заходила — а что, у них тоже купить можно? Думала, это просто про компанию».
+      <div class="qa-diag"><b>Диагноз:</b> критично — целевой покупатель не знает, что у дистрибьютора можно купить. <b>Проблема не в продукте, а в позиционировании магазина.</b></div></div></div>
+  </div>
+
+  <div class="block">
+    <h2>Цитаты покупателей</h2>
+    <div class="two-col">
+      <div>
+        <div class="quote">«Долго выбирал с какой манжетой брать, купил с большой и не прогадал».<span class="meta">— Megamarket, дек 2024</span></div>
+        <div class="quote">«Показывает 110, а домашний с манжетой на плече 140–150».<span class="meta">— ЕАПТЕКА (запястная модель)</span></div>
+      </div>
+      <div>
+        <div class="quote">«Идеальный аппарат в дорогу. Недостаток — обычные батарейки, лучше бы аккумулятор».<span class="meta">— Med-magazin (M1 Basic)</span></div>
+        <div class="quote">«Японское качество, точно измеряет. Нужная вещь в доме».<span class="meta">— Megamarket (M2 Plus), сен 2025</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===== РАЗДЕЛ 3: КОНКУРЕНТЫ ===== -->
+<section class="section" id="section-3">
+  <div class="page-eyebrow">Контекст · 03</div>
+  <h1 class="page-title">Конкуренты</h1>
+  <p class="page-lead">Конкуренция идёт на трёх уровнях: маркетплейсы (забирают трафик и цену), специализированные интернет-магазины медтехники (забирают «экспертную» нишу) и сам же фирменный магазин omron.csmedica.ru против собственного присутствия бренда на маркетплейсах.</p>
+
+  <div class="block">
+    <h2>Карта рынка онлайн-продаж</h2>
+    <table class="tbl">
+      <tr><th>Игрок</th><th>Масштаб</th><th>Роль для покупателя медтехники</th><th>Динамика</th></tr>
+      <tr><td><b>Wildberries + Ozon</b></td><td>~₽7+ трлн оборота (2025)</td><td>Первая точка поиска, цена, быстрая доставка</td><td><span class="badge b-green">▲ +32% рынок</span></td></tr>
+      <tr><td><b>Яндекс Маркет</b></td><td>Часть ₽8,59 трлн топ-3</td><td>Электроника + товары для дома, сравнение цен</td><td><span class="badge b-green">▲ растёт</span></td></tr>
+      <tr><td><b>Медтехно.ру</b></td><td>6 салонов + интернет-магазин с 2002</td><td>Спец-магазин, консультанты с медобразованием</td><td><span class="badge b-gray">stable</span></td></tr>
+      <tr><td><b>Медтехника.online / Мед-магазин.ру</b></td><td>Сети с розницей в неск. городах</td><td>Широкий ассортимент медтехники, экспертный контент</td><td><span class="badge b-gray">stable</span></td></tr>
+      <tr><td><b>omron.csmedica.ru</b></td><td>Официальный магазин дистрибьютора</td><td>Гарантия оригинала, полный модельный ряд, сервис</td><td><span class="badge b-orange">недоиспользован</span></td></tr>
+    </table>
+    <div style="font-size:11px;color:#94A3B8;margin-top:8px">Источники: Kommersant/TAdviser (обороты МП, 2026); medtehno.ru; медтехника.online; данные сайтов, 2026.</div>
+  </div>
+
+  <div class="block">
+    <h2>Эшелон 1 — Маркетплейсы (гиганты трафика)</h2>
+    <p>Доминируют по охвату и цене. У OMRON там есть официальное присутствие, но оно <b>каннибализирует фирменный магазин</b> и не передаёт экспертизу: карточка на WB не подберёт манжету по размеру руки и не объяснит разницу M2/M3/M6. Конкурировать ценой здесь нельзя — площадки демпингуют и берут 12–20% комиссии.</p>
+  </div>
+
+  <div class="block">
+    <h2>Эшелон 2 — Специализированные магазины медтехники</h2>
+    <table class="tbl">
+      <tr><th>Магазин</th><th>Сильные стороны</th><th>Боли покупателей</th><th>Стратегический гэп</th></tr>
+      <tr><td><b>Медтехно.ру</b></td><td>Консультанты с медобразованием, розница, доставка в день заказа</td><td>Мультибренд — нет фокуса, OMRON в общем ряду</td><td>Не владеют брендом OMRON, не дают заводскую гарантию</td></tr>
+      <tr><td><b>Медтехника.online</b></td><td>Очень широкий каталог, неск. регионов</td><td>«Всё для всех», слабый подбор, перегруженный UX</td><td>Нет эксклюзива и нет премиум-доверия первоисточника</td></tr>
+      <tr><td><b>omron-rus.ru и пр. «офиц. дилеры»</b></td><td>Позиционирование «официальный дилер», гарантия 5 лет</td><td>Размывают понятие «официальный» — их много</td><td>Только csmedica.ru — <b>эксклюзивный</b> дистрибьютор, это сильнее «дилера»</td></tr>
+    </table>
+    <div class="insight green">
+      <div class="insight-label">Уникальный актив csmedica.ru</div>
+      Только «КомплектСервис» — <b>эксклюзивный дистрибьютор OMRON в РФ</b> и производитель CS Medica. Это право невозможно скопировать. Спец-магазины — мультибрендовые перекупщики; маркетплейсы — витрины. Никто из них не может сказать «мы и есть OMRON в России».
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Матрица JTBD × Конкурент</h2>
+    <table class="tbl">
+      <tr><th>JTBD покупателя</th><th>Маркетплейсы</th><th>Спец-магазины</th><th>omron.csmedica.ru (потенциал)</th></tr>
+      <tr><td>1. Доверять прибору и точности</td><td>❌ Нет</td><td>⚠️ Частично</td><td>✅ Да (первоисточник + клин. валидация STRIDE BP)</td></tr>
+      <tr><td>2. Подбор под параметры</td><td>❌ Нет</td><td>⚠️ Консультант в рознице</td><td>✅ Да (AI-квиз + «Как выбрать тонометр»)</td></tr>
+      <tr><td>3. Расходники и обслуживание</td><td>⚠️ Разрозненно</td><td>⚠️ Частично</td><td>✅ Да (полный ряд + пожизненный сервис)</td></tr>
+      <tr><td>4. Срочно получить прибор</td><td>✅ Да (доставка завтра)</td><td>✅ В рознице</td><td>⚠️ Слабое место — логистика</td></tr>
+      <tr><td>5. Гарантия оригинала</td><td>⚠️ Риск подделок</td><td>⚠️ Зависит от продавца</td><td>✅ Да (заводская гарантия)</td></tr>
+    </table>
+    <div class="insight">
+      <div class="insight-label">Чтение матрицы</div>
+      Магазин выигрывает по 4 из 5 jobs — но <b>проигрывает по скорости (JTBD 4)</b>, а это часто триггер первой покупки. Стратегия: забрать доверие и подбор (где маркетплейсы бессильны), подтянуть логистику до приемлемой, не пытаясь обогнать WB.
+    </div>
+  </div>
+</section>
+
+<!-- ===== РАЗДЕЛ 4: МАГАЗИН СЕГОДНЯ ===== -->
+<section class="section" id="section-4">
+  <div class="page-eyebrow">Контекст · 04</div>
+  <h1 class="page-title">Магазин сегодня (as-is)</h1>
+  <p class="page-lead">Сильный бренд и контент на корпоративном сайте csmedica.ru, но разрыв между «сайтом о компании» и «магазином, где покупают» (omron.csmedica.ru) — главная структурная проблема.</p>
+
+  <div class="block">
+    <h2>Сильные стороны</h2>
+    <ul class="clean">
+      <li><b>Эксклюзивный статус:</b> единственный дистрибьютор OMRON в РФ + собственная марка CS Medica (25+ лет).</li>
+      <li><b>Доверие и доказательства:</b> №1 в рекомендациях кардиологов и педиатров (Kantar 2019–2023), клиническая валидация STRIDE BP, 400 млн пользователей в мире.</li>
+      <li><b>Контент-актив:</b> гайды «Как выбрать тонометр», инструкции, проверка поверки по серийному номеру, обучающие вебинары (OMRON IQ Provision).</li>
+      <li><b>Сервис:</b> бесплатное пожизненное обслуживание, сеть сервисных центров, горячая линия 8-800.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h2>Касдев — наблюдения по магазину <span class="tag-prim">требует валидации</span></h2>
+    <p style="font-size:13px;color:#64748B">Гипотезы из анализа сайта; уточняются метриками веб-аналитики и сессиями.</p>
+    <table class="tbl">
+      <tr><th>Зона</th><th>Наблюдение</th><th>Диагноз</th></tr>
+      <tr><td>Первое впечатление</td><td>csmedica.ru читается как «сайт о компании», кнопка «Купить» уводит на отдельный поддомен omron.csmedica.ru</td><td>Покупатель (как Тамара) не понимает, что здесь можно купить</td></tr>
+      <tr><td>Подбор</td><td>Есть статья «Как выбрать тонометр», но это лонгрид, а не интерактив</td><td>Паралич выбора не снимается — нужен квиз</td></tr>
+      <tr><td>Каталог</td><td>Модели названы кодами (M2, M3, HEM-7121) без «человеческого» языка пользы</td><td>Покупатель не переводит ТТХ в «мне подойдёт»</td></tr>
+      <tr><td>Доверие к оригиналу</td><td>Проверка поверки есть, но не вынесена как аргумент в карточку</td><td>Сильнейший дифференциатор спрятан</td></tr>
+      <tr><td>Логистика/чекаут</td><td>Сроки и условия доставки не конкурируют с «завтра» у WB</td><td>Теряются срочные покупки (Марина)</td></tr>
+    </table>
+  </div>
+
+  <div class="block">
+    <h2>Аудит воронки покупки (бенчмарк)</h2>
+    <p>Вместо paywall-аудита приложения — аудит e-commerce воронки против бенчмарков 2025–2026.</p>
+    <table class="tbl">
+      <tr><th>Механика</th><th>Бенчмарк (лучшие в классе)</th><th>Гипотеза по магазину</th><th>Что сделать</th></tr>
+      <tr><td>Конверсия в покупку</td><td>Health &amp; Beauty 3,3–4,5%, лидеры 5%; consumer goods 2,5–3%</td><td>Вероятно ниже среднего (узкий трафик)</td><td>Подбор + доверие-блоки на карточке</td></tr>
+      <tr><td>Add-to-cart</td><td>Здоровый уровень 7–10%; &lt;5% = проблема карточки</td><td>Карточки техничны, мало «языка пользы»</td><td>Переписать карточки под JTBD</td></tr>
+      <tr><td>Брошенная корзина</td><td>Средняя 70,2% (Baymard); 48% бросают из-за скрытых расходов</td><td>Риск из-за неясной доставки</td><td>Прозрачная доставка + email-возврат (вернёт 10–15%)</td></tr>
+      <tr><td>AI-квиз подбора</td><td>+100…+141% к конверсии в health-нишах</td><td>Отсутствует</td><td>Внедрить как фокус Этапа 1–2</td></tr>
+      <tr><td>Персонализация</td><td>До +15% выручки; до 35% выручки с рекомендаций</td><td>Отсутствует/базовая</td><td>Рекомендации «к прибору — расходники»</td></tr>
+    </table>
+    <div style="font-size:11px;color:#94A3B8;margin-top:8px">Источники: SQ Magazine 2026; Convertcart 2026; Baymard 2026; Triple Whale; McKinsey 2024; Digioh 2026.</div>
+  </div>
+</section>
+<!-- ===== РАЗДЕЛ 5: ВИДЕНИЕ ===== -->
+<section class="section" id="section-5">
+  <div class="page-eyebrow">Стратегия · 05</div>
+  <h1 class="page-title">Видение и ставка</h1>
+
+  <div class="highlight-box">
+    <h3>Главный тезис</h3>
+    <p>omron.csmedica.ru перестаёт быть «магазином, где продают тонометры дешевле» и становится <b>единственным экспертным источником здоровья дома</b>: местом, где подбирают правильный прибор под человека, гарантируют оригинал от первоисточника и сопровождают годами. Маркетплейсам отдаётся цена; магазину остаётся доверие и экспертиза — то, что нельзя скопировать.</p>
+  </div>
+
+  <div class="block">
+    <h2>Концепция пути покупателя</h2>
+    <div class="steps-flow">
+      <span class="step">Тревога о здоровье</span><span class="step-arr">→</span>
+      <span class="step">AI-подбор прибора</span><span class="step-arr">→</span>
+      <span class="step">Доверие (оригинал+валидация)</span><span class="step-arr">→</span>
+      <span class="step">Покупка</span><span class="step-arr">→</span>
+      <span class="step">Сопровождение и расходники</span><span class="step-arr">→</span>
+      <span class="step">Повторная покупка / рекомендация</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Почему это работает — доказательства рынка</h2>
+    <ul class="clean">
+      <li>AI-квизы подбора в health дают <b>+100…+141%</b> конверсии (Digioh, 2026) — прямой ответ на «паралич выбора» Тамары и Андрея.</li>
+      <li>Персонализация — <b>+15% выручки</b> и до <b>35%</b> выручки с рекомендаций (McKinsey 2024; DigitalApplied 2026).</li>
+      <li>Брошенные корзины: <b>48%</b> уходят из-за скрытых расходов (Baymard) — прозрачность даёт быстрый прирост.</li>
+      <li>Email-возврат корзин возвращает <b>10–15%</b> потерянных конверсий.</li>
+      <li>Рынок тонометров растёт <b>+30%/год</b> — спрос есть, вопрос только в канале.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h2>Дифференциатор vs конкурентов</h2>
+    <div class="two-col">
+      <div class="insight green"><div class="insight-label">Что есть только здесь</div>Статус эксклюзивного дистрибьютора + клиническая валидация + пожизненный сервис + собственная марка с лучшей маржой.</div>
+      <div class="insight"><div class="insight-label">Гейм-чейнджер</div><b>«Цифровой консультант здоровья»</b> — AI-подбор прибора + персональные напоминания о поверке/замене расходников. Ни один маркетплейс и ни один мультибренд это не закроет.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== РАЗДЕЛ 6: ФОКУСЫ ===== -->
+<section class="section" id="section-6">
+  <div class="page-eyebrow">Стратегия · 06</div>
+  <h1 class="page-title">Стратегические фокусы</h1>
+  <p class="page-lead">Три этапа за 12 месяцев: сначала снять очевидные потери конверсии, затем построить AI-слой и удержание, затем масштабировать защитимое преимущество.</p>
+
+  <div class="phase p1">
+    <h3>Этап 1 (0–3 мес) · Низко висящие фрукты</h3>
+    <div class="phase-item"><b>Свести магазин и доверие в одну точку.</b> Явный вход в магазин с главной, доверие-блоки (оригинал, гарантия, валидация STRIDE BP) в карточке.<div class="phase-kpi">KPI: add-to-cart 5%→7%+ · бенчмарк Triple Whale</div></div>
+    <div class="phase-item"><b>Прозрачная доставка и чекаут.</b> Показ сроков/стоимости до корзины, сокращение шагов оформления.<div class="phase-kpi">KPI: брошенная корзина −5…8 п.п. от 70% · Baymard</div></div>
+    <div class="phase-item"><b>Email-возврат брошенных корзин.</b> Триггерные письма.<div class="phase-kpi">KPI: возврат 10–15% корзин · SQ Magazine</div></div>
+  </div>
+
+  <div class="phase p2">
+    <h3>Этап 2 (3–9 мес) · AI-слой + Retention</h3>
+    <div class="phase-item"><b>AI-квиз «Подбор прибора».</b> Вопросы про параметры (рука, возраст, цель) → конкретная модель + манжета.<div class="phase-kpi">KPI: конверсия квиз-сессий +50…100% · Digioh/Zoovu</div></div>
+    <div class="phase-item"><b>Персональные рекомендации.</b> «К этому тонометру — манжета вашего размера и адаптер».<div class="phase-kpi">KPI: AOV +10–15% · McKinsey</div></div>
+    <div class="phase-item"><b>Подписка/напоминания на расходники.</b> Замена манжет, насадок щёток, фильтров небулайзера; напоминание о поверке.<div class="phase-kpi">KPI: повторные покупки +20% · кат. health</div></div>
+    <div class="phase-item"><b>Карточки на языке пользы.</b> Перевести M2/M3/HEM-коды в «для кого и зачем».<div class="phase-kpi">KPI: add-to-cart до 8–10%</div></div>
+  </div>
+
+  <div class="phase p3">
+    <h3>Этап 3 (9–18 мес*) · Масштаб и дифференциация</h3>
+    <div class="phase-item"><b>«Цифровой консультант здоровья».</b> AI-ассистент, отвечающий на вопросы о приборах и помогающий вести дневник.<div class="phase-kpi">KPI: доля выручки с персонализации до 30%+</div></div>
+    <div class="phase-item"><b>Программа лояльности + контент-хаб.</b> Привязка к экспертизе и сервису как moat.<div class="phase-kpi">KPI: retention / LTV ↑</div></div>
+    <div class="phase-item"><b>B2B / опт для клиник и аптек.</b> Использование статуса дистрибьютора.<div class="phase-kpi">KPI: новый канал выручки</div></div>
+    <div style="font-size:12px;color:rgba(255,255,255,.85);margin-top:6px">*выходит за 12-мес горизонт — заложено как направление.</div>
+  </div>
+</section>
+
+<!-- ===== РАЗДЕЛ 7: ДОРОЖНАЯ КАРТА ===== -->
+<section class="section" id="section-7">
+  <div class="page-eyebrow">Стратегия · 07</div>
+  <h1 class="page-title">Дорожная карта · 12 месяцев</h1>
+
+  <div class="roadmap">
+    <div class="phase p1">
+      <h3>Фаза 1 · Мес 1–3 · Конверсия</h3>
+      <div class="phase-item"><b>Мес 1:</b> объединение магазина и доверия, доверие-блоки в карточках<div class="phase-kpi">Target: add-to-cart ≥7% · Triple Whale</div></div>
+      <div class="phase-item"><b>Мес 1–2:</b> прозрачная доставка + упрощённый чекаут<div class="phase-kpi">Target: брошенная корзина ≤63% · Baymard</div></div>
+      <div class="phase-item"><b>Мес 2–3:</b> email-возврат корзин, базовая веб-аналитика и события<div class="phase-kpi">Target: возврат 10–15% корзин</div></div>
+    </div>
+    <div class="phase p2">
+      <h3>Фаза 2 · Мес 4–9 · AI + Retention</h3>
+      <div class="phase-item"><b>Мес 4–5:</b> запуск AI-квиза подбора тонометра, затем небулайзера<div class="phase-kpi">Target: конверсия квиз-сессий ×1,5–2</div></div>
+      <div class="phase-item"><b>Мес 5–7:</b> рекомендации расходников + переписанные карточки<div class="phase-kpi">Target: AOV +10–15%</div></div>
+      <div class="phase-item"><b>Мес 7–9:</b> подписка/напоминания на расходники и поверку<div class="phase-kpi">Target: доля повторных покупок +20%</div></div>
+    </div>
+    <div class="phase p3">
+      <h3>Фаза 3 · Мес 10–12 · Дифференциация</h3>
+      <div class="phase-item"><b>Мес 10–11:</b> прототип «цифрового консультанта здоровья», контент-хаб<div class="phase-kpi">Target: вовлечённость / время на сайте ↑</div></div>
+      <div class="phase-item"><b>Мес 11–12:</b> программа лояльности, пилот B2B-канала<div class="phase-kpi">Target: запуск нового канала выручки</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== РАЗДЕЛ 8: МЕТРИКИ ===== -->
+<section class="section" id="section-8">
+  <div class="page-eyebrow">Стратегия · 08</div>
+  <h1 class="page-title">Метрики и успех</h1>
+
+  <div class="block">
+    <h2>Целевые метрики</h2>
+    <table class="tbl">
+      <tr><th>Метрика</th><th>AS-IS (оценка)</th><th>Бенчмарк</th><th>Target 12 мес</th><th>Источник</th></tr>
+      <tr><td>Конверсия в покупку</td><td>~1,5–2%</td><td>Health 3,3–4,5%</td><td>3%+</td><td>SQ Magazine 2026</td></tr>
+      <tr><td>Add-to-cart rate</td><td>&lt;5%</td><td>7–10% здоровый</td><td>7%+</td><td>Triple Whale</td></tr>
+      <tr><td>Брошенная корзина</td><td>~72%</td><td>70,2% средняя</td><td>≤63%</td><td>Baymard 2026</td></tr>
+      <tr><td>AOV (средний чек)</td><td>базовый</td><td>+10–15% с персон.</td><td>+12%</td><td>McKinsey 2024</td></tr>
+      <tr><td>Доля повторных покупок</td><td>низкая</td><td>health-нормы</td><td>+20%</td><td>кат. бенчмарк</td></tr>
+      <tr><td>Выручка с рекомендаций</td><td>~0</td><td>до 35%</td><td>15%+</td><td>DigitalApplied 2026</td></tr>
+      <tr><td>Конверсия квиз-сессий</td><td>нет квиза</td><td>+100…+141%</td><td>×1,5–2</td><td>Digioh; Zoovu</td></tr>
+    </table>
+  </div>
+
+  <div class="block">
+    <h2>Риски и контрмеры</h2>
+    <table class="tbl">
+      <tr><th>Риск</th><th>Влияние</th><th>Контрмера</th></tr>
+      <tr><td>Каннибализация: бренд сам же продаёт дешевле на WB/Ozon</td><td>Высокое</td><td>Развести позиционирование: магазин = подбор+сервис+эксклюзивы, МП = базовые SKU</td></tr>
+      <tr><td>Логистика не догонит «доставку завтра»</td><td>Среднее</td><td>Не конкурировать скоростью везде; партнёрская доставка для срочных категорий</td></tr>
+      <tr><td>Низкий трафик на фирменный домен</td><td>Высокое</td><td>SEO на экспертные запросы («как выбрать тонометр»), контент-воронка</td></tr>
+      <tr><td>AI-инициативы дороги/медленны</td><td>Среднее</td><td>Начать с готовых quiz-движков (Zoovu/аналоги), а не своей разработки</td></tr>
+      <tr><td>Регуляторика медизделий</td><td>Низкое-среднее</td><td>Дисклеймеры уже есть; контент проверять с медэкспертами</td></tr>
+    </table>
+  </div>
+
+  <div class="block">
+    <h2>Источники документа</h2>
+    <ul class="src-cols">
+      <li>zdrav.expert — рынок медоборудования РФ, 2026</li>
+      <li>Kommersant / TAdviser — обороты маркетплейсов, 2026</li>
+      <li>Oborot.ru; vc.ru — доля МП в e-commerce, 2026</li>
+      <li>SQ Magazine — конверсия e-commerce, 2026</li>
+      <li>Convertcart — конверсия по индустриям, 2026</li>
+      <li>Baymard Institute — брошенные корзины, 2026</li>
+      <li>Triple Whale — add-to-cart бенчмарки</li>
+      <li>McKinsey — ценность персонализации, 2024</li>
+      <li>Digioh; Zoovu — AI-квизы подбора, 2026</li>
+      <li>DigitalApplied — AI-рекомендации, 2026</li>
+      <li>Kantar / STRIDE BP — рекомендации врачей, валидация (csmedica.ru)</li>
+      <li>Megamarket, ЕАПТЕКА, Med-magazin — отзывы покупателей OMRON</li>
+    </ul>
+  </div>
+</section>
+<!-- ===== ★ КАСДЕВ ===== -->
+<section class="section" id="section-cd">
+  <div class="page-eyebrow">Первичные данные · ★</div>
+  <h1 class="page-title">Касдев и наблюдения</h1>
+  <p class="page-lead">Раздел для первичных данных. Сейчас заполнен гипотезами из анализа сайта и публичных отзывов; помечен как требующий валидации реальными метриками и интервью.</p>
+
+  <div class="block">
+    <h2>Воронка доверия покупателя</h2>
+    <div class="steps-flow">
+      <span class="step">Заход на сайт</span><span class="step-arr">→</span>
+      <span class="step">Понять что тут покупают</span><span class="step-arr">→</span>
+      <span class="step">Выбрать модель</span><span class="step-arr">→</span>
+      <span class="step">Поверить что оригинал</span><span class="step-arr">→</span>
+      <span class="step">Оформить</span>
+    </div>
+    <table class="tbl">
+      <tr><th>Шаг</th><th>Наблюдение</th><th>Доверие</th></tr>
+      <tr><td>Заход</td><td>Сильный бренд, награды, врачи рекомендуют</td><td><span class="badge b-green">Высокое</span></td></tr>
+      <tr><td>«Где купить?»</td><td>Магазин на отдельном поддомене, неочевиден</td><td><span class="badge b-red">Критично</span></td></tr>
+      <tr><td>Выбор модели</td><td>Коды моделей, лонгрид вместо интерактива</td><td><span class="badge b-orange">Среднее</span></td></tr>
+      <tr><td>Оригинал?</td><td>Проверка поверки есть, но спрятана</td><td><span class="badge b-orange">Среднее</span></td></tr>
+      <tr><td>Чекаут</td><td>Неясные сроки доставки vs «завтра» у МП</td><td><span class="badge b-orange">Среднее</span></td></tr>
+    </table>
+  </div>
+
+  <div class="block">
+    <h2>Связь наблюдений с приоритетами</h2>
+    <table class="tbl">
+      <tr><th>Наблюдение</th><th>Приоритет фикса</th><th>Этап</th></tr>
+      <tr><td>Магазин не виден как магазин</td><td><span class="badge b-red">P0</span></td><td>Этап 1, мес 1</td></tr>
+      <tr><td>Нет интерактивного подбора</td><td><span class="badge b-orange">P1</span></td><td>Этап 2, мес 4–5</td></tr>
+      <tr><td>Доверие-аргументы спрятаны</td><td><span class="badge b-red">P0</span></td><td>Этап 1, мес 1</td></tr>
+      <tr><td>Неясная доставка</td><td><span class="badge b-orange">P1</span></td><td>Этап 1, мес 1–2</td></tr>
+    </table>
+    <div class="insight yellow"><div class="insight-label">Что валидировать в первую очередь</div>Реальная конверсия и add-to-cart из веб-аналитики; запись сессий на шаге выбора модели; 5–7 интервью с покупателями из сегментов «дочь/сын покупает родителю» и «гипертоник со стажем».</div>
+  </div>
+</section>
+
+<!-- ===== ★★ AI-КАСДЕВ ===== -->
+<section class="section" id="section-ai">
+  <div class="page-eyebrow">Первичные данные · ★★</div>
+  <h1 class="page-title">AI-Касдев</h1>
+  <p class="page-lead">Генерация первичных данных через AI, пока нет реальных интервью. Четыре режима. Все синтетические данные помечены <span class="tag-data">AI-симуляция</span>.</p>
+
+  <div class="block">
+    <h2>Режим 2 (применён): анализ отзывов — паттерны боли</h2>
+    <p style="font-size:13px;color:#64748B">Кластеризация публичных отзывов на тонометры OMRON (Megamarket, ЕАПТЕКА, Med-magazin, Otzovik).</p>
+    <table class="tbl">
+      <tr><th>Кластер боли</th><th>Оценка частоты</th><th>Цитата</th><th>Незакрытый JTBD</th></tr>
+      <tr><td>Паралич выбора модели</td><td><span class="badge b-red">высокая</span></td><td>«Долго выбирал с какой манжетой брать»</td><td>Хочу чтобы подобрали под мои параметры</td></tr>
+      <tr><td>Размер манжеты не подошёл</td><td><span class="badge b-orange">средняя</span></td><td>«Рука полная, манжета мала»</td><td>Хочу гарантированно правильный размер</td></tr>
+      <tr><td>Недоверие к запястным</td><td><span class="badge b-orange">средняя</span></td><td>«Показывает 110, плечевой 140–150»</td><td>Хочу доверять цифрам</td></tr>
+      <tr><td>Страх подделки</td><td><span class="badge b-orange">средняя</span></td><td>«Тот ли это Омрон вообще?»</td><td>Хочу гарантию оригинала</td></tr>
+      <tr><td>Питание/батарейки</td><td><span class="badge b-gray">низкая</span></td><td>«Лучше бы аккумулятор»</td><td>Хочу удобство в дороге</td></tr>
+    </table>
+    <div class="insight"><div class="insight-label">Приоритизация</div>Топ-2 боли (выбор + манжета) и страх подделки — ровно то, что закрывают AI-квиз и доверие-блоки. Это связывает Раздел 2 (JTBD) и Раздел 6 (фокусы).</div>
+  </div>
+
+  <div class="block">
+    <h2>Режим 3 (пример): проверка гипотезы «AI-квиз подбора»</h2>
+    <p style="font-size:13px;color:#64748B">Гипотеза: «Покупатели не разбираются в моделях. Если дать квиз-подбор → конверсия вырастет». <span class="tag-data">AI-симуляция</span></p>
+    <table class="tbl">
+      <tr><th>Персона</th><th>Реакция</th><th>Возражение</th><th>Что поменять</th></tr>
+      <tr><td>Тамара (гипертоник)</td><td><span class="badge b-green">✅ Примет</span></td><td>«А мне это в телефоне неудобно»</td><td>Крупные кнопки, простой язык, опция «позвонить»</td></tr>
+      <tr><td>Андрей (покупает маме)</td><td><span class="badge b-green">✅ Примет</span></td><td>«Лишь бы быстро»</td><td>Квиз за 5 вопросов, сразу 1 рекомендация</td></tr>
+      <tr><td>Марина (мама)</td><td><span class="badge b-orange">⚠️ Нейтрально</span></td><td>«Мне нужен сегодня, а не квиз»</td><td>В конце квиза — срок доставки и «в наличии»</td></tr>
+      <tr><td>Сергей (power-user)</td><td><span class="badge b-orange">⚠️ Нейтрально</span></td><td>«Я и так знаю что хочу»</td><td>Дать «эксперт-режим»: фильтры + сразу расходники</td></tr>
+      <tr><td>Алина (wellness)</td><td><span class="badge b-green">✅ Примет</span></td><td>«А бренду можно верить?»</td><td>Встроить отзывы и «почему CS Medica»</td></tr>
+    </table>
+    <div class="insight green"><div class="insight-label">Вердикт</div>Гипотеза работает для 3/5 явно и 5/5 при доработке. Главный барьер — срочность (Марина). Рекомендация: квиз обязателен, но всегда показывать наличие и срок доставки в финале.</div>
+  </div>
+</section>
+
+<!-- ===== A: AI-НОВИЧКИ ===== -->
+<section class="section" id="section-A">
+  <div class="page-eyebrow">Стратегический выбор · A</div>
+  <h1 class="page-title">AI-новички и быстро растущие</h1>
+  <p class="page-lead">В e-commerce медтехники аналоги «AI-новичков» — это не приложения, а инструменты подбора и персонализации, которые меняют правила конверсии. Уроки роста переносимы.</p>
+
+  <div class="block">
+    <h2>Кто задаёт темп</h2>
+    <table class="tbl">
+      <tr><th>Инструмент / игрок</th><th>Что делает</th><th>Метрика роста</th><th>Гэп для магазина</th></tr>
+      <tr><td>Zoovu / Digioh (AI-квизы)</td><td>Подбор товара через диалог</td><td>+100…+141% конверсии в health (2026)</td><td>Магазин может внедрить за недели</td></tr>
+      <tr><td>Algonomy / Insider (персонализация)</td><td>Рекомендации в реальном времени</td><td>До 35% выручки с рекомендаций</td><td>Нет у спец-магазинов медтехники</td></tr>
+      <tr><td>AI-консультанты (gen-AI advisors)</td><td>Отвечают на вопросы о товаре в карточке</td><td>Чат повышает конверсию до ×4</td><td>Идеально ложится на экспертный контент OMRON</td></tr>
+    </table>
+  </div>
+
+  <div class="block">
+    <h2>Формула роста — что повторяется</h2>
+    <div class="three-col">
+      <div class="insight"><div class="insight-label">1. Один сильный job</div>Снять «паралич выбора» — и всё остальное вторично.</div>
+      <div class="insight"><div class="insight-label">2. Убрать сложность</div>Никаких кодов моделей — диалог на языке пользователя.</div>
+      <div class="insight"><div class="insight-label">3. Персонализация &gt; generic</div>«Вам подойдёт эта модель», а не «вот 40 тонометров».</div>
+      <div class="insight"><div class="insight-label">4. Готовые движки</div>Не разрабатывать своё — взять Zoovu-класс и быстро итерировать.</div>
+      <div class="insight"><div class="insight-label">5. Доверие как актив</div>Экспертиза первоисточника = то, чего нет у новичков.</div>
+      <div class="insight"><div class="insight-label">6. Измерять RPV</div>Выручка на визит и A/B, а не клики по виджету.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== B: ДВА ВИЖИНА ===== -->
+<section class="section" id="section-B">
+  <div class="page-eyebrow">Стратегический выбор · B</div>
+  <h1 class="page-title">Два вижина: каким быть магазину</h1>
+  <p class="page-lead">Оба вижина жизнеспособны и опираются на реальные сильные стороны. Различаются амбицией и moat'ом.</p>
+
+  <div class="vision-grid">
+    <div class="vision-card v1">
+      <div class="vision-tag">Вижин 1 · Премиум-бутик OMRON</div>
+      <h3>Нишевый экспертный магазин</h3>
+      <p>Лучший в РФ магазин <b>именно техники OMRON/CS Medica</b>: эталонный подбор, контент, сервис, гарантия первоисточника. Аналогия: фирменный бутик бренда.</p>
+      <p><b>Для кого:</b> покупатели, которым важны оригинал и экспертиза.</p>
+      <div class="insight green" style="margin:10px 0"><div class="insight-label">Плюсы</div>Быстро, дёшево, опирается на текущие активы, не требует логистической революции.</div>
+      <div class="insight red" style="margin:10px 0"><div class="insight-label">Риски</div>Потолок роста ограничен спросом на один бренд; маркетплейсы продолжают забирать массовый трафик.</div>
+      <p style="font-size:13px"><b>Потолок чека:</b> средний · <b>Выход:</b> SEO + рекомендации врачей</p>
+    </div>
+
+    <div class="vision-card v2">
+      <div class="vision-tag">Вижин 2 · Платформа «Здоровье дома»</div>
+      <h3>Экспертная экосистема здоровья</h3>
+      <p>Не магазин одного бренда, а <b>цифровой консультант здоровья дома</b>: подбор приборов, ведение показателей, расходники по подписке, контент и сервис. OMRON/CS Medica — ядро, но ценность — в сопровождении.</p>
+      <p><b>Для кого:</b> все 5 персон + B2B (клиники, аптеки).</p>
+      <div class="insight green" style="margin:10px 0"><div class="insight-label">Плюсы</div>Высокий LTV, retention через подписку и данные, защитимый moat (экспертиза+данные+сервис), новый B2B-канал.</div>
+      <div class="insight red" style="margin:10px 0"><div class="insight-label">Риски</div>Дороже и дольше; требует AI-слоя и работы с логистикой; риск распыления.</div>
+      <p style="font-size:13px"><b>Потолок чека:</b> высокий (подписка+B2B) · <b>Moat:</b> данные здоровья + эксклюзив бренда</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Сравнение вижинов</h2>
+    <table class="tbl">
+      <tr><th>Параметр</th><th>Вижин 1 · Бутик</th><th>Вижин 2 · Платформа</th></tr>
+      <tr><td>Время до результата</td><td>Быстро (мес)</td><td>Средне (кварталы)</td></tr>
+      <tr><td>Потолок чека / LTV</td><td>Средний</td><td>Высокий</td></tr>
+      <tr><td>Retention-механизм</td><td>Повторная покупка</td><td>Подписка + данные + напоминания</td></tr>
+      <tr><td>Защита от маркетплейса</td><td>Слабее</td><td>Сильнее (данные+сервис не скопировать)</td></tr>
+      <tr><td>Moat</td><td>Эксклюзив бренда</td><td>Эксклюзив + данные + экспертиза</td></tr>
+      <tr><td>B2B-потенциал</td><td>Низкий</td><td>Высокий</td></tr>
+      <tr><td>Аналогия</td><td>Фирменный бутик</td><td>Экосистема (Apple Health-логика)</td></tr>
+    </table>
+  </div>
+
+  <div class="highlight-box">
+    <h3>Рекомендация: ставка на Вижин 2</h3>
+    <p>Платформа «Здоровье дома» — единственная позиция, которую маркетплейсы структурно не могут забрать: они продают коробки, а не сопровождают здоровье. Эксклюзивный статус + клиническая валидация + сервис дают для этого уникальный фундамент. <b>Важно:</b> Этап 1 (конверсия, доверие, доставка) одинаков для обоих вижинов — поэтому начинать можно немедленно, не дожидаясь выбора финальной амбиции, и доращивать до платформы по мере результатов.</p>
+  </div>
+</section>
+</div><!-- /main -->
+
+<script>
+function show(id, el){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('section-'+id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo(0,0);
+  if(window.innerWidth<=900) closeSidebar();
+}
+function toggleQa(el){ el.parentElement.classList.toggle('open'); }
+function toggleSidebar(){
+  const s=document.getElementById('sidebar'),o=document.getElementById('sidebarOverlay'),b=document.getElementById('burgerBtn');
+  if(s.classList.contains('open')){ closeSidebar(); }
+  else{ s.classList.add('open'); o.classList.add('visible'); b.classList.add('open'); document.body.style.overflow='hidden'; }
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('visible');
+  document.getElementById('burgerBtn').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeSidebar(); });
+(function(){
+  let startX=0; const s=document.getElementById('sidebar');
+  s.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;},{passive:true});
+  s.addEventListener('touchend',e=>{ if(e.changedTouches[0].clientX-startX<-60) closeSidebar(); },{passive:true});
+})();
+</script>
+</body>
+</html>
