@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Продуктовая стратегия — iek.ru · 18 месяцев</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F1F5F9;color:#1E293B;font-family:'Inter',system-ui,sans-serif;line-height:1.6;font-size:15px}
+a{color:#2563EB}
+.sidebar{background:#1E293B;color:#F1F5F9;width:272px;position:fixed;height:100vh;overflow-y:auto;display:flex;flex-direction:column;z-index:150}
+.sidebar-logo{font-family:'Unbounded',sans-serif;font-size:17px;font-weight:700;padding:22px 20px 8px;letter-spacing:-0.5px}
+.sidebar-logo span{color:#F59E0B}
+.sidebar-sub{font-size:11px;color:#64748B;padding:0 20px 16px;border-bottom:1px solid #334155}
+.nav-group{padding:14px 12px 4px}
+.nav-group-label{font-size:10px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:#475569;padding:0 8px 6px}
+.nav-item{padding:8px 16px;cursor:pointer;border-radius:6px;color:#CBD5E1;font-size:13.5px;transition:.15s;display:flex;gap:8px;align-items:flex-start}
+.nav-item:hover{background:#334155;color:#fff}
+.nav-item.active{background:#F59E0B;color:#1E293B;font-weight:600}
+.nav-num{font-weight:700;opacity:.6;flex-shrink:0}
+.nav-item.active .nav-num{opacity:.9}
+.nav-star{color:#F59E0B}
+.nav-item.active .nav-star{color:#1E293B}
+.sidebar-contacts{margin:auto 0 0 0;padding:16px 20px 20px;border-top:1px solid #334155}
+.sidebar-contacts-label{font-size:10px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:#475569;margin-bottom:10px}
+.sidebar-contacts-name{font-family:'Unbounded',sans-serif;font-size:12px;font-weight:600;color:#E2E8F0;margin-bottom:10px;line-height:1.4}
+.sidebar-contact-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px}
+.sidebar-contact-icon{font-size:13px;flex-shrink:0;margin-top:1px}
+.sidebar-contact-text{font-size:11.5px;color:#94A3B8;line-height:1.4}
+.sidebar-contact-text a{color:#94A3B8;text-decoration:none;transition:color .15s}
+.sidebar-contact-text a:hover{color:#F59E0B}
+.main{margin-left:272px;padding:32px 40px;max-width:1100px}
+.section{display:none}
+.section.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.page-eyebrow{font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#F59E0B;margin-bottom:6px}
+.page-title{font-family:'Unbounded',sans-serif;font-size:28px;font-weight:700;color:#0F172A;margin-bottom:8px;line-height:1.2}
+.page-lead{font-size:16px;color:#475569;margin-bottom:24px;max-width:780px}
+h2{font-family:'Unbounded',sans-serif;font-size:19px;color:#0F172A;margin:28px 0 14px}
+h3{font-size:16px;font-weight:600;color:#0F172A;margin:18px 0 10px}
+p{margin-bottom:12px}
+.block{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid #E2E8F0}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid #E2E8F0}
+.card-big{font-family:'Unbounded',sans-serif;font-size:23px;font-weight:700;color:#0F172A;margin-bottom:4px}
+.card-label{font-size:12px;color:#64748B;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.card-src{font-size:11px;color:#94A3B8;margin-top:8px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px;margin:8px 0 4px}
+.tbl th{background:#1E293B;color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:12.5px}
+.tbl td{padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#1E293B;vertical-align:top}
+.tbl tr:hover td{background:#F8FAFC}
+.badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+.b-red{background:#FEE2E2;color:#B91C1C}
+.b-orange{background:#FFEDD5;color:#C2410C}
+.b-green{background:#DCFCE7;color:#15803D}
+.b-blue{background:#DBEAFE;color:#1D4ED8}
+.b-purple{background:#EDE9FE;color:#6D28D9}
+.b-gray{background:#F1F5F9;color:#475569}
+.insight{border-left:4px solid #2563EB;background:#EFF6FF;padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0;font-size:14px}
+.insight.green{border-color:#22C55E;background:#F0FDF4}
+.insight.yellow{border-color:#F59E0B;background:#FFFBEB}
+.insight.red{border-color:#EF4444;background:#FEF2F2}
+.insight-label{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;color:#1D4ED8}
+.insight.green .insight-label{color:#15803D}
+.insight.yellow .insight-label{color:#B45309}
+.insight.red .insight-label{color:#B91C1C}
+.highlight-box{background:linear-gradient(135deg,#1E293B,#2563EB);color:#fff;padding:26px;border-radius:14px;margin:18px 0}
+.highlight-box h3{color:#fff;font-size:18px;margin-top:0}
+.highlight-box p{color:#DBEAFE;margin-bottom:0}
+.quote{background:#F8FAFC;border-left:3px solid #CBD5E1;padding:12px 16px;border-radius:0 8px 8px 0;font-style:italic;color:#334155;margin:10px 0;font-size:14px}
+.quote .meta{display:block;font-style:normal;font-size:12px;color:#94A3B8;margin-top:6px}
+.tag-data{font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;background:#FEF3C7;color:#92400E;vertical-align:middle}
+.tag-prim{font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;background:#DCFCE7;color:#166534;vertical-align:middle}
+.persona{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid #E2E8F0;margin-bottom:16px}
+.persona-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid #F1F5F9;padding-bottom:12px;margin-bottom:12px}
+.persona-name{font-family:'Unbounded',sans-serif;font-size:16px;color:#0F172A}
+.persona-role{font-size:13px;color:#64748B}
+.pain-pill{display:inline-block;background:#FEF2F2;color:#B91C1C;border:1px solid #FECACA;padding:4px 10px;border-radius:8px;font-size:12.5px;margin:3px 4px 3px 0}
+.qa{border:1px solid #E2E8F0;border-radius:10px;margin:8px 0;overflow:hidden}
+.qa-q{background:#F8FAFC;padding:12px 16px;cursor:pointer;font-weight:600;font-size:14px;display:flex;justify-content:space-between;gap:10px}
+.qa-q:hover{background:#F1F5F9}
+.qa-q .arrow{color:#2563EB;transition:.2s}
+.qa.open .qa-q .arrow{transform:rotate(180deg)}
+.qa-a{display:none;padding:14px 16px;border-top:1px solid #E2E8F0;font-size:14px}
+.qa.open .qa-a{display:block}
+.qa-diag{margin-top:10px;font-size:12.5px;color:#475569;background:#EFF6FF;border-radius:6px;padding:8px 12px}
+.phase{border-radius:12px;padding:18px 20px;margin-bottom:16px;color:#fff}
+.phase.p1{background:linear-gradient(135deg,#EF4444,#F87171)}
+.phase.p2{background:linear-gradient(135deg,#F59E0B,#FB923C)}
+.phase.p3{background:linear-gradient(135deg,#2563EB,#60A5FA)}
+.phase h3{color:#fff;margin-top:0}
+.phase-item{background:rgba(255,255,255,.14);border-radius:8px;padding:12px 14px;margin:8px 0}
+.phase-item b{color:#fff}
+.phase-kpi{font-size:12.5px;color:rgba(255,255,255,.92);margin-top:4px}
+.vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.vision-card{border-radius:12px;padding:22px;border:2px solid #E2E8F0;background:#fff}
+.vision-card.v1{border-color:#2563EB}
+.vision-card.v2{border-color:#F59E0B}
+.vision-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.v1 .vision-tag{color:#2563EB}
+.v2 .vision-tag{color:#B45309}
+.steps-flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.step{background:#EFF6FF;border:1px solid #BFDBFE;border-radius:8px;padding:8px 12px;font-size:12.5px;font-weight:600;color:#1D4ED8}
+.step-arr{color:#94A3B8;font-weight:700}
+.src-cols{columns:2;column-gap:24px;font-size:12.5px;color:#475569}
+.src-cols li{margin-bottom:6px;break-inside:avoid}
+ul.clean{list-style:none}
+ul.clean li{padding:4px 0 4px 22px;position:relative}
+ul.clean li:before{content:"▸";position:absolute;left:4px;color:#2563EB}
+.mobile-topbar{display:none;position:fixed;top:0;left:0;right:0;height:56px;background:#0F172A;z-index:200;align-items:center;justify-content:space-between;padding:0 16px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.mobile-logo{font-family:'Unbounded',sans-serif;font-size:15px;font-weight:700;color:#F8FAFC;letter-spacing:-0.5px}
+.mobile-logo span{color:#F59E0B}
+.burger-btn{width:40px;height:40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;border-radius:8px;border:none;background:transparent;padding:0;-webkit-tap-highlight-color:transparent}
+.burger-line{width:22px;height:2px;background:#F8FAFC;border-radius:2px;transition:all .25s ease;transform-origin:center}
+.burger-btn.open .burger-line:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger-btn.open .burger-line:nth-child(2){opacity:0;transform:scaleX(0)}
+.burger-btn.open .burger-line:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:149;opacity:0;transition:opacity .25s ease}
+.sidebar-overlay.visible{display:block;opacity:1}
+@media(max-width:900px){
+.mobile-topbar{display:flex}
+.sidebar{transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);top:0;height:100vh}
+.sidebar.open{transform:translateX(0)}
+.main{margin-left:0;padding:72px 16px 24px;max-width:100%}
+.vision-grid,.two-col,.three-col{grid-template-columns:1fr}
+.cards{grid-template-columns:1fr 1fr}
+.page-title{font-size:22px}
+.block{padding:16px}
+.tbl{font-size:12px}
+.tbl th,.tbl td{padding:8px 9px}
+.src-cols{columns:1}
+}
+@media(max-width:480px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="mobile-topbar">
+  <div class="mobile-logo">IEK<span>·strategy</span></div>
+  <button class="burger-btn" id="burgerBtn" onclick="toggleSidebar()" aria-label="Меню">
+    <span class="burger-line"></span><span class="burger-line"></span><span class="burger-line"></span>
+  </button>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo">IEK<span> GROUP</span></div>
+  <div class="sidebar-sub">Продуктовая стратегия портала · iek.ru · спрос/лиды/бренд · горизонт 18 мес</div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Контекст</div>
+    <div class="nav-item active" onclick="show('1',this)"><span class="nav-num">1</span> Рынок и тренды</div>
+    <div class="nav-item" onclick="show('2',this)"><span class="nav-num">2</span> JTBD и аудитории</div>
+    <div class="nav-item" onclick="show('3',this)"><span class="nav-num">3</span> Конкуренты</div>
+    <div class="nav-item" onclick="show('4',this)"><span class="nav-num">4</span> Портал сегодня</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Стратегия</div>
+    <div class="nav-item" onclick="show('5',this)"><span class="nav-num">5</span> Видение и ставка</div>
+    <div class="nav-item" onclick="show('6',this)"><span class="nav-num">6</span> Стратегические фокусы</div>
+    <div class="nav-item" onclick="show('7',this)"><span class="nav-num">7</span> Дорожная карта 18 мес</div>
+    <div class="nav-item" onclick="show('8',this)"><span class="nav-num">8</span> Метрики и успех</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Первичные данные</div>
+    <div class="nav-item" onclick="show('cd',this)"><span class="nav-star">★</span> Касдев и наблюдения</div>
+    <div class="nav-item" onclick="show('ai',this)"><span class="nav-star">★★</span> AI-Касдев</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Стратегический выбор</div>
+    <div class="nav-item" onclick="show('A',this)"><span class="nav-num">A</span> AI-сдвиг и новички</div>
+    <div class="nav-item" onclick="show('B',this)"><span class="nav-num">B</span> Два вижина</div>
+  </div>
+
+  <div class="sidebar-contacts">
+    <div class="sidebar-contacts-label">Автор стратегии</div>
+    <div class="sidebar-contacts-name">Васильев Станислав Дмитриевич</div>
+    <div class="sidebar-contact-row"><div class="sidebar-contact-icon">📞</div>
+      <div class="sidebar-contact-text"><a href="tel:+79933576961">+7 (993) 357-69-61</a><br><span style="font-size:10px;color:#475569">WhatsApp · Telegram</span></div></div>
+    <div class="sidebar-contact-row"><div class="sidebar-contact-icon">✈️</div>
+      <div class="sidebar-contact-text"><a href="https://t.me/setupsite" target="_blank">t.me/setupsite</a></div></div>
+    <div class="sidebar-contact-row"><div class="sidebar-contact-icon">✉️</div>
+      <div class="sidebar-contact-text"><a href="mailto:stanislav.vasiliev.job@gmail.com">stanislav.vasiliev.job@gmail.com</a></div></div>
+    <div class="sidebar-contact-row"><div class="sidebar-contact-icon">📢</div>
+      <div class="sidebar-contact-text"><a href="https://t.me/systemoverads" target="_blank">@systemoverads</a><br><span style="font-size:10px;color:#475569">Управляемый рост</span></div></div>
+  </div>
+</nav>
+
+<div class="main">
+<!-- РАЗДЕЛ 1 -->
+<section class="section active" id="section-1">
+  <div class="page-eyebrow">Контекст · 01</div>
+  <h1 class="page-title">Рынок и тренды</h1>
+  <p class="page-lead">IEK — лидер растущего рынка, который выигрывает от импортозамещения. Но именно в горизонте 18 месяцев меняется сам способ, которым B2B-аудитория ищет оборудование: трафик уходит к AI-агентам, а конкуренты уже застолбили цифровые сервисы для проектировщиков. Окно для портала — стать инфраструктурой выбора, а не витриной каталога.</p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-label">Выручка IEK GROUP</div>
+      <div class="card-big">₽51,4 млрд</div>
+      <div>2024 г., прибыль +12%. В 2025 выручка +9,4%, динамика опережает рынок.</div>
+      <div class="card-src">eprussia.ru, апр 2026; sergeytereshkin.ru</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Позиция на рынке</div>
+      <div class="card-big">№1</div>
+      <div>Лидер по выручке на рынке электротехнического и светотехнического оборудования (2023), №2 в телеком.</div>
+      <div class="card-src">исследование Б1, CNews 2025</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Главный драйвер</div>
+      <div class="card-big">Импорто-<br>замещение</div>
+      <div>Уход европейских вендоров + локализация (интеграция активов Legrand) перераспределяют рынок в пользу РФ.</div>
+      <div class="card-src">eprussia.ru; indpages.ru 2025</div>
+    </div>
+    <div class="card">
+      <div class="card-label">⚠️ Сигнал-сдвиг</div>
+      <div class="card-big">−34%</div>
+      <div>Трафик, который B2B-сайты потеряли за 2024–2025: AI-агенты «забирают» запросы на себя.</div>
+      <div class="card-src">тренд-репорт СберМаркетинга, 2026</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Три тренда, определяющие 18 месяцев</h2>
+    <table class="tbl">
+      <tr><th>Тренд</th><th>Что происходит</th><th>Что значит для портала iek.ru</th></tr>
+      <tr><td><b>Импортозамещение</b></td><td>Борьба за долю ушедших вендоров; рост ассортимента у РФ-брендов; премиализация (ARMAT, FORTE PIANO)</td><td>Спрос есть — задача портала превратить его в управляемые лиды и спецификации</td></tr>
+      <tr><td><b>AI-сдвиг в поиске</b></td><td>Покупатель-инженер всё чаще спрашивает не Яндекс, а AI-ассистента; B2B-сайты теряют прямой трафик</td><td>Каталог нужно перестраивать под машинное чтение + собственный AI-подбор</td></tr>
+      <tr><td><b>Цифровизация выбора</b></td><td>Конкуренты (EKF, DKC) уже дали проектировщикам ЛК, конфигураторы, BIM, обучение</td><td>Догнать и обогнать в инструментах подбора и сопровождения проекта</td></tr>
+    </table>
+    <div class="insight yellow">
+      <div class="insight-label">Ключевой вывод</div>
+      Лидерство в продукте у IEK есть. Уязвимость — в <b>цифровом слое привлечения и удержания спроса</b>. Портал должен перестать быть «сайтом о компании с каталогом» и стать <b>рабочим инструментом инженера и закупщика</b>, который ведёт от задачи к спецификации и к дилеру.
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Сегменты спроса (по данным IEK)</h2>
+    <p>Наибольший спрос на продукцию IEK — в <b>коммерческом строительстве, промышленности и инфраструктурных проектах</b>. Это определяет приоритет аудиторий портала.</p>
+    <table class="tbl">
+      <tr><th>Сегмент B2B</th><th>Роль в воронке</th><th>Что нужно от портала</th></tr>
+      <tr><td>Проектировщики / инженеры</td><td>Закладывают бренд в проект (спецификация)</td><td>BIM/CAD, конфигураторы, ТТХ, типовые решения</td></tr>
+      <tr><td>Электрики / монтажники</td><td>Выбирают и рекомендуют на объекте</td><td>Подбор аналога, инструкции, обучение, лояльность</td></tr>
+      <tr><td>Дистрибьюторы / партнёры</td><td>Продают и держат сток</td><td>Бизнес-платформа, прайс, наличие, ЛК</td></tr>
+      <tr><td>Закупщики / снабженцы</td><td>Формируют заказ под смету</td><td>Опросный лист, спецификация, прайс, аналоги</td></tr>
+    </table>
+    <div class="insight">
+      <div class="insight-label">Инсайт по поведению (B2B-индустрия)</div>
+      Инженеры и снабженцы ищут с рабочего ПК (мобильный трафик в нише почти мёртв), им нужны <b>ТТХ на первом экране и кнопка «скачать опросный лист / спецификацию»</b>, а не маркетинговые офферы. Это диктует дизайн ключевых страниц портала.
+    </div>
+  </div>
+</section>
+
+<!-- РАЗДЕЛ 2 -->
+<section class="section" id="section-2">
+  <div class="page-eyebrow">Контекст · 02</div>
+  <h1 class="page-title">JTBD и аудитории</h1>
+  <p class="page-lead">B2B-покупатель не «заходит на сайт производителя». Он решает рабочую задачу под дедлайн проекта или закупки — и портал должен снять трение именно в этой задаче, иначе инженер уйдёт к конкуренту с лучшим конфигуратором.</p>
+
+  <div class="block">
+    <h2>Эволюция главного запроса</h2>
+    <table class="tbl">
+      <tr><th>Период</th><th>Что хотел B2B-покупатель</th><th>Как закрывал</th></tr>
+      <tr><td>до 2022</td><td>«Заложить в проект проверенный европейский бренд»</td><td>Schneider/ABB/Legrand по привычке</td></tr>
+      <tr><td>2022–2024</td><td>«Срочно найти рабочий РФ-аналог ушедшего вендора»</td><td>Поиск аналога вручную, звонок менеджеру</td></tr>
+      <tr><td>2025–2027</td><td><b>«Быстро подобрать комплект под задачу, получить спецификацию и быть уверенным в наличии и сроке»</b></td><td>Плохо закрыто: разрозненные конфигураторы, нет сквозного пути «задача → спецификация → дилер»</td></tr>
+    </table>
+    <div class="insight green">
+      <div class="insight-label">Незакрытый job = окно</div>
+      Запрос 2025–2027 — <b>скорость и уверенность при подборе комплекта под проект</b>. Кто даст инженеру самый быстрый путь от задачи к готовой спецификации, тот попадёт в проект — а вместе с проектом «прилипает» бренд на годы эксплуатации.
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>5 ключевых Jobs-to-be-Done</h2>
+    <table class="tbl">
+      <tr><th>JTBD</th><th>Чьё</th><th>Закрыто сегодня</th></tr>
+      <tr><td><b>1.</b> «Когда я проектирую объект, я хочу быстро подобрать комплект оборудования и выгрузить спецификацию/BIM, чтобы не собирать вручную и не ошибиться»</td><td>Проектировщик</td><td><span class="badge b-orange">частично</span></td></tr>
+      <tr><td><b>2.</b> «Когда ушёл привычный бренд, я хочу мгновенно найти точный РФ-аналог по параметрам, чтобы заменить в проекте без перепроектирования»</td><td>Проектировщик, снабженец</td><td><span class="badge b-red">слабо</span></td></tr>
+      <tr><td><b>3.</b> «Когда я монтирую на объекте, я хочу быстро понять как подключить и где купить рядом, чтобы не простаивать»</td><td>Электрик</td><td><span class="badge b-orange">частично</span></td></tr>
+      <tr><td><b>4.</b> «Когда я закупаю под смету, я хочу собрать заказ, увидеть наличие/цену и отправить дилеру, чтобы уложиться в срок и бюджет»</td><td>Закупщик, дистрибьютор</td><td><span class="badge b-orange">частично (BP)</span></td></tr>
+      <tr><td><b>5.</b> «Когда я выбираю поставщика на годы, я хочу доверять качеству и сервису, чтобы не рисковать репутацией на объекте»</td><td>Все</td><td><span class="badge b-green">сильно (бренд)</span></td></tr>
+    </table>
+  </div>
+
+  <h2>5 персон B2B</h2>
+  <div class="persona">
+    <div class="persona-head">
+      <div><div class="persona-name">Дмитрий, 41</div><div class="persona-role">Инженер-проектировщик ЭОМ · проектное бюро, Екатеринбург</div></div>
+      <span class="badge b-blue">Закладывает бренд</span>
+    </div>
+    <p><b>Контекст:</b> проектирует электроснабжение коммерческих объектов. От него зависит, какой бренд попадёт в спецификацию. Работает в Revit/AutoCAD, ценит точные BIM/CAD-модели и нормативную чистоту.</p>
+    <p style="font-size:13px;color:#64748B"><b>Данные:</b> рабочий ПК, два монитора · мобильным для работы не пользуется · дедлайны по проекту</p>
+    <div>
+      <span class="pain-pill">Нет полной BIM-библиотеки под весь комплект</span>
+      <span class="pain-pill">Конфигураторы разрознены по брендам</span>
+      <span class="pain-pill">Долго собирать спецификацию вручную</span>
+    </div>
+    <div class="quote">«Мне нужны ТТХ на первом экране и выгрузка спецификации. У DKC есть RAM cube и плагин для Revit — я туда и иду, даже если IEK не хуже по железу».<span class="meta">— собирательная цитата по форумам проектировщиков <span class="tag-data">AI-симуляция на основе публичных данных</span></span></div>
+    <div><b>JTBD:</b> «Когда я проектирую объект, я хочу собрать комплект и выгрузить спецификацию+BIM за один заход, чтобы попасть в срок и не перепроверять вручную».</div>
+  </div>
+
+  <div class="persona">
+    <div class="persona-head">
+      <div><div class="persona-name">Сергей, 47</div><div class="persona-role">Главный энергетик завода · промышленность, Татарстан</div></div>
+      <span class="badge b-purple">Замена вендора</span>
+    </div>
+    <p><b>Контекст:</b> после ухода Schneider/ABB ищет РФ-аналоги под действующие проекты и ремонты. Нужна точная замена по параметрам, чтобы не перепроектировать щит.</p>
+    <p style="font-size:13px;color:#64748B"><b>Данные:</b> рабочий ПК · решает по ТТХ и наличию · длинный цикл согласования</p>
+    <div>
+      <span class="pain-pill">Нет инструмента подбора аналога «было → стало»</span>
+      <span class="pain-pill">Боится несовместимости по габаритам/характеристикам</span>
+      <span class="pain-pill">Нужны сертификаты и подтверждение качества</span>
+    </div>
+    <div class="quote">«Мне бы вбить артикул ушедшего бренда и получить точный аналог IEK с таблицей соответствия. Сейчас это часы переписки с менеджером».<span class="meta">— собирательный инсайт <span class="tag-data">AI-симуляция</span></span></div>
+    <div><b>JTBD:</b> «Когда ушёл привычный бренд, я хочу найти точный аналог по параметрам с таблицей соответствия, чтобы заменить без перепроектирования».</div>
+  </div>
+
+  <div class="persona">
+    <div class="persona-head">
+      <div><div class="persona-name">Андрей, 34</div><div class="persona-role">Электромонтажник / бригадир · подряд, Краснодар</div></div>
+      <span class="badge b-green">Выбор на объекте</span>
+    </div>
+    <p><b>Контекст:</b> монтирует на объекте, часто решает «что купить» прямо в процессе. Смотрит обзоры и инструкции, ценит обучение и понятные видео. Лоялен бренду, который «не подводит на объекте».</p>
+    <p style="font-size:13px;color:#64748B"><b>Данные:</b> смартфон в поле + ПК дома · импульсные решения · смотрит YouTube/Дзен</p>
+    <div>
+      <span class="pain-pill">Нужно быстро понять как подключить</span>
+      <span class="pain-pill">Где купить рядом и сейчас</span>
+      <span class="pain-pill">Лояльность не оцифрована (нет программы)</span>
+    </div>
+    <div class="quote">«IEK Univer смотрю иногда. Но хочется чтобы за обучение и закупки капал бонус — как у конкурентов программа для монтажников».<span class="meta">— собирательный инсайт <span class="tag-data">AI-симуляция</span></span></div>
+    <div><b>JTBD:</b> «Когда я на объекте, я хочу быстро понять монтаж и где купить рядом, чтобы не простаивать, и чтобы лояльность вознаграждалась».</div>
+  </div>
+
+  <div class="persona">
+    <div class="persona-head">
+      <div><div class="persona-name">Елена, 38</div><div class="persona-role">Снабженец / закупщик · строительная компания, Москва</div></div>
+      <span class="badge b-blue">Сборка заказа</span>
+    </div>
+    <p><b>Контекст:</b> собирает заказ под смету проекта, сверяет наличие и цену, отправляет дилеру. Работает по спецификации от проектировщика. Цель — уложиться в срок и бюджет без срывов поставки.</p>
+    <p style="font-size:13px;color:#64748B"><b>Данные:</b> рабочий ПК, Excel, 1С · решает по цене+наличию+сроку</p>
+    <div>
+      <span class="pain-pill">Нет единого пути «спецификация → заказ → дилер»</span>
+      <span class="pain-pill">Неясно наличие и срок поставки</span>
+      <span class="pain-pill">Аналоги под бюджет ищет вручную</span>
+    </div>
+    <div class="quote">«Мне нужно загрузить спецификацию и сразу увидеть наличие, цену и ближайшего дилера. Бизнес-платформа есть, но не все ей пользуются».<span class="meta">— собирательный инсайт <span class="tag-data">AI-симуляция</span></span></div>
+    <div><b>JTBD:</b> «Когда я закупаю под смету, я хочу собрать заказ из спецификации и сразу увидеть наличие/цену/дилера, чтобы уложиться в срок и бюджет».</div>
+  </div>
+
+  <div class="persona">
+    <div class="persona-head">
+      <div><div class="persona-name">Игорь, 50</div><div class="persona-role">Владелец электротехнической дистрибуции · регион</div></div>
+      <span class="badge b-purple">Партнёр-дилер</span>
+    </div>
+    <p><b>Контекст:</b> держит сток и продаёт оборудование. Хочет понятные условия, маркетинговую поддержку, инструменты для своих менеджеров и расширение комплексного предложения для клиентов.</p>
+    <p style="font-size:13px;color:#64748B"><b>Данные:</b> ПК, ЛК партнёра, 1С-интеграция · оценивает маржу и оборачиваемость</p>
+    <div>
+      <span class="pain-pill">Нужен удобный B2B-кабинет и API/прайс</span>
+      <span class="pain-pill">Маркетинговая поддержка и контент</span>
+      <span class="pain-pill">Готовые комплексные решения для клиентов</span>
+    </div>
+    <div class="quote">«Чем удобнее IEK делает мне работу с заказами и контентом, тем больше их доля в моём стоке. Бизнес-платформа — шаг в нужную сторону».<span class="meta">— собирательный инсайт <span class="tag-data">AI-симуляция</span></span></div>
+    <div><b>JTBD:</b> «Когда я продаю оборудование, я хочу удобный кабинет, поддержку и комплексные решения, чтобы продавать больше и держать меньше издержек».</div>
+  </div>
+
+  <div class="block">
+    <h2>Симулятор интервью — Дмитрий (проектировщик)</h2>
+    <p style="font-size:13px;color:#64748B">Нажмите на вопрос, чтобы раскрыть ответ персоны и диагноз. <span class="tag-data">AI-симуляция на основе публичных данных отрасли</span></p>
+
+    <div class="qa"><div class="qa-q" onclick="toggleQa(this)"><span>1. Расскажите, как обычно проходит ваш день, когда вы подбираете оборудование под проект?</span><span class="arrow">▾</span></div>
+      <div class="qa-a">«Открываю несколько сайтов производителей, ищу ТТХ, качаю BIM-модели где они есть, собираю спецификацию в Excel. Половина времени — свести разрозненное в одно».
+      <div class="qa-diag"><b>Диагноз:</b> рабочий процесс фрагментирован между вкладками. <b>Job:</b> собрать комплект и спецификацию, а не «посмотреть каталог».</div></div></div>
+
+    <div class="qa"><div class="qa-q" onclick="toggleQa(this)"><span>2. Что в этом процессе бесит сильнее всего?</span><span class="arrow">▾</span></div>
+      <div class="qa-a">«Когда у производителя нет BIM-модели или конфигуратора — приходится рисовать вручную или брать того, у кого есть. У DKC RAM cube и плагин Revit, у EKF MasterTray — это реально экономит часы».
+      <div class="qa-diag"><b>Диагноз (топ-боль):</b> отсутствие сквозного конфигуратора/BIM = прямой проигрыш конкуренту на этапе спецификации. <b>Это и есть точка потери проекта.</b></div></div></div>
+
+    <div class="qa"><div class="qa-q" onclick="toggleQa(this)"><span>3. Что вы сейчас используете и почему именно это?</span><span class="arrow">▾</span></div>
+      <div class="qa-a">«У IEK есть калькуляторы FORMAT и хорошие типовые решения. Но они не покрывают весь комплект, и нет единого ЛК где мой проект живёт целиком».
+      <div class="qa-diag"><b>Диагноз:</b> у IEK есть кирпичи (FORMAT-калькулятор, типовые НКУ, BIM&CAD), но нет единого сквозного сценария. <b>Инсайт:</b> собрать имеющееся в один путь.</div></div></div>
+
+    <div class="qa"><div class="qa-q" onclick="toggleQa(this)"><span>4. Если бы всё работало идеально — как бы это выглядело?</span><span class="arrow">▾</span></div>
+      <div class="qa-a">«Личный кабинет, куда я гружу задачу или старый проект, система подбирает комплект IEK, отдаёт спецификацию, BIM и сразу показывает наличие у дилера. И чтобы аналог ушедшего бренда подбирался автоматом».
+      <div class="qa-diag"><b>Диагноз:</b> дословное описание целевого продукта — ЛК проектировщика + AI-подбор + аналоги + связка с дилером. <b>Желаемое = дорожная карта.</b></div></div></div>
+
+    <div class="qa"><div class="qa-q" onclick="toggleQa(this)"><span>5. Сколько готовы «платить» (временем/лояльностью) за такой инструмент?</span><span class="arrow">▾</span></div>
+      <div class="qa-a">«Если инструмент экономит мне день на проекте — я буду закладывать IEK по умолчанию. Удобство конфигуратора напрямую влияет на то, чей бренд окажется в спецификации».
+      <div class="qa-diag"><b>Диагноз:</b> валюта здесь не деньги, а <b>попадание в спецификацию</b>. Удобство портала конвертируется в долю в проектах = в выручку на годы.</div></div></div>
+  </div>
+  <div class="block">
+    <h2>Инсайты аудитории (сводно)</h2>
+    <div class="two-col">
+      <div>
+        <div class="quote">«Инженеру по барабану вылизанный UX — нужны ТТХ на первом экране и кнопка "скачать опросный лист"».<span class="meta">— vc.ru, кейс B2B-лидов, апр 2026</span></div>
+        <div class="quote">«Мобильный трафик мёртв — инженер ищет с рабочего ПК».<span class="meta">— vc.ru, апр 2026</span></div>
+      </div>
+      <div>
+        <div class="quote">«Первые целевые обращения в сложной B2B-нише приходят через 4–6 месяцев SEO».<span class="meta">— vc.ru SEO, апр 2026</span></div>
+        <div class="quote">«Лиды на BIM начинаются с образовательного контента: инженер ищет решение боли, а не услугу».<span class="meta">— veresking.com, дек 2025</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- РАЗДЕЛ 3 -->
+<section class="section" id="section-3">
+  <div class="page-eyebrow">Контекст · 03</div>
+  <h1 class="page-title">Конкуренты</h1>
+  <p class="page-lead">По продукту IEK — лидер. Но конкуренция за инженера идёт не на полке, а в цифровых инструментах подбора. Здесь EKF и DKC уже застолбили территорию, которую IEK по железу заслуживает занять.</p>
+
+  <div class="block">
+    <h2>Карта конкуренции (РФ-производители)</h2>
+    <table class="tbl">
+      <tr><th>Игрок</th><th>Масштаб</th><th>Цифровые сервисы для аудитории</th><th>Позиция</th></tr>
+      <tr><td><b>IEK GROUP</b></td><td>₽51,4 млрд (2024), №1 по выручке</td><td>FORMAT-калькулятор, типовые НКУ/АСИП, BIM&CAD, Univer, Бизнес-платформа, API</td><td><span class="badge b-green">Лидер по продукту</span></td></tr>
+      <tr><td><b>EKF</b></td><td>₽21,7 млрд (2024, +31%)</td><td>ЛК проектировщика (загрузка проекта→смета, статус), MasterTray, PRO Design, EKF Универ, BIM/dwg</td><td><span class="badge b-orange">Догоняет, силён в digital</span></td></tr>
+      <tr><td><b>DKC</b></td><td>Крупный, силён в кабеленесущих</td><td>RAM cube (конфигуратор НКУ), плагин Revit, BIM-модели, видеообучение</td><td><span class="badge b-orange">Сильнейшие конфигураторы</span></td></tr>
+      <tr><td><b>Systeme Electric / др.</b></td><td>Наследник Schneider в РФ</td><td>Унаследованная инженерная экосистема, узнаваемость</td><td><span class="badge b-blue">Бренд-наследие</span></td></tr>
+    </table>
+    <div style="font-size:11px;color:#94A3B8;margin-top:8px">Источники: eprussia.ru, sergeytereshkin.ru (выручка); dkc.ru, ekfgroup.com (сервисы), 2025–2026.</div>
+  </div>
+
+  <div class="block">
+    <h2>Бенчмарк цифровых сервисов</h2>
+    <table class="tbl">
+      <tr><th>Возможность</th><th>IEK</th><th>EKF</th><th>DKC</th></tr>
+      <tr><td>Калькуляторы/конфигураторы</td><td>⚠️ FORMAT и точечные</td><td>✅ MasterTray, MasterCost</td><td>✅ RAM cube (сильно)</td></tr>
+      <tr><td>ЛК проектировщика (проект→смета)</td><td>❌ Нет единого</td><td>✅ Есть, со статусом заявки</td><td>⚠️ Частично</td></tr>
+      <tr><td>BIM/CAD библиотека</td><td>✅ BIM&CAD есть</td><td>✅ Есть</td><td>✅ Есть + плагин Revit</td></tr>
+      <tr><td>Обучение/Универ</td><td>✅ Univer (15k польз.)</td><td>✅ EKF Универ</td><td>⚠️ Видео</td></tr>
+      <tr><td>Подбор аналога ушедшего бренда</td><td>❌ Нет инструмента</td><td>❌ Нет</td><td>❌ Нет</td></tr>
+      <tr><td>AI-подбор / ассистент</td><td>❌ Нет</td><td>❌ Нет</td><td>❌ Нет</td></tr>
+    </table>
+    <div class="insight green">
+      <div class="insight-label">Где свободное поле (голубой океан)</div>
+      Две клетки пусты у всех: <b>автоматический подбор РФ-аналога ушедшего бренда</b> и <b>AI-ассистент инженера</b>. Кто займёт первым — заберёт проектировщиков и снабженцев на этапе, который определяет бренд в спецификации. Это и есть стратегическая ставка для горизонта 18 мес.
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Матрица JTBD × Конкурент</h2>
+    <table class="tbl">
+      <tr><th>JTBD</th><th>IEK сейчас</th><th>EKF</th><th>DKC</th><th>Потенциал IEK</th></tr>
+      <tr><td>1. Подбор комплекта + спецификация/BIM</td><td>⚠️</td><td>✅</td><td>✅</td><td>✅ (собрать в один ЛК)</td></tr>
+      <tr><td>2. Аналог ушедшего бренда</td><td>❌</td><td>❌</td><td>❌</td><td>✅✅ (первым на рынке)</td></tr>
+      <tr><td>3. Монтаж + где купить рядом</td><td>⚠️</td><td>⚠️</td><td>⚠️</td><td>✅ (Univer+дилеры+лояльность)</td></tr>
+      <tr><td>4. Заказ из спецификации → дилер</td><td>⚠️ BP</td><td>✅</td><td>⚠️</td><td>✅ (достроить BP)</td></tr>
+      <tr><td>5. Доверие к поставщику</td><td>✅</td><td>⚠️</td><td>✅</td><td>✅ (актив бренда №1)</td></tr>
+    </table>
+    <div class="insight">
+      <div class="insight-label">Чтение матрицы</div>
+      IEK не уступает по продукту и бренду, но <b>проигрывает по сквозному цифровому пути инженера</b> (JTBD 1–4). Стратегия: собрать имеющиеся «кирпичи» (FORMAT, BIM&CAD, типовые решения, BP, Univer) в единый сценарий и занять два пустых поля раньше конкурентов.
+    </div>
+  </div>
+</section>
+
+<!-- РАЗДЕЛ 4 -->
+<section class="section" id="section-4">
+  <div class="page-eyebrow">Контекст · 04</div>
+  <h1 class="page-title">Портал сегодня (as-is)</h1>
+  <p class="page-lead">iek.ru — богатый, профессионально наполненный портал с сильным брендом и большим набором инструментов. Главная проблема — эти инструменты разрознены и не собраны в сквозной путь под задачу конкретной аудитории.</p>
+
+  <div class="block">
+    <h2>Сильные стороны</h2>
+    <ul class="clean">
+      <li><b>Бренд и доказательства:</b> №1 по выручке (Б1), 30k+ позиций, реализованные проекты (ЦОД, Россети, газохимия, аэропорты), репутация качества.</li>
+      <li><b>Холдинг брендов:</b> IEK, ONI, ITK, NEOSUN, LEDEL, FEREKS, MasterSCADA, Contactor — покрытие от модульки до промавтоматизации и СЭС.</li>
+      <li><b>Цифровые активы уже есть:</b> FORMAT-калькулятор, BIM&CAD, конфигуратор данных, API/инфобаза, типовые решения НКУ/АСИП, Бизнес-платформа, Univer (15k пользователей, 75k курсов).</li>
+      <li><b>Контент-машина:</b> регулярные вебинары, новинки, блог, СМИ — мощный поток для SEO и лидогенерации.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h2>Касдев — наблюдения по порталу <span class="tag-prim">требует валидации</span></h2>
+    <p style="font-size:13px;color:#64748B">Гипотезы из анализа сайта; уточняются веб-аналитикой и интервью с проектировщиками/закупщиками.</p>
+    <table class="tbl">
+      <tr><th>Зона</th><th>Наблюдение</th><th>Диагноз</th></tr>
+      <tr><td>Навигация задачи</td><td>Инструменты (FORMAT, BIM&CAD, типовые решения, BP, Univer) разнесены по разным разделам и поддоменам</td><td>Нет сценария «от задачи к спецификации» — инженер собирает путь сам</td></tr>
+      <tr><td>Подбор</td><td>Калькуляторы есть, но не покрывают весь комплект и не связаны в один ЛК</td><td>Проектировщик уходит туда, где конфигуратор полнее</td></tr>
+      <tr><td>Аналоги</td><td>Нет инструмента «артикул ушедшего бренда → аналог IEK»</td><td>Теряется горячий импортозамещающий спрос</td></tr>
+      <tr><td>AI-готовность</td><td>Каталог не оптимизирован под машинное чтение / AI-агентов</td><td>Риск потери трафика по тренду −34%</td></tr>
+      <tr><td>Связь с продажей</td><td>Путь «портал → лид/спецификация → дилер» не сквозной и слабо измеряем</td><td>Трудно доказать вклад портала в выручку</td></tr>
+    </table>
+  </div>
+
+  <div class="block">
+    <h2>Аудит воронки портала (B2B-бенчмарк)</h2>
+    <p>Вместо paywall/trial-аудита приложения — аудит конверсии B2B-портала в целевое действие (лид, спецификация, регистрация в BP).</p>
+    <table class="tbl">
+      <tr><th>Механика</th><th>Бенчмарк B2B</th><th>Гипотеза по iek.ru</th><th>Что сделать</th></tr>
+      <tr><td>SEO как канал лидов</td><td>Контекст+SEO дают 40–60% лидов в B2B-проектировании</td><td>Контент есть, но не заточен под воронку TOFU→BOFU</td><td>Перестроить контент в воронку под JTBD</td></tr>
+      <tr><td>Конверсия в лид/спецификацию</td><td>Лид-магниты (опросный лист, гайд+подбор) — лучшая конверсия</td><td>Целевые действия разрознены</td><td>Единый CTA «получить спецификацию/подбор»</td></tr>
+      <tr><td>Время до первого лида (SEO)</td><td>4–6 мес в сложной нише</td><td>—</td><td>Закладывать в план реалистичный срок</td></tr>
+      <tr><td>Сквозная аналитика</td><td>Ключевое: связать канал → лид → договор</td><td>Слабое место (как и у большинства)</td><td>Внедрить сквозную аналитику портал→CRM→дилер</td></tr>
+      <tr><td>AI-оптимизация каталога</td><td>Новый тренд 2026: фиды/FAQ под машинное чтение</td><td>Отсутствует</td><td>Структурировать каталог под AI-агентов</td></tr>
+    </table>
+    <div style="font-size:11px;color:#94A3B8;margin-top:8px">Источники: vc.ru (B2B-лиды/SEO, 2026); veresking.com (BIM-лиды, 2025); sostav.ru (B2B digital 2026); СберМаркетинг (AI-трафик, 2026).</div>
+  </div>
+</section>
+<!-- РАЗДЕЛ 5 -->
+<section class="section" id="section-5">
+  <div class="page-eyebrow">Стратегия · 05</div>
+  <h1 class="page-title">Видение и ставка</h1>
+
+  <div class="highlight-box">
+    <h3>Главный тезис</h3>
+    <p>iek.ru перестаёт быть «корпоративным сайтом с каталогом» и становится <b>рабочей платформой инженера и закупщика</b>: единым местом, где задача проекта за один заход превращается в подобранный комплект, спецификацию, BIM и заказ у дилера. IEF выигрывает не полкой, а тем, что встраивается в рабочий процесс аудитории на этапе, где определяется бренд в проекте.</p>
+  </div>
+
+  <div class="block">
+    <h2>Концепция пути пользователя</h2>
+    <div class="steps-flow">
+      <span class="step">Задача проекта / замена вендора</span><span class="step-arr">→</span>
+      <span class="step">AI-подбор + конфигуратор</span><span class="step-arr">→</span>
+      <span class="step">Спецификация + BIM</span><span class="step-arr">→</span>
+      <span class="step">Наличие / цена / дилер</span><span class="step-arr">→</span>
+      <span class="step">Заказ + обучение + лояльность</span><span class="step-arr">→</span>
+      <span class="step">Бренд в проекте на годы</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Почему это работает — доказательства</h2>
+    <ul class="clean">
+      <li>Рынок растёт на импортозамещении, IEK опережает рынок (+9,4% в 2025) — спрос есть, надо забрать его в управляемый цифровой канал.</li>
+      <li>Контекст+SEO дают <b>40–60%</b> B2B-лидов в проектировании — у IEK уже есть контент-машина, её надо заточить под воронку.</li>
+      <li>Удобство конфигуратора напрямую определяет, <b>чей бренд попадёт в спецификацию</b> (инсайт интервью).</li>
+      <li>Два пустых поля у всех конкурентов — <b>подбор аналога</b> и <b>AI-ассистент</b> — окно для захвата лидерства в digital.</li>
+      <li>Тренд −34% трафика к AI-агентам делает <b>AI-готовность каталога</b> вопросом удержания трафика, а не роскошью.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h2>Дифференциатор vs конкурентов</h2>
+    <div class="two-col">
+      <div class="insight green"><div class="insight-label">Что есть только у IEK</div>Масштаб №1 + холдинг брендов (от модульки до промавтоматизации и СЭС) + реализованные проекты федерального уровня + Univer на 15k инженеров.</div>
+      <div class="insight"><div class="insight-label">Гейм-чейнджер</div><b>«Инженерная платформа IEK»</b>: AI-подбор + подбор аналога ушедшего бренда + сквозной путь до дилера. Ни один конкурент этого пока не закрыл.</div>
+    </div>
+  </div>
+</section>
+
+<!-- РАЗДЕЛ 6 -->
+<section class="section" id="section-6">
+  <div class="page-eyebrow">Стратегия · 06</div>
+  <h1 class="page-title">Стратегические фокусы</h1>
+  <p class="page-lead">Три этапа за 18 месяцев: убрать трение и собрать имеющиеся инструменты в путь, затем занять пустые поля (аналоги + AI), затем масштабировать платформу и партнёрскую экосистему.</p>
+
+  <div class="phase p1">
+    <h3>Этап 1 (0–6 мес) · Собрать путь и убрать трение</h3>
+    <div class="phase-item"><b>Единый сценарий «от задачи к спецификации».</b> Свести FORMAT, BIM&CAD, типовые решения в один связный флоу с явным CTA.<div class="phase-kpi">KPI: конверсия в целевое действие (лид/спецификация) +30%</div></div>
+    <div class="phase-item"><b>ТТХ и опросный лист на первом экране ключевых страниц.</b> Под реальное поведение инженера.<div class="phase-kpi">KPI: глубина/время на странице подбора ↑</div></div>
+    <div class="phase-item"><b>Сквозная аналитика портал → CRM → дилер.</b> Связать канал с лидом и сделкой.<div class="phase-kpi">KPI: атрибуция лидов к источнику = база для ROI</div></div>
+  </div>
+
+  <div class="phase p2">
+    <h3>Этап 2 (6–12 мес) · Занять пустые поля</h3>
+    <div class="phase-item"><b>Подбор аналога ушедшего бренда.</b> «Артикул Schneider/ABB/Legrand → аналог IEK + таблица соответствия».<div class="phase-kpi">KPI: захват импортозамещающего спроса, первый на рынке</div></div>
+    <div class="phase-item"><b>AI-ассистент инженера.</b> Подбор комплекта и ответы по ТТХ в диалоге, на базе каталога.<div class="phase-kpi">KPI: доля сессий с AI-подбором → лид</div></div>
+    <div class="phase-item"><b>ЛК проектировщика.</b> Проект живёт целиком: подбор → спецификация → BIM → статус → дилер.<div class="phase-kpi">KPI: регистрации проектировщиков, повторные заходы</div></div>
+    <div class="phase-item"><b>AI-готовность каталога.</b> Фиды, FAQ, структура под машинное чтение.<div class="phase-kpi">KPI: удержание/рост трафика на фоне тренда −34%</div></div>
+  </div>
+
+  <div class="phase p3">
+    <h3>Этап 3 (12–18 мес) · Платформа и экосистема</h3>
+    <div class="phase-item"><b>Достроить Бизнес-платформу.</b> Сквозной путь «спецификация → заказ → наличие → дилер» для закупщиков и партнёров.<div class="phase-kpi">KPI: оборот через BP, доля заказов из портала</div></div>
+    <div class="phase-item"><b>Программа лояльности для монтажников/проектировщиков.</b> Обучение + закупки = бонусы.<div class="phase-kpi">KPI: retention аудитории, LTV специалиста</div></div>
+    <div class="phase-item"><b>Единая инженерная экосистема брендов.</b> ONI, ITK, LEDEL, FEREKS в одном пути подбора комплексного решения.<div class="phase-kpi">KPI: средний размер спецификации (кросс-бренд)</div></div>
+  </div>
+</section>
+
+<!-- РАЗДЕЛ 7 -->
+<section class="section" id="section-7">
+  <div class="page-eyebrow">Стратегия · 07</div>
+  <h1 class="page-title">Дорожная карта · 18 месяцев</h1>
+
+  <div class="phase p1">
+    <h3>Фаза 1 · Мес 1–6 · Путь и фундамент</h3>
+    <div class="phase-item"><b>Мес 1–2:</b> аудит веб-аналитики, карта сценариев аудиторий, единый CTA<div class="phase-kpi">Target: базовые метрики и атрибуция настроены</div></div>
+    <div class="phase-item"><b>Мес 2–4:</b> сборка сквозного флоу «задача → спецификация», редизайн страниц подбора под ТТХ-первый-экран<div class="phase-kpi">Target: конверсия в лид/спецификацию +30%</div></div>
+    <div class="phase-item"><b>Мес 4–6:</b> сквозная аналитика портал→CRM→дилер; контент в воронку TOFU→BOFU<div class="phase-kpi">Target: первые SEO-лиды (срок 4–6 мес — норма ниши)</div></div>
+  </div>
+  <div class="phase p2">
+    <h3>Фаза 2 · Мес 7–12 · Пустые поля</h3>
+    <div class="phase-item"><b>Мес 7–9:</b> запуск подбора аналога ушедшего бренда (MVP по топ-категориям)<div class="phase-kpi">Target: захват импортозамещающих запросов</div></div>
+    <div class="phase-item"><b>Мес 9–11:</b> AI-ассистент инженера (пилот на модульке/щитовом), AI-готовность каталога<div class="phase-kpi">Target: доля AI-сессий → лид; удержание трафика</div></div>
+    <div class="phase-item"><b>Мес 11–12:</b> ЛК проектировщика (проект целиком)<div class="phase-kpi">Target: регистрации проектировщиков, повторные заходы</div></div>
+  </div>
+  <div class="phase p3">
+    <h3>Фаза 3 · Мес 13–18 · Платформа</h3>
+    <div class="phase-item"><b>Мес 13–15:</b> достройка Бизнес-платформы (спецификация→заказ→дилер)<div class="phase-kpi">Target: доля заказов из портала ↑</div></div>
+    <div class="phase-item"><b>Мес 15–18:</b> программа лояльности + кросс-брендовый подбор комплексных решений<div class="phase-kpi">Target: retention аудитории, средний размер спецификации ↑</div></div>
+  </div>
+</section>
+
+<!-- РАЗДЕЛ 8 -->
+<section class="section" id="section-8">
+  <div class="page-eyebrow">Стратегия · 08</div>
+  <h1 class="page-title">Метрики и успех</h1>
+
+  <div class="block">
+    <h2>Целевые метрики (18 мес)</h2>
+    <table class="tbl">
+      <tr><th>Метрика</th><th>AS-IS (оценка)</th><th>Бенчмарк/логика</th><th>Target</th><th>Источник</th></tr>
+      <tr><td>Конверсия в лид/спецификацию</td><td>низкая, разрозненная</td><td>лид-магниты+единый CTA</td><td>+30–50%</td><td>vc.ru B2B 2026</td></tr>
+      <tr><td>Доля лидов из SEO+контента</td><td>не выделена</td><td>40–60% в B2B-проектировании</td><td>40%+</td><td>veresking.com 2025</td></tr>
+      <tr><td>Регистрации проектировщиков (ЛК)</td><td>нет единого ЛК</td><td>модель EKF</td><td>новый KPI</td><td>ekfgroup.com</td></tr>
+      <tr><td>Сессии с AI-подбором → лид</td><td>0</td><td>новый канал</td><td>новый KPI</td><td>СберМаркетинг 2026</td></tr>
+      <tr><td>Запросы «аналог бренда X»</td><td>теряются</td><td>голубой океан</td><td>захват спроса</td><td>анализ конкурентов</td></tr>
+      <tr><td>Удержание трафика (AI-сдвиг)</td><td>под риском −34%</td><td>AI-готовность каталога</td><td>≥ flat / рост</td><td>СберМаркетинг 2026</td></tr>
+      <tr><td>Доля заказов через Бизнес-платформу</td><td>низкая</td><td>достройка BP</td><td>рост ×N</td><td>—</td></tr>
+    </table>
+    <div class="insight yellow"><div class="insight-label">Важно про измеримость</div>Главная инфраструктурная задача — <b>сквозная аналитика</b>. Без связки «канал → лид → спецификация → сделка у дилера» нельзя доказать вклад портала в выручку. Это фундамент для всех остальных KPI и для защиты бюджета.</div>
+  </div>
+
+  <div class="block">
+    <h2>Риски и контрмеры</h2>
+    <table class="tbl">
+      <tr><th>Риск</th><th>Влияние</th><th>Контрмера</th></tr>
+      <tr><td>Атрибуция: продажа идёт через дилеров, портал не «видит» сделку</td><td>Высокое</td><td>Сквозная аналитика + промокоды/спецификации с меткой + интеграция с BP</td></tr>
+      <tr><td>AI-агенты забирают трафик (−34%)</td><td>Высокое</td><td>Каталог под машинное чтение + собственный AI-ассистент как точка входа</td></tr>
+      <tr><td>Конкуренты усиливают конфигураторы</td><td>Среднее</td><td>Занять пустые поля (аналоги, AI) раньше + собрать сквозной путь</td></tr>
+      <tr><td>Разрозненность брендов холдинга</td><td>Среднее</td><td>Единый кросс-брендовый сценарий подбора решения</td></tr>
+      <tr><td>Долгий цикл B2B-сделки</td><td>Среднее</td><td>Реалистичные сроки (SEO 4–6 мес), nurturing, контент-воронка</td></tr>
+    </table>
+  </div>
+
+  <div class="block">
+    <h2>Источники документа</h2>
+    <ul class="src-cols">
+      <li>eprussia.ru — фин. результаты IEK 2025, рынок НВО</li>
+      <li>sergeytereshkin.ru — итоги IEK 2024, сравнение с EKF</li>
+      <li>CNews / sostav.ru — лидерство IEK (исследование Б1)</li>
+      <li>ruscable.ru — фин. результаты IEK H1 2025</li>
+      <li>indpages.ru; sevastopol.su — рынок электротехники, импортозамещение</li>
+      <li>dkc.ru — конфигураторы RAM cube, плагин Revit</li>
+      <li>ekfgroup.com — ЛК проектировщика, MasterTray, Универ</li>
+      <li>vc.ru — B2B-лидогенерация, SEO, поведение инженеров 2026</li>
+      <li>veresking.com — лиды на BIM-проектирование 2025</li>
+      <li>sostav.ru — B2B digital-маркетинг 2026</li>
+      <li>СберМаркетинг (vc.ru) — AI-сдвиг трафика 2026</li>
+      <li>CNews — ИИ-ассистенты для бизнеса 2026</li>
+    </ul>
+  </div>
+</section>
+<!-- ★ КАСДЕВ -->
+<section class="section" id="section-cd">
+  <div class="page-eyebrow">Первичные данные · ★</div>
+  <h1 class="page-title">Касдев и наблюдения</h1>
+  <p class="page-lead">Раздел для первичных данных. Сейчас заполнен гипотезами из анализа портала и публичных отраслевых источников; помечен как требующий валидации веб-аналитикой и интервью.</p>
+
+  <div class="block">
+    <h2>Воронка доверия / вовлечения инженера</h2>
+    <div class="steps-flow">
+      <span class="step">Поиск решения задачи</span><span class="step-arr">→</span>
+      <span class="step">Попал на iek.ru</span><span class="step-arr">→</span>
+      <span class="step">Нашёл ТТХ / подбор</span><span class="step-arr">→</span>
+      <span class="step">Получил спецификацию</span><span class="step-arr">→</span>
+      <span class="step">Дошёл до дилера/заказа</span>
+    </div>
+    <table class="tbl">
+      <tr><th>Шаг</th><th>Наблюдение</th><th>Состояние</th></tr>
+      <tr><td>Поиск</td><td>Сильный бренд + контент-машина, но риск AI-сдвига трафика</td><td><span class="badge b-orange">Средне</span></td></tr>
+      <tr><td>На портале</td><td>Богатый, но фрагментированный — инструменты в разных местах</td><td><span class="badge b-orange">Средне</span></td></tr>
+      <tr><td>Подбор</td><td>FORMAT/типовые есть, но нет сквозного конфигуратора всего комплекта</td><td><span class="badge b-red">Критично</span></td></tr>
+      <tr><td>Спецификация</td><td>Нет единого ЛК, где проект живёт целиком</td><td><span class="badge b-red">Критично</span></td></tr>
+      <tr><td>Дилер/заказ</td><td>BP есть, но путь не сквозной и слабо измеряем</td><td><span class="badge b-orange">Средне</span></td></tr>
+    </table>
+  </div>
+
+  <div class="block">
+    <h2>Связь наблюдений с приоритетами</h2>
+    <table class="tbl">
+      <tr><th>Наблюдение</th><th>Приоритет</th><th>Этап</th></tr>
+      <tr><td>Нет сквозного пути «задача → спецификация»</td><td><span class="badge b-red">P0</span></td><td>Этап 1, мес 2–4</td></tr>
+      <tr><td>Нет подбора аналога ушедшего бренда</td><td><span class="badge b-red">P0</span></td><td>Этап 2, мес 7–9</td></tr>
+      <tr><td>Нет сквозной аналитики (вклад в продажи)</td><td><span class="badge b-red">P0</span></td><td>Этап 1, мес 4–6</td></tr>
+      <tr><td>Каталог не готов к AI-агентам</td><td><span class="badge b-orange">P1</span></td><td>Этап 2, мес 9–11</td></tr>
+      <tr><td>Лояльность аудитории не оцифрована</td><td><span class="badge b-gray">P2</span></td><td>Этап 3, мес 15–18</td></tr>
+    </table>
+    <div class="insight yellow"><div class="insight-label">Что валидировать первым</div>Реальные источники трафика и точки отвала в веб-аналитике; 5–7 интервью с проектировщиками и снабженцами; доля запросов «аналог [ушедший бренд]» в поиске; готовность каталога к парсингу AI-агентами.</div>
+  </div>
+</section>
+
+<!-- ★★ AI-КАСДЕВ -->
+<section class="section" id="section-ai">
+  <div class="page-eyebrow">Первичные данные · ★★</div>
+  <h1 class="page-title">AI-Касдев</h1>
+  <p class="page-lead">Генерация первичных данных через AI, пока нет реальных интервью. Все синтетические данные помечены <span class="tag-data">AI-симуляция</span>.</p>
+
+  <div class="block">
+    <h2>Режим 2 (применён): паттерны боли аудитории</h2>
+    <p style="font-size:13px;color:#64748B">Кластеризация на основе публичных материалов отрасли (vc.ru, форумы проектировщиков, сервисы конкурентов).</p>
+    <table class="tbl">
+      <tr><th>Кластер боли</th><th>Оценка значимости</th><th>Формулировка</th><th>Незакрытый JTBD</th></tr>
+      <tr><td>Фрагментация подбора</td><td><span class="badge b-red">высокая</span></td><td>«Половина времени — свести разрозненное в одну спецификацию»</td><td>Подбор комплекта в один заход</td></tr>
+      <tr><td>Замена ушедшего бренда</td><td><span class="badge b-red">высокая</span></td><td>«Часы переписки чтобы найти точный аналог»</td><td>Автоподбор аналога по параметрам</td></tr>
+      <tr><td>Нет полного BIM/конфигуратора</td><td><span class="badge b-orange">средняя</span></td><td>«Иду к тому, у кого есть плагин Revit»</td><td>Полная BIM-библиотека + конфигуратор</td></tr>
+      <tr><td>Лояльность не вознаграждается</td><td><span class="badge b-gray">низкая</span></td><td>«Хочется чтобы за обучение и закупки капал бонус»</td><td>Программа лояльности специалиста</td></tr>
+    </table>
+    <div class="insight"><div class="insight-label">Приоритизация</div>Топ-2 боли — фрагментация подбора и замена бренда — это ровно те поля, где IEK может выиграть первым. Связывает Раздел 2 (JTBD) и Раздел 6 (фокусы).</div>
+  </div>
+
+  <div class="block">
+    <h2>Режим 3 (пример): проверка гипотезы «AI-ассистент инженера»</h2>
+    <p style="font-size:13px;color:#64748B">Гипотеза: «Инженеры тратят часы на подбор. Если дать AI-ассистента подбора по каталогу → вырастут лиды и попадание в спецификацию». <span class="tag-data">AI-симуляция</span></p>
+    <table class="tbl">
+      <tr><th>Персона</th><th>Реакция</th><th>Возражение</th><th>Что поменять</th></tr>
+      <tr><td>Дмитрий (проектировщик)</td><td><span class="badge b-green">✅ Примет</span></td><td>«Лишь бы выдавал точные ТТХ и выгрузку»</td><td>Привязать к BIM/спецификации, не просто чат</td></tr>
+      <tr><td>Сергей (энергетик)</td><td><span class="badge b-green">✅ Примет</span></td><td>«Нужна таблица соответствия аналогу»</td><td>Встроить подбор аналога ушедшего бренда</td></tr>
+      <tr><td>Андрей (монтажник)</td><td><span class="badge b-orange">⚠️ Нейтрально</span></td><td>«Я в поле, мне бы инструкцию и где купить»</td><td>Дать монтажный сценарий + дилер рядом</td></tr>
+      <tr><td>Елена (снабженец)</td><td><span class="badge b-green">✅ Примет</span></td><td>«Покажет ли наличие и цену?»</td><td>Связать с BP: наличие/цена/дилер в ответе</td></tr>
+      <tr><td>Игорь (дилер)</td><td><span class="badge b-green">✅ Примет</span></td><td>«Приведёт ли это заказы ко мне?»</td><td>Маршрутизировать лиды ассистента на дилера</td></tr>
+    </table>
+    <div class="insight green"><div class="insight-label">Вердикт</div>Гипотеза работает для 4/5 явно. Барьер — монтажник (другой сценарий). Рекомендация: AI-ассистент обязателен, но с разными режимами под аудиторию и обязательной связкой «ответ → спецификация/наличие → дилер».</div>
+  </div>
+</section>
+
+<!-- A: AI-СДВИГ -->
+<section class="section" id="section-A">
+  <div class="page-eyebrow">Стратегический выбор · A</div>
+  <h1 class="page-title">AI-сдвиг и новички</h1>
+  <p class="page-lead">В B2B-портале аналог «AI-новичков» — это не приложения, а смена способа поиска: AI-агенты становятся точкой входа вместо поисковика. Кто перестроится первым — удержит трафик и заберёт лидерство в digital.</p>
+
+  <div class="block">
+    <h2>Что меняется в горизонте 18 мес</h2>
+    <table class="tbl">
+      <tr><th>Сдвиг</th><th>Данные</th><th>Что значит для iek.ru</th></tr>
+      <tr><td>AI-агенты как покупатель</td><td>B2B-сайты −34% трафика за 2024–2025 (AI забирает запросы)</td><td>Каталог под машинное чтение = вопрос выживания трафика</td></tr>
+      <tr><td>ИИ-ассистенты в процессах</td><td>~75% компаний тестируют/внедряют genAI; ~40% отдают ассистентам задачи людей (McKinsey)</td><td>AI-подбор и поддержка инженера — ожидаемый стандарт</td></tr>
+      <tr><td>Data-driven закупки</td><td>Переход к закупкам на основе данных в промышленности</td><td>Снабженец ждёт прозрачности наличия/цены/срока в портале</td></tr>
+      <tr><td>Рынок чат-ботов РФ</td><td>+20–25% в 2026</td><td>Готовые движки удешевляют запуск AI-ассистента</td></tr>
+    </table>
+  </div>
+
+  <div class="block">
+    <h2>Формула — что повторяется у выигрывающих в B2B-digital</h2>
+    <div class="three-col">
+      <div class="insight"><div class="insight-label">1. Один сильный job</div>Снять фрагментацию подбора — остальное вторично.</div>
+      <div class="insight"><div class="insight-label">2. Инструмент &gt; контент</div>Конфигуратор/ЛК удерживает инженера лучше статей.</div>
+      <div class="insight"><div class="insight-label">3. AI как точка входа</div>Ассистент перехватывает запрос до ухода к стороннему AI.</div>
+      <div class="insight"><div class="insight-label">4. Готовые движки</div>Не строить с нуля — взять и быстро итерировать.</div>
+      <div class="insight"><div class="insight-label">5. Сквозная аналитика</div>Измерять лид→сделку, а не клики.</div>
+      <div class="insight"><div class="insight-label">6. Занять пустое поле</div>Аналоги бренда — там, где конкурентов нет.</div>
+    </div>
+  </div>
+</section>
+
+<!-- B: ДВА ВИЖИНА -->
+<section class="section" id="section-B">
+  <div class="page-eyebrow">Стратегический выбор · B</div>
+  <h1 class="page-title">Два вижина: каким быть порталу</h1>
+  <p class="page-lead">Оба опираются на реальные активы IEK и различаются амбицией. Этап 1 у них общий, поэтому начинать можно немедленно.</p>
+
+  <div class="vision-grid">
+    <div class="vision-card v1">
+      <div class="vision-tag">Вижин 1 · Лучший каталог-витрина</div>
+      <h3>Эталонный портал производителя</h3>
+      <p>Лучший в категории корпоративный портал: безупречные карточки, ТТХ, BIM/CAD, контент и лидогенерация. Аналогия: образцовый сайт вендора.</p>
+      <p><b>Для кого:</b> весь B2B, но как источник информации и лидов.</p>
+      <div class="insight green" style="margin:10px 0"><div class="insight-label">Плюсы</div>Быстро, опирается на текущие активы, понятно командам, низкий риск.</div>
+      <div class="insight red" style="margin:10px 0"><div class="insight-label">Риски</div>Не защищает от AI-сдвига и от конкурентов с конфигураторами; потолок — «ещё один хороший сайт».</div>
+      <p style="font-size:13px"><b>Потолок ценности:</b> средний · <b>Moat:</b> бренд + контент</p>
+    </div>
+
+    <div class="vision-card v2">
+      <div class="vision-tag">Вижин 2 · Инженерная платформа</div>
+      <h3>Рабочая платформа инженера и закупщика</h3>
+      <p>Не витрина, а инструмент в рабочем процессе: AI-подбор + подбор аналога + ЛК проектировщика + сквозной путь до дилера + лояльность. IEK встроен в проект на этапе спецификации.</p>
+      <p><b>Для кого:</b> все 5 персон + партнёрская экосистема.</p>
+      <div class="insight green" style="margin:10px 0"><div class="insight-label">Плюсы</div>Высокий moat (данные проектов + привычка инженера), защита от AI-сдвига, попадание в спецификацию = выручка на годы, кросс-бренд холдинга.</div>
+      <div class="insight red" style="margin:10px 0"><div class="insight-label">Риски</div>Дороже и дольше; требует AI-слоя, интеграций с BP/CRM/дилерами и кросс-командной работы.</div>
+      <p style="font-size:13px"><b>Потолок ценности:</b> высокий · <b>Moat:</b> привычка инженера + данные + экосистема</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Сравнение вижинов</h2>
+    <table class="tbl">
+      <tr><th>Параметр</th><th>Вижин 1 · Витрина</th><th>Вижин 2 · Платформа</th></tr>
+      <tr><td>Время до результата</td><td>Быстро</td><td>Средне (этапами)</td></tr>
+      <tr><td>Влияние на спецификацию</td><td>Косвенное</td><td>Прямое (попадание в проект)</td></tr>
+      <tr><td>Защита от AI-сдвига трафика</td><td>Слабая</td><td>Сильная (свой AI как вход)</td></tr>
+      <tr><td>Moat</td><td>Бренд + контент</td><td>Привычка + данные + экосистема</td></tr>
+      <tr><td>Удержание аудитории</td><td>Контент</td><td>ЛК, конфигуратор, лояльность</td></tr>
+      <tr><td>Партнёрский потенциал</td><td>Низкий</td><td>Высокий (BP, дилеры)</td></tr>
+      <tr><td>Аналогия</td><td>Образцовый сайт вендора</td><td>Инженерная экосистема (как Autodesk-логика подбора)</td></tr>
+    </table>
+  </div>
+
+  <div class="highlight-box">
+    <h3>Рекомендация: ставка на Вижин 2</h3>
+    <p>Инженерная платформа — единственная позиция, защищённая от двух главных угроз: AI-сдвига трафика и конкурентов с сильными конфигураторами. Лидерство по продукту, холдинг брендов и Univer дают для этого уникальный фундамент, которого нет ни у EKF, ни у DKC. <b>Важно:</b> Этап 1 (сквозной путь, ТТХ-первый-экран, аналитика) одинаков для обоих вижинов — поэтому начинать можно немедленно и доращивать до платформы по мере результатов, не дожидаясь финального решения об амбиции.</p>
+  </div>
+</section>
+</div><!-- /main -->
+<script>
+function show(id, el){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('section-'+id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo(0,0);
+  if(window.innerWidth<=900) closeSidebar();
+}
+function toggleQa(el){ el.parentElement.classList.toggle('open'); }
+function toggleSidebar(){
+  const s=document.getElementById('sidebar'),o=document.getElementById('sidebarOverlay'),b=document.getElementById('burgerBtn');
+  if(s.classList.contains('open')){ closeSidebar(); }
+  else{ s.classList.add('open'); o.classList.add('visible'); b.classList.add('open'); document.body.style.overflow='hidden'; }
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('visible');
+  document.getElementById('burgerBtn').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeSidebar(); });
+(function(){
+  let startX=0; const s=document.getElementById('sidebar');
+  s.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;},{passive:true});
+  s.addEventListener('touchend',e=>{ if(e.changedTouches[0].clientX-startX<-60) closeSidebar(); },{passive:true});
+})();
+</script>
+</body>
+</html>
